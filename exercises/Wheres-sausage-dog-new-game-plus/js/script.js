@@ -7,6 +7,7 @@ author, and this description to match your project!
 */
 
 "use strict";
+let state = "title";
 //number of animal image won't change so use 'const'
 const NUM_ANIMAL_IMAGES = 10;
 const NUM_ANIMALS = 100;
@@ -61,7 +62,31 @@ Description of draw()
 */
 function draw() {
   background(255, 255, 0);
+  if (state === `title`) {
+    title();
+  } else if (state === `startGame`) {
+    game();
+  } else if (state === `winning`) {
+    winner();
+  } else if (state === `gameOver`) {
+    loser();
+  } else if (state === `lostMagic`) {
+    lostMagic();
+  }
+  if (state === `title`) {
+  }
+}
 
+function title() {
+  fill(255);
+  textFont(`gigi`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Where's Sausage Dog?`, width / 2, height - 700);
+}
+
+function game() {
   for (let i = 0; i < animals.length; i++) {
     //give the animals at position 'i' and use update from animal.js
     animals[i].update();
@@ -74,4 +99,22 @@ function mousePressed() {
     //give the animals at position 'i' and use update from animal.js
     animals[i].mousePressed();
   }
+}
+
+function winning() {
+  fill(0);
+  textFont(`gigi`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Sausage Dog is found!`, width / 2, height - 700);
+}
+
+function losing() {
+  fill(0);
+  textFont(`gigi`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Sausage Dog was never found. Try again.`, width / 2, height - 700);
 }
