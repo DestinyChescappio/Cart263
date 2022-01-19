@@ -70,4 +70,8 @@ function draw() {
 }
 function mousePressed() {
   sausageDog.mousePressed();
+  for (let i = 0; i < animals.length; i++) {
+    //give the animals at position 'i' and use update from animal.js
+    animals[i].mousePressed();
+  }
 }

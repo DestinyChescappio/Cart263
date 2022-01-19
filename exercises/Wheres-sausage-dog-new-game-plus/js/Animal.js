@@ -3,13 +3,22 @@ class Animal {
     this.x = x;
     this.y = y;
     this.image = image;
+    this.wiggling = false;
 
     this.angle = 0;
   }
 
   //update method
   update() {
+    this.wiggle();
     this.display();
+  }
+
+  wiggle() {
+    if (this.wiggling) {
+      this.x += random(-2, 2);
+      this.y += random(-2, 2);
+    }
   }
 
   display() {
@@ -33,6 +42,12 @@ class Animal {
       return true;
     } else {
       return false;
+    }
+  }
+
+  mousePressed() {
+    if (this.overlap(mouseX, mouseY)) {
+      this.wiggling = true;
     }
   }
 }
