@@ -45,9 +45,16 @@ class Animal {
     }
   }
 
+  stopWiggling() {
+    this.wiggling = false;
+    //stop playing sound
+  }
+
   mousePressed() {
     if (this.overlap(mouseX, mouseY)) {
+      //play the sound
       this.wiggling = true;
+      setTimeout(this.stopWiggling.bind(this), 2000);
     }
   }
 }
