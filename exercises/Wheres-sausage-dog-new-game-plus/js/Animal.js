@@ -58,8 +58,7 @@ class Animal {
       //to play it
       animalClick.play();
       animalClick.setVolume(0.02);
+      numAnimalsHit++;
     }
-
-    numAnimalsHit++;
   }
 }

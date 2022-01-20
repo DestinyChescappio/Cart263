@@ -96,6 +96,7 @@ function title() {
   textSize(30);
   textAlign(CENTER, CENTER);
   text(`🐶 Press any key to start 🐶`, width / 2, height - 100);
+  numAnimalsHit = 0;
 }
 
 //press mouse pad/buttom to start game
@@ -113,6 +114,8 @@ function game() {
   sausageDog.update();
 
   numAnimals();
+
+  checkState();
 }
 
 function mousePressed() {
@@ -148,4 +151,10 @@ function losing() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Sausage Dog was never found. Try again.`, width / 2, height - 700);
+}
+
+function checkState() {
+  if (numAnimalsHit >= 3) {
+    state = `gameOver`;
+  }
 }
