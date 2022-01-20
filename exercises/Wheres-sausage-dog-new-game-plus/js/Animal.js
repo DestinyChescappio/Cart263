@@ -60,6 +60,6 @@ class Animal {
       animalClick.setVolume(0.02);
     }
 
-    numAnimalsHit += 1;
+    numAnimalsHit++;
   }
 }
