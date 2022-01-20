@@ -138,7 +138,7 @@ function winning() {
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Sausage Dog is found!`, width / 2, height - 700);
+  text(`Sausage Dog is found!🐶🏆`, width / 2, height / 2);
 }
 
 function losing() {

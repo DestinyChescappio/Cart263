@@ -24,7 +24,7 @@ class SausageDog extends Animal {
     if (!this.found && this.overlap(mouseX, mouseY)) {
       this.found = true;
       barkSFX.play();
-      setTimeout(this.winState, 3000);
+      setTimeout(this.winState, 2000);
     }
   }
 }
