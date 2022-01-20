@@ -12,7 +12,7 @@ let state = "title";
 const NUM_ANIMAL_IMAGES = 10;
 const NUM_ANIMALS = 100;
 
-let wrongSound = undefined;
+let animalClick = undefined;
 //declaring global empty array variables; global means: it can be used in any function & in any file in the project
 // "global" = outside of the other functions & multi-use
 let animalImages = [];
@@ -35,7 +35,7 @@ function preload() {
     let animalImage = loadImage(`assets/images/animal-images/animal${i}.png`);
     animalImages.push(animalImage);
   }
-  wrongSound = loadSound(`assets/sounds/wrong.mp3`);
+  animalClick = loadSound(`assets/sounds/animalClick.wav`);
   sausageDogImage = loadImage(`assets/images/animal-images/sausage-dog.png`);
 }
 
