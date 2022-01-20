@@ -56,5 +56,11 @@ class Animal {
       this.wiggling = true;
       setTimeout(this.stopWiggling.bind(this), 2000);
     }
+    if (wrongSound.isPlaying() === false) {
+      //volume set
+      wrongSound.setVolume(0.05);
+      //to play it
+      wrongSound.play();
+    }
   }
 }

@@ -12,6 +12,7 @@ let state = "title";
 const NUM_ANIMAL_IMAGES = 10;
 const NUM_ANIMALS = 100;
 
+let wrongSound = undefined;
 //declaring global empty array variables; global means: it can be used in any function & in any file in the project
 // "global" = outside of the other functions & multi-use
 let animalImages = [];
@@ -19,6 +20,8 @@ let animals = [];
 
 let sausageDogImage = undefined;
 let sausageDog = undefined;
+
+let numAnimalsHit = 0;
 
 /**
 Description of preload
@@ -32,6 +35,7 @@ function preload() {
     let animalImage = loadImage(`assets/images/animal-images/animal${i}.png`);
     animalImages.push(animalImage);
   }
+  wrongSound = loadSound(`assets/sounds/wrong.mp3`);
   sausageDogImage = loadImage(`assets/images/animal-images/sausage-dog.png`);
 }
 
@@ -67,23 +71,34 @@ function draw() {
   } else if (state === `startGame`) {
     game();
   } else if (state === `winning`) {
-    winner();
+    winning();
   } else if (state === `gameOver`) {
-    loser();
-  } else if (state === `lostMagic`) {
-    lostMagic();
-  }
-  if (state === `title`) {
+    losing();
+    if (state === `title`) {
+    }
   }
 }
 
 function title() {
-  fill(255);
-  textFont(`gigi`);
+  fill(0);
+  textFont(`bradley hand`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Where's Sausage Dog?`, width / 2, height - 700);
+  text(`Where's Sausage Dog?`, width / 2, height / 2);
+
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text(`🐶 Press any key to start 🐶`, width / 2, height - 100);
+}
+
+//press mouse pad/buttom to start game
+function keyPressed() {
+  if (state === `title`) {
+    state = `startGame`;
+  }
 }
 
 function game() {
@@ -92,7 +107,10 @@ function game() {
     animals[i].update();
   }
   sausageDog.update();
+
+  numAnimals();
 }
+
 function mousePressed() {
   sausageDog.mousePressed();
   for (let i = 0; i < animals.length; i++) {
@@ -101,9 +119,18 @@ function mousePressed() {
   }
 }
 
+function numAnimals() {
+  fill(255, 0, 0);
+  textFont(`impact`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`x${numAnimalsHit}`, 1200, 100);
+}
+
 function winning() {
   fill(0);
-  textFont(`gigi`);
+  textFont(`bradley hand`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
@@ -112,7 +139,7 @@ function winning() {
 
 function losing() {
   fill(0);
-  textFont(`gigi`);
+  textFont(`bradley hand`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
