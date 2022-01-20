@@ -21,6 +21,8 @@ let animals = [];
 let sausageDogImage = undefined;
 let sausageDog = undefined;
 
+let barkSFX = undefined;
+
 let numAnimalsHit = 0;
 
 /**
@@ -30,12 +32,14 @@ function preload() {
   //forloop to count up to 0 (animal 0 to 9)
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
     //load images
-    //ea. file name has a number (from 0 to 9) so need to insert the variable 'i'
-    //putting 'i' will count from animal0 to animal1,animal2, and so on.
+    //making an array of animals
     let animalImage = loadImage(`assets/images/animal-images/animal${i}.png`);
     animalImages.push(animalImage);
   }
   animalClick = loadSound(`assets/sounds/animalClick.wav`);
+  barkSFX = loadSound(`assets/sounds/bark.wav`);
+
+  //load sounds
   sausageDogImage = loadImage(`assets/images/animal-images/sausage-dog.png`);
 }
 
@@ -51,14 +55,14 @@ function setup() {
     let y = random(0, height);
     let animalImage = random(animalImages);
     //creating animal variable to create these new animals
-    let animal = new Animal(x, y, animalImage);
+    let animal = new Animal(x, y, animalImage, animalClick);
     //add animal in animal array
     animals.push(animal);
   }
 
   let x = random(0, width);
   let y = random(0, height);
-  sausageDog = new SausageDog(x, y, sausageDogImage);
+  sausageDog = new SausageDog(x, y, sausageDogImage, barkSFX);
 }
 
 /**

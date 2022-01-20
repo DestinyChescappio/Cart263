@@ -55,13 +55,11 @@ class Animal {
       //play the sound
       this.wiggling = true;
       setTimeout(this.stopWiggling.bind(this), 2000);
-    }
-    if (animalClick.isPlaying() === false) {
-      //volume set
-      animalClick.setVolume(0.05);
       //to play it
       animalClick.play();
+      animalClick.setVolume(0.02);
     }
+
     numAnimalsHit += 1;
   }
 }
