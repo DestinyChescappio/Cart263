@@ -1,10 +1,19 @@
-class Animal {
-  constructor(x, y, image) {
-    this.x = x;
-    this.y = y;
-    this.image = image;
-    this.wiggling = false;
+//Animal class: the update of its wiggle and display behavior, behavior of wiggling when
+//clicked on, the display,checking if the mouse overalps the animal, behavior when mouse is
+//pressed on any of the animals.
 
+class Animal {
+  //animal properties
+  constructor(x, y, image) {
+    //x position
+    this.x = x;
+    //y position
+    this.y = y;
+    //the image it's using
+    this.image = image;
+    //wiggling is false when it's not clicked on
+    this.wiggling = false;
+    //no angle
     this.angle = 0;
   }
 
@@ -14,13 +23,16 @@ class Animal {
     this.display();
   }
 
+  //wiggling method
   wiggle() {
     if (this.wiggling) {
+      //if it's wiggling, the position axis shifts -2 to 2 pixels
       this.x += random(-2, 2);
       this.y += random(-2, 2);
     }
   }
 
+  //display method
   display() {
     push();
     imageMode(CENTER);
@@ -30,7 +42,7 @@ class Animal {
     pop();
   }
 
-  //if mouse over any animals
+  //if mouse is overlapping any animals
   //this doesn't do anything, this just checks if it overlaps
   overlap(x, y) {
     if (
@@ -45,19 +57,23 @@ class Animal {
     }
   }
 
+  //stops wiggling method is used for the 'setTimeout'
   stopWiggling() {
     this.wiggling = false;
-    //stop playing sound
   }
 
+  //when mouse is pressed on the animal, the wiggling is true
+  //wiggling stops; after 2 seconds
   mousePressed() {
     if (this.overlap(mouseX, mouseY)) {
       //play the sound
       this.wiggling = true;
       setTimeout(this.stopWiggling.bind(this), 2000);
-      //to play it
+      //animalsClick sound triggers when animal is clicked on
       animalClick.play();
+      //volume of sound
       animalClick.setVolume(0.02);
+      //keeping track of how many animals are hit; 1 each time
       numAnimalsHit++;
     }
   }
