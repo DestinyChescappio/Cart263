@@ -177,7 +177,7 @@ function losing() {
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Sausage Dog was never found. Try again.`, width / 2, height - 700);
+  text(`Sausage Dog was never found. Try again.`, width / 2, height / 2);
 }
 
 //if three other animals are clicked on,the state 'gameOver' is triggered
