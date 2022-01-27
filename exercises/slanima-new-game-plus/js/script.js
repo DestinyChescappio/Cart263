@@ -7,11 +7,24 @@ author, and this description to match your project!
 */
 
 "use strict";
+let state = "title";
 
 const riddles = [
   {
     clue: "The boy who lived",
     answer: "harry potter",
+  },
+  {
+    clue: "We only wear pink on Wednedays",
+    answer: "mean girls",
+  },
+  {
+    clue: "I'll be back...",
+    answer: "terminator",
+  },
+  {
+    clue: "Toto, I've got a feeling we're not in kansas anymore",
+    answer: "the wizard of oz",
   },
 ];
 
@@ -63,15 +76,19 @@ Description of draw()
 */
 function draw() {
   background(0);
-  //displaying the correct and wrong answer
-  if (currentAnswer === currentRiddle.answer) {
-    //correct answer
-    fill(0, 255, 0);
-  } else {
-    //wrong answer
-    fill(255, 0, 0);
+  if (state === `title`) {
+    title();
+  } else if (state === `startGame`) {
+    game();
+  } else if (state === `winning`) {
+    winning();
+  } else if (state === `losing`) {
+    lostGame();
+    if (state === `title`) {
+    }
   }
-  text(currentAnswer, width / 2, height / 2);
+  //right/wrong answers
+  wrongRightAnswers();
 }
 
 //random animal said in reverse is triggered when mouse is pressed
@@ -104,4 +121,16 @@ function movieRiddleString(string) {
   let result = characters.join("");
   // Return the result
   return result;
+}
+
+function wrongRightAnswers() {
+  //displaying the correct and wrong answer
+  if (currentAnswer === currentRiddle.answer) {
+    //correct answer
+    fill(0, 255, 0);
+  } else {
+    //wrong answer
+    fill(255, 0, 0);
+  }
+  text(currentAnswer, width / 2, height / 2);
 }
