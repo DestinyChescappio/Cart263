@@ -8,23 +8,33 @@ author, and this description to match your project!
 
 "use strict";
 
-//array of animals
 const riddles = [
-  "The boy who lived", //Harry Potter
-  "We only wear Pink on Wednesdays", //Mean Girls
-  "I'll be back...", //The terminator
-  "Toto, I've got a feeling we're not in Kansas anymore", //the wizard of oz
+  {
+    clue: "The boy who lived",
+    answer: "harry potter",
+  },
 ];
 
-const answers = [
-  "Harry Potter",
-  "Mean Girls",
-  "The Terminator",
-  "The Wizard of Oz",
-];
+//array of animals
+// const riddles = [
+//   "The boy who lived", //Harry Potter
+//   "We only wear Pink on Wednesdays", //Mean Girls
+//   "I'll be back...", //The terminator
+//   "Toto, I've got a feeling we're not in Kansas anymore", //the wizard of oz
+// ];
+//
+// const answers = [
+//   "Harry Potter",
+//   "Mean Girls",
+//   "The Terminator",
+//   "The Wizard of Oz",
+// ];
 
 //setting a variable with an empty string
-let currentRiddle = ``;
+let currentRiddle = {
+  clue: undefined,
+  answer: undefined,
+};
 //answer after the command
 let currentAnswer = ``;
 /**
@@ -54,7 +64,7 @@ Description of draw()
 function draw() {
   background(0);
   //displaying the correct and wrong answer
-  if (currentAnswer) {
+  if (currentAnswer === currentRiddle.answer) {
     //correct answer
     fill(0, 255, 0);
   } else {
@@ -67,14 +77,21 @@ function draw() {
 //random animal said in reverse is triggered when mouse is pressed
 function mousePressed() {
   currentRiddle = random(riddles);
-  let movieRiddle = movieRiddleString(currentRiddle);
-  responsiveVoice.speak(movieRiddle);
+  //let movieRiddle = movieRiddleString(currentRiddle);
+  responsiveVoice.speak(currentRiddle.clue);
 }
 
 //having the user guess the animal being called in reverse
-function guessMovie(answers) {
+function guessMovie(answer) {
   //whatever was said by responsive voice
-  currentAnswer = answers.toLowerCase();
+  currentAnswer = answer.toLowerCase();
+  //check if it's correct
+  if (currentAnswer === currentRiddle.answer) {
+    console.log(`yay`);
+  } else {
+    //increase the number with # of wrong guesses
+  }
+  console.log(currentAnswer, currentRiddle.answer);
 }
 
 /**
