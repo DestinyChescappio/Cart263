@@ -52,8 +52,9 @@ function setup() {
 Description of draw()
 */
 function draw() {
+  background(0);
   //displaying the correct and wrong answer
-  if (currentAnswer === currentRiddle) {
+  if (currentAnswer) {
     //correct answer
     fill(0, 255, 0);
   } else {
