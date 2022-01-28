@@ -9,10 +9,12 @@ author, and this description to match your project!
 "use strict";
 //title state
 let state = "title";
+
 //number of correct answers
 let numCorrectAnswers = 0;
 //number of wrong answers
 let numWrongAnswers = 0;
+
 //the riddles the user has to figure out with the 'answer'
 const riddles = [
   {
@@ -85,7 +87,7 @@ function title() {
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Guess the Movie!`, width / 2, height / 2);
+  text(`🎬🍿Guess the Movie!🍿🎬`, width / 2, height / 2);
 
   fill(255);
   textFont(`bradley hand`);
@@ -102,7 +104,7 @@ function instructionsGame() {
   textStyle(BOLD);
   textSize(30);
   textAlign(CENTER, CENTER);
-  text(`Click the screen for more riddles`, width / 2, height / 1.2);
+  text(`📽Click the screen for more riddles📽`, width / 2, height / 1.2);
 }
 
 function wrongAnswersText() {
@@ -127,18 +129,18 @@ function winGame() {
   fill(200, 255, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
-  textSize(100);
+  textSize(80);
   textAlign(CENTER, CENTER);
-  text(`Good Stuff!`, width / 2, height / 2);
+  text(`🏆Good Stuff!🏆`, width / 2, height / 2);
 }
 
 function lostGame() {
   fill(255, 0, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
-  textSize(100);
+  textSize(80);
   textAlign(CENTER, CENTER);
-  text(`You are uncultured...`, width / 2, height / 2);
+  text(`You are uncultured...👁👄👁`, width / 2, height / 2);
 }
 
 function keyPressed() {
