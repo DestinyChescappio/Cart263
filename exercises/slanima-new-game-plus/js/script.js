@@ -100,14 +100,14 @@ function correctAnswersText() {
   textStyle(BOLD);
   textSize(50);
   textAlign(CENTER, CENTER);
-  text(`Correct X${numCorrectAnswers}`, width / 6, height / 8);
+  text(`Correct X${numCorrectAnswers}`, width / 1.3, height / 8);
 }
 
 function winGame() {
-  fill(150, 80, 0);
+  fill(200, 255, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
-  textSize(60);
+  textSize(100);
   textAlign(CENTER, CENTER);
   text(`Good Stuff!`, width / 2, height / 2);
 }
@@ -116,7 +116,7 @@ function lostGame() {
   fill(255, 0, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
-  textSize(60);
+  textSize(100);
   textAlign(CENTER, CENTER);
   text(`You are uncultured...`, width / 2, height / 2);
 }
@@ -138,6 +138,8 @@ function game() {
   displayAnswer();
 
   wrongAnswersText();
+
+  correctAnswersText();
 }
 
 //having the user guess the animal being called in reverse
@@ -150,12 +152,11 @@ function guessMovie(answer) {
     numWrongAnswers += 1;
     if (numWrongAnswers > 2) {
       state = `losing`;
-    } else {
-      numCorrectAnswers += 1;
-      if (numCorrectAnswers > 2) {
-        state = `winning`;
-      }
     }
+  }
+  numCorrectAnswers += 1;
+  if (numCorrectAnswers > 2) {
+    state = `winning`;
   }
 }
 
