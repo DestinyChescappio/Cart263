@@ -7,12 +7,13 @@ author, and this description to match your project!
 */
 
 "use strict";
+//title state
 let state = "title";
-
+//number of correct answers
 let numCorrectAnswers = 0;
-
+//number of wrong answers
 let numWrongAnswers = 0;
-
+//the riddles the user has to figure out with the 'answer'
 const riddles = [
   {
     clue: "The boy who lived",
@@ -39,6 +40,7 @@ let currentRiddle = {
 };
 //answer after the command
 let currentAnswer = ``;
+
 /**
 the set up of annyang's speech recognition by the user
 */
@@ -61,7 +63,7 @@ function setup() {
   }
 }
 /**
-Description of draw()
+drawing the title, game, winning, losing states
 */
 function draw() {
   background(0);
@@ -76,6 +78,7 @@ function draw() {
   }
 }
 
+//title page
 function title() {
   fill(255);
   textFont(`blenny`);
@@ -92,13 +95,14 @@ function title() {
   text(`Press any key to start`, width / 2, height / 1.5);
 }
 
+//instructions in the game background
 function instructionsGame() {
   fill(255, 0, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
-  textSize(50);
+  textSize(30);
   textAlign(CENTER, CENTER);
-  text(`Click the screen for more riddles`, width / 2, height / 20);
+  text(`Click the screen for more riddles`, width / 2, height / 1.2);
 }
 
 function wrongAnswersText() {
@@ -156,6 +160,8 @@ function game() {
   wrongAnswersText();
 
   correctAnswersText();
+
+  instructionsGame();
 }
 
 //having the user guess the animal being called in reverse
