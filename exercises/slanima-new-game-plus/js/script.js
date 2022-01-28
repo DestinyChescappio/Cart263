@@ -9,6 +9,8 @@ author, and this description to match your project!
 "use strict";
 let state = "title";
 
+let numWrongAnswers = 0;
+
 const riddles = [
   {
     clue: "The boy who lived",
@@ -80,15 +82,42 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
-  } else if (state === `winning`) {
-    winning();
   } else if (state === `losing`) {
     lostGame();
-    if (state === `title`) {
-    }
   }
-  //right/wrong answers
-  wrongRightAnswers();
+}
+
+function title() {
+  fill(255);
+  textFont(`blenny`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Guess the Movie!`, width / 2, height / 2);
+}
+
+function wrongAnswersText() {
+  fill(255, 0, 0);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Wrong X${numWrongAnswers}`, width / 2, height / 8);
+}
+
+function lostGame() {
+  fill(255, 0, 0);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`You are uncultured`, width / 2, height / 2);
+}
+
+function keyPressed() {
+  if (state === `title`) {
+    state = `startGame`;
+  }
 }
 
 //random animal said in reverse is triggered when mouse is pressed
@@ -98,32 +127,27 @@ function mousePressed() {
   responsiveVoice.speak(currentRiddle.clue);
 }
 
+function game() {
+  displayAnswer();
+
+  wrongAnswersText();
+}
+
 //having the user guess the animal being called in reverse
 function guessMovie(answer) {
   //whatever was said by responsive voice
   currentAnswer = answer.toLowerCase();
   //check if it's correct
   if (currentAnswer === currentRiddle.answer) {
-    console.log(`yay`);
   } else {
-    //increase the number with # of wrong guesses
+    numWrongAnswers += 1;
+    if (numWrongAnswers > 2) {
+      state = `losing`;
+    }
   }
-  console.log(currentAnswer, currentRiddle.answer);
 }
 
-/**
-Reverses the provided string
-*/
-function movieRiddleString(string) {
-  // Split the string into an array of characters
-  let characters = string.split("");
-  // Join the array of characters back into a string
-  let result = characters.join("");
-  // Return the result
-  return result;
-}
-
-function wrongRightAnswers() {
+function displayAnswer() {
   //displaying the correct and wrong answer
   if (currentAnswer === currentRiddle.answer) {
     //correct answer
