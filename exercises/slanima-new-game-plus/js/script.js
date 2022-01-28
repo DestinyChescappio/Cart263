@@ -9,6 +9,8 @@ author, and this description to match your project!
 "use strict";
 let state = "title";
 
+let numCorrectAnswers = 0;
+
 let numWrongAnswers = 0;
 
 const riddles = [
@@ -92,6 +94,15 @@ function wrongAnswersText() {
   text(`Wrong X${numWrongAnswers}`, width / 6, height / 8);
 }
 
+function correctAnswersText() {
+  fill(255, 0, 0);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(`Correct X${numCorrectAnswers}`, width / 6, height / 8);
+}
+
 function winGame() {
   fill(150, 80, 0);
   textFont(`bradley hand`);
@@ -139,6 +150,11 @@ function guessMovie(answer) {
     numWrongAnswers += 1;
     if (numWrongAnswers > 2) {
       state = `losing`;
+    } else {
+      numCorrectAnswers += 1;
+      if (numCorrectAnswers > 2) {
+        state = `winning`;
+      }
     }
   }
 }
