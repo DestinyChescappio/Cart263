@@ -83,6 +83,22 @@ function title() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Guess the Movie!`, width / 2, height / 2);
+
+  fill(255);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text(`Press any key to start`, width / 2, height / 1.5);
+}
+
+function instructionsGame() {
+  fill(255, 0, 0);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(`Click the screen for more riddles`, width / 2, height / 20);
 }
 
 function wrongAnswersText() {
