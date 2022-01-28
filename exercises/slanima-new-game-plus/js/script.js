@@ -147,41 +147,49 @@ function keyPressed() {
   }
 }
 
-//random animal said in reverse is triggered when mouse is pressed
+//random riddle is said when triggered when mouse is pressed
 function mousePressed() {
   currentRiddle = random(riddles);
-  //let movieRiddle = movieRiddleString(currentRiddle);
+  //responsive voice speaks
   responsiveVoice.speak(currentRiddle.clue);
 }
 
+//what happens in the game
 function game() {
+  //calling the display answer
   displayAnswer();
-
+  //calling the wrong answers text
   wrongAnswersText();
-
+  //calling the correct answers text
   correctAnswersText();
-
+  //calling the instructions game text
   instructionsGame();
 }
 
-//having the user guess the animal being called in reverse
+//having the user guess the movie title
 function guessMovie(answer) {
   //whatever was said by responsive voice
   currentAnswer = answer.toLowerCase();
-  //check if it's correct
+  //check if it's correct/wrong
   if (currentAnswer === currentRiddle.answer) {
   } else {
+    //wrong answers go up by one
     numWrongAnswers += 1;
+    //if the number of wrong answers is greater than 2, the losing page triggers
     if (numWrongAnswers > 2) {
       state = `losing`;
     }
   }
+  //correct answers go up by one
   numCorrectAnswers += 1;
+  //if the number of correct answers is greater than 2, the winning page triggers
   if (numCorrectAnswers > 2) {
     state = `winning`;
   }
 }
 
+//the user's answer is displayed
+//if it's wrong, the text is red, if correct, the text is green
 function displayAnswer() {
   //displaying the correct and wrong answer
   if (currentAnswer === currentRiddle.answer) {
