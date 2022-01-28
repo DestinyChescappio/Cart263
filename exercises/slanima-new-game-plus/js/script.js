@@ -33,6 +33,14 @@ const riddles = [
     clue: "Toto, I've got a feeling we're not in kansas anymore",
     answer: "the wizard of oz",
   },
+  {
+    clue: "May the force be with you!",
+    answer: "star wars",
+  },
+  {
+    clue: "Houston, we have a problem",
+    answer: "Apollo 13",
+  },
 ];
 
 //setting a variable with an empty string
