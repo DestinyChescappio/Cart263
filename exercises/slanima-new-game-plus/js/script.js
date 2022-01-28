@@ -30,21 +30,6 @@ const riddles = [
   },
 ];
 
-//array of animals
-// const riddles = [
-//   "The boy who lived", //Harry Potter
-//   "We only wear Pink on Wednesdays", //Mean Girls
-//   "I'll be back...", //The terminator
-//   "Toto, I've got a feeling we're not in Kansas anymore", //the wizard of oz
-// ];
-//
-// const answers = [
-//   "Harry Potter",
-//   "Mean Girls",
-//   "The Terminator",
-//   "The Wizard of Oz",
-// ];
-
 //setting a variable with an empty string
 let currentRiddle = {
   clue: undefined,
@@ -82,6 +67,8 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
+  } else if (state === `winning`) {
+    winGame();
   } else if (state === `losing`) {
     lostGame();
   }
@@ -100,9 +87,18 @@ function wrongAnswersText() {
   fill(255, 0, 0);
   textFont(`bradley hand`);
   textStyle(BOLD);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(`Wrong X${numWrongAnswers}`, width / 6, height / 8);
+}
+
+function winGame() {
+  fill(150, 80, 0);
+  textFont(`bradley hand`);
+  textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Wrong X${numWrongAnswers}`, width / 2, height / 8);
+  text(`Good Stuff!`, width / 2, height / 2);
 }
 
 function lostGame() {
@@ -111,7 +107,7 @@ function lostGame() {
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`You are uncultured`, width / 2, height / 2);
+  text(`You are uncultured...`, width / 2, height / 2);
 }
 
 function keyPressed() {
