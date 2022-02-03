@@ -23,10 +23,14 @@ let objectData = undefined;
 let tarotData = undefined;
 
 /**
-loading the JSON files from the web
+loading the JSON files from the web & local images 
 */
 function preload() {
-  goodMeme = loadImage(`assets`);
+  //images
+  goodMeme = loadImage(`assets/images/goodMeme.jpeg`);
+  badMeme = loadImage(`assets/images/badMeme.jpeg`);
+
+  //JSON data
   instrumentData = loadJSON(
     `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`
   );
