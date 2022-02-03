@@ -46,8 +46,12 @@ function setup() {
   if (data !== null) {
     //check the password if it's not null
     let password = prompt(`agent! What is your password?`);
+
+    //check the user name if it's not null
+    let userName = prompt(`agent! What it your username?`);
+
     //if they typed the same password, and it matches, show the data
-    if (password === data.password) {
+    if (password === data.password && userName === data.name) {
       spyProfile.name = data.name;
       spyProfile.alias = data.alias;
       spyProfile.secretWeapon = data.secretWeapon;
@@ -66,8 +70,8 @@ function generateSpyProfile() {
   spyProfile.name = prompt(`Agent! what is your name?`);
   //random instrument is played
   let instrument = random(instrumentData.instruments);
-  spyProfile.alias = `The ${instrument}`;
 
+  spyProfile.alias = `The ${instrument}`;
   //secret weapon is chosen randomly from the objects section
   spyProfile.secretWeapon = random(objectData.objects);
 
