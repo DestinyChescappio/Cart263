@@ -43,31 +43,25 @@ function setup() {
   //to load the data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
   //if there is data save already
-  if (data !== null) {
-    //check the password if it's not null
-    let password = prompt(`agent! What is your password?`);
+  //  if (data !== null) {
+  //check the password if it's not null
+  //let password = prompt(`agent! What is your password?`);
+  spyProfile.name = prompt(`Agent! what is your name?`);
 
-    //check the user name if it's not null
-    let userName = prompt(`agent! What it your username?`);
-
-    //if they typed the same password, and it matches, show the data
-    if (password === data.password && userName === data.name) {
-      spyProfile.name = data.name;
-      spyProfile.alias = data.alias;
-      spyProfile.secretWeapon = data.secretWeapon;
-      spyProfile.password = data.password;
-    }
-  }
-  //if not saved already
-  else {
+  //if they typed the same password, and it matches, show the data
+  if (name === data.name) {
+    //    spyProfile.name = data.name;
+    //    spyProfile.alias = data.alias;
+    //    spyProfile.secretWeapon = data.secretWeapon;
+    //    spyProfile.password = data.password;
     //calling the generateSpyProfile function
-    generateSpyProfile();
   }
+  generateSpyProfile();
 }
 
 function generateSpyProfile() {
   //interactive pop-up for user
-  spyProfile.name = prompt(`Agent! what is your name?`);
+  //spyProfile.name = prompt(`Agent! what is your name?`);
   //random instrument is played
   let instrument = random(instrumentData.instruments);
 
