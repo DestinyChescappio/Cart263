@@ -26,6 +26,7 @@ let tarotData = undefined;
 loading the JSON files from the web
 */
 function preload() {
+  goodMeme = loadImage(`assets`);
   instrumentData = loadJSON(
     `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`
   );
@@ -101,8 +102,18 @@ function askPassword() {
     spyProfileVisible = true;
     //timeout for data
     setTimeout(passwordCorrect, 3000);
+  } else {
+    badScreen();
   }
 }
+
+function badScreen() {
+  image;
+}
+
+// function goodScreen() {
+//
+// }
 
 function generateSpyProfile() {
   //interactive pop-up for user
