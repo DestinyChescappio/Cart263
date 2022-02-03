@@ -7,6 +7,9 @@ Generates a randomized spy profile for the user, and password protects it.
 
 "use strict";
 
+let state = "start";
+
+let spyProfileVisible = false;
 //setting a spyProfile variable with objects
 let spyProfile = {
   name: `**REDACTED**`,
@@ -42,21 +45,34 @@ function setup() {
 
   //to load the data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-  //if there is data save already
-  //  if (data !== null) {
-  //check the password if it's not null
-  //let password = prompt(`agent! What is your password?`);
-  spyProfile.name = prompt(`Agent! what is your name?`);
 
-  //if they typed the same password, and it matches, show the data
-  if (name === data.name) {
-    //    spyProfile.name = data.name;
-    //    spyProfile.alias = data.alias;
-    //    spyProfile.secretWeapon = data.secretWeapon;
-    //    spyProfile.password = data.password;
-    //calling the generateSpyProfile function
+  if (data) {
+    spyProfile = data;
+    let name = prompt(`Agent! what's your name?`);
+    if (name === spyProfile.name) {
+      spyProfileVisible = true;
+      //timeout for data
+      setTimeout(nameCorrect, 3000);
+    }
+  } else {
+    generateSpyProfile();
   }
-  generateSpyProfile();
+}
+
+//the data is not shown after a certain amount of time passes
+function nameCorrect() {
+  spyProfileVisible = false;
+  //spy profile is visible for 2 seconds
+  setTimeout(askAlias, 2000);
+}
+
+//the alias question pops up
+//spy profile is visible if answer is correct
+function askAlias() {
+  let alias = prompt(`Agent! what's your alias?`);
+  if (alias === spyProfile.alias) {
+    spyProfileVisible = true;
+  }
 }
 
 function generateSpyProfile() {
@@ -76,6 +92,9 @@ function generateSpyProfile() {
 
   //save the profile data as a string
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+
+  //login first time
+  spyProfileVisible = true;
 }
 
 /**
@@ -83,20 +102,21 @@ Description of draw()
 */
 function draw() {
   background(0);
-
-  //creating a variable template string
-  let profile = `** SPY PROFILE! DO NOT DISTRIBUTE! **
+  if (spyProfileVisible === true) {
+    //creating a variable template string
+    let profile = `** SPY PROFILE! DO NOT DISTRIBUTE! **
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
   Password: ${spyProfile.password}`;
 
-  //displaying the text
-  push();
-  textFont(`courier`);
-  textSize(24);
-  fill(0, 255, 0);
-  textAlign(LEFT, TOP);
-  text(profile, 100, 100);
-  pop();
+    //displaying the text
+    push();
+    textFont(`courier`);
+    textSize(24);
+    fill(0, 255, 0);
+    textAlign(LEFT, TOP);
+    text(profile, 100, 100);
+    pop();
+  }
 }
