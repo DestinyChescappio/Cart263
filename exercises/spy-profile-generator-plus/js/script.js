@@ -9,6 +9,9 @@ Generates a randomized spy profile for the user, and password protects it.
 
 let state = "start";
 
+let goodMeme = undefined;
+let badMeme = undefined;
+
 let spyProfileVisible = false;
 //setting a spyProfile variable with objects
 let spyProfile = {
@@ -23,7 +26,7 @@ let objectData = undefined;
 let tarotData = undefined;
 
 /**
-loading the JSON files from the web & local images 
+loading the JSON files from the web & local images
 */
 function preload() {
   //images
@@ -106,18 +109,24 @@ function askPassword() {
     spyProfileVisible = true;
     //timeout for data
     setTimeout(passwordCorrect, 3000);
+    goodScreen();
   } else {
     badScreen();
   }
 }
 
-function badScreen() {
-  image;
+function passwordCorrect() {
+  spyProfileVisible = false;
+  setTimeout(goodScreen(), 2000);
 }
 
-// function goodScreen() {
-//
-// }
+function badScreen() {
+  image(badMeme, width / 2, height / 2, 500, 500);
+}
+
+function goodScreen() {
+  image(goodMeme, width / 2, height / 2, 500, 500);
+}
 
 function generateSpyProfile() {
   //interactive pop-up for user
