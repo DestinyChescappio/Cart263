@@ -72,6 +72,35 @@ function askAlias() {
   let alias = prompt(`Agent! what's your alias?`);
   if (alias === spyProfile.alias) {
     spyProfileVisible = true;
+    //timeout for data
+    setTimeout(aliasCorrect, 3000);
+  }
+}
+function aliasCorrect() {
+  spyProfileVisible = false;
+  setTimeout(askSecretWeapon, 2000);
+}
+
+function askSecretWeapon() {
+  let secretWeapon = prompt(`Agent! what's your secret weapon?`);
+  if (secretWeapon === spyProfile.secretWeapon) {
+    spyProfileVisible = true;
+    //timeout for data
+    setTimeout(secretWeaponCorrect, 3000);
+  }
+}
+
+function secretWeaponCorrect() {
+  spyProfileVisible = false;
+  setTimeout(askPassword, 2000);
+}
+
+function askPassword() {
+  let password = prompt(`Agent! what's you password?`);
+  if (password === spyProfile.password) {
+    spyProfileVisible = true;
+    //timeout for data
+    setTimeout(passwordCorrect, 3000);
   }
 }
 
