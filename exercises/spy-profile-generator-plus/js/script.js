@@ -58,33 +58,33 @@ function setup() {
 
   //to load the data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-  if(data){
+  if (data) {
     spyProfile = data;
     if (name === spyProfile.name) {
       spyProfileVisible = true;
       //timeout for data
-      setTimeout(nameCorrect, 1000);
+      setTimeout(nameCorrect, 2000);
     } else {
-      setTimeout(nameIncorrect, 1000);
+      setTimeout(nameIncorrect, 2000);
     }
   } else {
     generateSpyProfile(name);
-    setTimeout(nameCorrect, 1000);
+    setTimeout(nameCorrect, 2000);
   }
-
 }
 
 //the data is not shown after a certain amount of time passes
 function nameCorrect() {
-  console.log("nameCorrect");
   spyProfileVisible = false;
   //spy profile is visible for 2 seconds
   setTimeout(askAlias, 2000);
 }
 
+//
 function nameIncorrect() {
   console.log("nameIncorrect");
 }
+
 //the alias question pops up
 //spy profile is visible if answer is correct
 function askAlias() {
@@ -92,9 +92,10 @@ function askAlias() {
   if (alias === spyProfile.alias) {
     spyProfileVisible = true;
     //timeout for data
-    setTimeout(aliasCorrect, 3000);
+    setTimeout(aliasCorrect, 2000);
   }
 }
+
 function aliasCorrect() {
   spyProfileVisible = false;
   setTimeout(askSecretWeapon, 2000);
@@ -105,7 +106,7 @@ function askSecretWeapon() {
   if (secretWeapon === spyProfile.secretWeapon) {
     spyProfileVisible = true;
     //timeout for data
-    setTimeout(secretWeaponCorrect, 3000);
+    setTimeout(secretWeaponCorrect, 2000);
   }
 }
 
@@ -114,34 +115,39 @@ function secretWeaponCorrect() {
   setTimeout(askPassword, 2000);
 }
 
+//interactive pop up asks the user what's the password
 function askPassword() {
   let password = prompt(`Agent! what's you password?`);
+  //if the password is correct
   if (password === spyProfile.password) {
+    //the spy data shows
     spyProfileVisible = true;
-    //timeout for data
-    setTimeout(passwordCorrect, 3000);
+    //timeout for data visibility
+    setTimeout(passwordCorrect, 2000);
     goodScreen();
   } else {
     badScreen();
   }
 }
 
+//good screen only appears 2 seconds and data doesn't show
 function passwordCorrect() {
   spyProfileVisible = false;
   setTimeout(goodScreen(), 2000);
 }
 
+//bad screen when the user gets the answers wrong
 function badScreen() {
   badEnding = true;
 }
 
+//good screen when the user gets the answers correct
 function goodScreen() {
   goodEnding = true;
 }
 
 function generateSpyProfile(name) {
   //interactive pop-up for user
-  //spyProfile.name = prompt(`Agent! what is your name?`);
   //random instrument is played
   let instrument = random(instrumentData.instruments);
   spyProfile.name = name;
@@ -151,6 +157,7 @@ function generateSpyProfile(name) {
 
   //tarot card is randomly chosen from the interpretations section
   let card = random(tarotData.tarot_interpretations);
+
   //password is the random tarot card chosen
   spyProfile.password = random(card.keywords);
 
@@ -184,8 +191,10 @@ function draw() {
     pop();
   }
 
+  //if it's a bad ending, the bad meme shows
   if (badEnding) {
     image(badMeme, width / 2, height / 2, 500, 500);
+    //otherwise, the good meme shows
   } else if (goodEnding) {
     image(goodMeme, width / 2, height / 2, 500, 500);
   }
