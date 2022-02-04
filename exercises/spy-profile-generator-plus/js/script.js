@@ -12,6 +12,9 @@ let state = "start";
 let goodMeme = undefined;
 let badMeme = undefined;
 
+let goodEnding = false;
+let badEnding = false;
+
 let spyProfileVisible = false;
 //setting a spyProfile variable with objects
 let spyProfile = {
@@ -51,29 +54,37 @@ Description of setup
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  let name = prompt(`Agent! what's your name?`);
+
   //to load the data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-
-  if (data) {
+  if(data){
     spyProfile = data;
-    let name = prompt(`Agent! what's your name?`);
     if (name === spyProfile.name) {
       spyProfileVisible = true;
       //timeout for data
-      setTimeout(nameCorrect, 3000);
+      setTimeout(nameCorrect, 1000);
+    } else {
+      setTimeout(nameIncorrect, 1000);
     }
   } else {
-    generateSpyProfile();
+    generateSpyProfile(name);
+    setTimeout(nameCorrect, 1000);
   }
+
 }
 
 //the data is not shown after a certain amount of time passes
 function nameCorrect() {
+  console.log("nameCorrect");
   spyProfileVisible = false;
   //spy profile is visible for 2 seconds
   setTimeout(askAlias, 2000);
 }
 
+function nameIncorrect() {
+  console.log("nameIncorrect");
+}
 //the alias question pops up
 //spy profile is visible if answer is correct
 function askAlias() {
@@ -121,19 +132,19 @@ function passwordCorrect() {
 }
 
 function badScreen() {
-  image(badMeme, width / 2, height / 2, 500, 500);
+  badEnding = true;
 }
 
 function goodScreen() {
-  image(goodMeme, width / 2, height / 2, 500, 500);
+  goodEnding = true;
 }
 
-function generateSpyProfile() {
+function generateSpyProfile(name) {
   //interactive pop-up for user
   //spyProfile.name = prompt(`Agent! what is your name?`);
   //random instrument is played
   let instrument = random(instrumentData.instruments);
-
+  spyProfile.name = name;
   spyProfile.alias = `The ${instrument}`;
   //secret weapon is chosen randomly from the objects section
   spyProfile.secretWeapon = random(objectData.objects);
@@ -171,5 +182,11 @@ function draw() {
     textAlign(LEFT, TOP);
     text(profile, 100, 100);
     pop();
+  }
+
+  if (badEnding) {
+    image(badMeme, width / 2, height / 2, 500, 500);
+  } else if (goodEnding) {
+    image(goodMeme, width / 2, height / 2, 500, 500);
   }
 }
