@@ -1,8 +1,8 @@
 /**
-Title of Project
-Author Name
+E3: spy-profile-generator-plus
+Destiny
 
-Generates a randomized spy profile for the user, and password protects it.
+Generates a randomized spy profile for the user to figure out each pop up questions asked. Surprise memes show up if wrong or right.
 */
 
 "use strict";
@@ -49,7 +49,7 @@ function preload() {
 }
 
 /**
-Description of setup
+canvas setup, first pop up question asked to user
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -62,8 +62,8 @@ function setup() {
     spyProfile = data;
     if (name === spyProfile.name) {
       spyProfileVisible = true;
-      //timeout for data
-      setTimeout(nameCorrect, 2000);
+      //timeout for data visibility
+      setTimeout(nameCorrect, 3000);
     } else {
       setTimeout(nameIncorrect, 2000);
     }
@@ -76,7 +76,7 @@ function setup() {
 //the data is not shown after a certain amount of time passes
 function nameCorrect() {
   spyProfileVisible = false;
-  //spy profile is visible for 2 seconds
+  //spy profile is invisible for 3 seconds
   setTimeout(askAlias, 2000);
 }
 
@@ -96,20 +96,26 @@ function askAlias() {
   }
 }
 
+//if it's correct, the visibility of the spy data goes away for 2 seconds
 function aliasCorrect() {
   spyProfileVisible = false;
   setTimeout(askSecretWeapon, 2000);
 }
 
+//the secre weapon question pops up
+//spy profile is visible if answer is correct
 function askSecretWeapon() {
   let secretWeapon = prompt(`Agent! what's your secret weapon?`);
+  //if the password is correct
   if (secretWeapon === spyProfile.secretWeapon) {
+    //the spy data shows
     spyProfileVisible = true;
     //timeout for data
     setTimeout(secretWeaponCorrect, 2000);
   }
 }
 
+////if it's correct, the visibility of the spy data goes away for 2 seconds
 function secretWeaponCorrect() {
   spyProfileVisible = false;
   setTimeout(askPassword, 2000);
@@ -169,7 +175,7 @@ function generateSpyProfile(name) {
 }
 
 /**
-Description of draw()
+drawing the spy profile
 */
 function draw() {
   background(0);
@@ -187,15 +193,15 @@ function draw() {
     textSize(24);
     fill(0, 255, 0);
     textAlign(LEFT, TOP);
-    text(profile, 100, 100);
+    text(profile, width / 2, height / 2);
     pop();
   }
 
   //if it's a bad ending, the bad meme shows
   if (badEnding) {
-    image(badMeme, width / 2, height / 2, 500, 500);
+    image(badMeme, 275, 135, 900, 600);
     //otherwise, the good meme shows
   } else if (goodEnding) {
-    image(goodMeme, width / 2, height / 2, 500, 500);
+    image(goodMeme, 275, 135, 900, 600);
   }
 }
