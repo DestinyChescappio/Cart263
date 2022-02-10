@@ -16,14 +16,14 @@ let predictions = [];
 //the bubble
 let bubbles = [];
 let numBubbles = 10;
-
+//number of bubbles touched
 let numBubbleTouched = 0;
 
 /**
 seeting up array of bubbles and setting up ml5 handpose
 */
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(800, 600);
 
   //making a forloop of bubbles
   for (let i = 0; i < numBubbles; i++) {
@@ -89,7 +89,7 @@ function draw() {
       //check bubble popping
       let d = dist(tipX, tipY, bubbles[i].x, bubbles[i].y);
       if (d < bubbles[i].size / 2) {
-        bubbles[i].x = bubbles[i].x + random(-10, 10);
+        bubbles[i].x = bubbles[i].x + random(-100, 100);
         numBubbleTouched += 1;
       }
     }
@@ -102,7 +102,7 @@ function numBubbleTouchedText() {
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`bubble wiggles X${numBubbleTouched}`, 1200, 100);
+  text(`bubble wiggles X${numBubbleTouched}`, 400, 100);
 }
 
 //creating bubbles
