@@ -63,7 +63,7 @@ function setup() {
     if (name === spyProfile.name) {
       spyProfileVisible = true;
       //timeout for data visibility
-      setTimeout(nameCorrect, 3000);
+      setTimeout(nameCorrect, 4000);
     } else {
       setTimeout(nameIncorrect, 2000);
     }
@@ -80,11 +80,6 @@ function nameCorrect() {
   setTimeout(askAlias, 2000);
 }
 
-//
-function nameIncorrect() {
-  console.log("nameIncorrect");
-}
-
 //the alias question pops up
 //spy profile is visible if answer is correct
 function askAlias() {
@@ -93,6 +88,8 @@ function askAlias() {
     spyProfileVisible = true;
     //timeout for data
     setTimeout(aliasCorrect, 2000);
+  } else {
+    badScreen();
   }
 }
 
@@ -112,6 +109,8 @@ function askSecretWeapon() {
     spyProfileVisible = true;
     //timeout for data
     setTimeout(secretWeaponCorrect, 2000);
+  } else {
+    badScreen();
   }
 }
 
@@ -175,7 +174,7 @@ function generateSpyProfile(name) {
 }
 
 /**
-drawing the spy profile
+drawing the spy profile and bad/good pages
 */
 function draw() {
   background(0);
@@ -193,15 +192,15 @@ function draw() {
     textSize(24);
     fill(0, 255, 0);
     textAlign(LEFT, TOP);
-    text(profile, width / 2, height / 2);
+    text(profile, 285, 130);
     pop();
   }
 
   //if it's a bad ending, the bad meme shows
   if (badEnding) {
-    image(badMeme, 275, 135, 900, 600);
+    image(badMeme, 275, 125, 900, 600);
     //otherwise, the good meme shows
   } else if (goodEnding) {
-    image(goodMeme, 275, 135, 900, 600);
+    image(goodMeme, 275, 125, 900, 600);
   }
 }
