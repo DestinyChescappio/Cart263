@@ -45,24 +45,12 @@ function setup() {
   });
 }
 
-//creating bubbles
-function createBubbles(x, y) {
-  let bubble = {
-    x: x,
-    y: y,
-    size: 50,
-    speed: 2,
-    vx: 0,
-    vy: -2,
-  };
-  return bubble;
-}
-
 /**
 drawing the pin and bubbles
 */
 function draw() {
   background(0);
+
   //this happens if there's a hand detected
   if (predictions.length > 0) {
     let hand = predictions[0];
@@ -94,14 +82,26 @@ function draw() {
       displayBubbles(bubbles[i]);
 
       //check bubble popping
-      let d = dist(tipX, tipY, bubbles.x, bubbles.y);
+      let d = dist(tipX, tipY, bubbles[i].x, bubbles[i].y);
       if (d < bubbles[i].size / 2) {
-        //bubbles[i].x = random(width);
-        //bubbles[i].y = random(height);
-        displayBubbles(bubble);
+        bubbles[i].x = bubbles[i].x + random(-10, 10);
       }
     }
   }
+}
+
+//creating bubbles
+function createBubbles(x, y) {
+  let bubble = {
+    x: x,
+    y: y,
+    size: 50,
+    speed: 2,
+    vx: 0,
+    vy: -2,
+    wiggle: false,
+  };
+  return bubble;
 }
 
 //moving bubbles
@@ -117,6 +117,7 @@ function moveBubbles(bubble) {
   }
 }
 
+//displaying the bubbles
 function displayBubbles(bubble) {
   //displaying the bubble
   push();
@@ -124,4 +125,12 @@ function displayBubbles(bubble) {
   noStroke();
   ellipse(bubble.x, bubble.y, bubble.size);
   pop();
+}
+
+//bubble wiggle behavior
+function bubbleWiggle() {
+  if (bubbles.wiggle) {
+    bubbles.x += random(-2, 2);
+    bubbles.y += random(-2, 2);
+  }
 }
