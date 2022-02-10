@@ -17,6 +17,8 @@ let predictions = [];
 let bubbles = [];
 let numBubbles = 10;
 
+let numBubbleTouched = 0;
+
 /**
 seeting up array of bubbles and setting up ml5 handpose
 */
@@ -50,6 +52,9 @@ drawing the pin and bubbles
 */
 function draw() {
   background(0);
+
+  //calling the function when the bubbles are touched
+  numBubbleTouchedText();
 
   //this happens if there's a hand detected
   if (predictions.length > 0) {
@@ -85,9 +90,19 @@ function draw() {
       let d = dist(tipX, tipY, bubbles[i].x, bubbles[i].y);
       if (d < bubbles[i].size / 2) {
         bubbles[i].x = bubbles[i].x + random(-10, 10);
+        numBubbleTouched += 1;
       }
     }
   }
+}
+
+function numBubbleTouchedText() {
+  fill(255, 0, 0);
+  textFont(`impact`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`bubble wiggles X${numBubbleTouched}`, 1200, 100);
 }
 
 //creating bubbles
