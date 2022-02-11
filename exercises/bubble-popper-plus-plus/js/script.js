@@ -2,7 +2,7 @@
 Bubble Popper
 Destiny
 
-pop bubbles
+A bubble wiggle simulator. Not a game; just for fun :)
 */
 
 "use strict";
@@ -96,6 +96,7 @@ function draw() {
   }
 }
 
+//number of bubbles touched text
 function numBubbleTouchedText() {
   fill(255, 0, 0);
   textFont(`impact`);
