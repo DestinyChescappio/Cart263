@@ -8,23 +8,31 @@ author, and this description to match your project!
 
 "use strict";
 
+let harryPotter;
+
 /**
 Description of preload
 */
-function preload() {}
+function preload() {
+  //loading user's character
+  harryPotter = loadAnimation(
+    "assets/standard/standard01.png",
+    "assets/standard/standard05.png"
+  );
+}
 
 /**
 Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  createSprite(400, 200, 50, 50);
 }
 
 /**
 Description of draw()
 */
 function draw() {
-  background(255);
-  drawSprite();
+  background(0);
+  //drawing the user's animated character
+  animation(harryPotter, 200, 200);
 }
