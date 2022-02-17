@@ -8,7 +8,10 @@ author, and this description to match your project!
 
 "use strict";
 
-let harryPotter;
+let harryPotter = {
+  vx: 0,
+  vy: 0,
+};
 
 /**
 Description of preload
@@ -26,13 +29,25 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  harryPotter.x = harryPotter.x + harryPotter.vx;
 }
 
 /**
 Description of draw()
 */
 function draw() {
-  background(0);
+  background(255);
   //drawing the user's animated character
-  animation(harryPotter, 200, 200);
+  animation(harryPotter, 500, 500);
+
+  harryPotterFlying();
+}
+
+function harryPotterFlying() {
+  if (keyIsDown(RIGHT_ARROW)) {
+    harryPotter.play();
+  } else {
+    harryPotter.stop();
+  }
 }
