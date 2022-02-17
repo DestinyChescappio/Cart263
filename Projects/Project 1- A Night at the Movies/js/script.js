@@ -13,6 +13,8 @@ let harryPotter = {
   vy: 0,
 };
 
+let bludger;
+
 /**
 Description of preload
 */
@@ -22,6 +24,7 @@ function preload() {
     "assets/standard/standard01.png",
     "assets/standard/standard05.png"
   );
+  bludger = loadImage("assets/images/bludger.png");
 }
 
 /**
@@ -29,8 +32,6 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  harryPotter.x = harryPotter.x + harryPotter.vx;
 }
 
 /**
