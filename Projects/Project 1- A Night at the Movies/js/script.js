@@ -8,10 +8,7 @@ author, and this description to match your project!
 
 "use strict";
 
-let harryPotter = {
-  vx: 0,
-  vy: 0,
-};
+let harryPotter;
 
 let bludgerImage = undefined;
 let bludgers = [];
@@ -22,10 +19,13 @@ Description of preload
 */
 function preload() {
   //loading user's character
-  harryPotter = loadAnimation(
+  harryPotter = createSprite(600, 200, 50, 100);
+  harryPotter.addAnimation(
+    "floating",
     "assets/standard/standard01.png",
     "assets/standard/standard05.png"
   );
+
   bludgerImage = loadImage("assets/images/bludger.png");
 }
 
@@ -35,6 +35,10 @@ Description of setup
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  //calling the harry potter inheritance object
+  harryPotter = new HarryPotter();
+
+  //array of bludgers
   for (let i = 0; i < numBludger; i++) {
     let x = random(0, width);
     let y = random(0, height);
@@ -48,22 +52,10 @@ Description of draw()
 */
 function draw() {
   background(255);
-  //drawing the user's animated character
-  animation(harryPotter, 500, 500);
-
-  harryPotterFlying();
 
   updateBludger();
-}
 
-function harryPotterFlying() {
-  harryPotter.x = harryPotter.x + harryPotter.vx;
-  harryPotter.y = harryPotter.y + harryPotter.vy;
-  if (keyIsDown(RIGHT_ARROW)) {
-    harryPotter.play();
-  } else {
-    harryPotter.stop();
-  }
+  updateHarryPotter();
 }
 
 function updateBludger() {
@@ -74,4 +66,10 @@ function updateBludger() {
     bludger.wrap();
     bludger.display();
   }
+}
+
+function updateHarryPotter() {
+  harryPotter.handleInput();
+  harryPotter.handleGravity();
+  harryPotter.display();
 }
