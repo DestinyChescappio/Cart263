@@ -12,10 +12,7 @@ class Snitches {
   }
 
   move(harryPotter) {
-    //snitch random/jittery movement
-    //this.vx = random(-this.speed, this.speed);
-    //this.vy = random(-this.speed, this.speed);
-
+    //if harry potter is at a 300 px distance
     if (
       dist(
         harryPotter.sprite.position.x,
@@ -24,6 +21,7 @@ class Snitches {
         this.y
       ) < 300
     ) {
+      //snitches move away from harry potter at 10 velocity (up or down)
       if (harryPotter.sprite.position.y < this.y) {
         this.vy = 10;
       } else if (harryPotter.sprite.position.y > this.y) {
@@ -33,16 +31,18 @@ class Snitches {
     //movement setup
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
-
+    //movement is constrained from moving passed the canvas and stops at 50 px
     this.y = constrain(this.y, 50, height - 50);
   }
 
+  //continuous snitch movement
   wrap() {
     if (this.x < 0) {
       this.x += width;
     }
   }
 
+  //displaying the snitch
   display() {
     push();
     imageMode(CENTER);
