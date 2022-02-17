@@ -12,16 +12,16 @@ class HarryPotter {
 
   handleInput() {
     if (keyIsDown(RIGHT_ARROW)) {
-      this.sprite.velocity.x = 5;
+      this.sprite.velocity.x = 10;
     } else if (keyIsDown(LEFT_ARROW)) {
-      this.sprite.velocity.x = -5;
+      this.sprite.velocity.x = -10;
     } else {
       this.sprite.velocity.x = 0;
     }
     if (keyIsDown(UP_ARROW)) {
-      this.sprite.velocity.y = -5;
+      this.sprite.velocity.y = -10;
     } else if (keyIsDown(DOWN_ARROW)) {
-      this.sprite.velocity.y = 5;
+      this.sprite.velocity.y = 10;
     } else {
       this.sprite.velocity.y = 0;
     }
