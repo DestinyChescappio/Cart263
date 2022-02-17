@@ -18,14 +18,6 @@ let numBludger = 10;
 Description of preload
 */
 function preload() {
-  //loading user's character
-  harryPotter = createSprite(600, 200, 50, 100);
-  harryPotter.addAnimation(
-    "floating",
-    "assets/standard/standard01.png",
-    "assets/standard/standard05.png"
-  );
-
   bludgerImage = loadImage("assets/images/bludger.png");
 }
 
@@ -56,6 +48,8 @@ function draw() {
   updateBludger();
 
   updateHarryPotter();
+
+  drawSprites();
 }
 
 function updateBludger() {
@@ -71,5 +65,4 @@ function updateBludger() {
 function updateHarryPotter() {
   harryPotter.handleInput();
   harryPotter.handleGravity();
-  harryPotter.display();
 }

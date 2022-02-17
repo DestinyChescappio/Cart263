@@ -24,5 +24,6 @@ class Bludgers {
     push();
     imageMode(CENTER);
     image(this.image, this.x, this.y);
+    pop();
   }
 }
