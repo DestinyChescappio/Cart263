@@ -13,7 +13,9 @@ let harryPotter = {
   vy: 0,
 };
 
-let bludger;
+let bludgerImage = undefined;
+let bludgers = [];
+let numBludger = 10;
 
 /**
 Description of preload
@@ -24,7 +26,7 @@ function preload() {
     "assets/standard/standard01.png",
     "assets/standard/standard05.png"
   );
-  bludger = loadImage("assets/images/bludger.png");
+  bludgerImage = loadImage("assets/images/bludger.png");
 }
 
 /**
@@ -32,6 +34,13 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  for (let i = 0; i < numBludger; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    let bludger = new Bludgers(x, y, bludgerImage);
+    bludgers.push(bludger);
+  }
 }
 
 /**
@@ -43,6 +52,8 @@ function draw() {
   animation(harryPotter, 500, 500);
 
   harryPotterFlying();
+
+  updateBludger();
 }
 
 function harryPotterFlying() {
@@ -50,5 +61,15 @@ function harryPotterFlying() {
     harryPotter.play();
   } else {
     harryPotter.stop();
+  }
+}
+
+function updateBludger() {
+  for (let i = 0; i < bludgers.length; i++) {
+    let bludger = bludgers[i];
+    // calling methods- move, wrap, display
+    bludger.move();
+    bludger.wrap();
+    bludger.display();
   }
 }

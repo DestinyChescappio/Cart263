@@ -1,22 +1,22 @@
 class Bludgers {
-  constructor(x, y, bludger) {
+  constructor(x, y, bludgerImage) {
     this.x = x;
     this.y = y;
 
-    this.vx = 5;
-    this.vy = 0;
+    this.vx = 0;
+    this.vy = 5;
 
-    this.image = bludger;
+    this.image = bludgerImage;
   }
 
   move() {
-    this.x += this.vy;
-    this.y += this.vy;
+    this.x = this.x + this.vx;
+    this.y = this.y + this.vy;
   }
 
   wrap() {
-    if (this.x > width) {
-      this.x -= width;
+    if (this.x < 0) {
+      this.x += height;
     }
   }
 
