@@ -3,8 +3,8 @@ class Bludgers {
     this.x = x;
     this.y = y;
 
-    this.vx = 0;
-    this.vy = 5;
+    this.vx = -5;
+    this.vy = 0;
 
     this.image = bludgerImage;
   }
@@ -16,7 +16,7 @@ class Bludgers {
 
   wrap() {
     if (this.x < 0) {
-      this.x += height;
+      this.x += width;
     }
   }
 

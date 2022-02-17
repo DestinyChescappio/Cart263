@@ -57,6 +57,8 @@ function draw() {
 }
 
 function harryPotterFlying() {
+  harryPotter.x = harryPotter.x + harryPotter.vx;
+  harryPotter.y = harryPotter.y + harryPotter.vy;
   if (keyIsDown(RIGHT_ARROW)) {
     harryPotter.play();
   } else {
