@@ -1,13 +1,19 @@
 class HarryPotter {
   constructor() {
     //loading user's character
-    this.sprite = createSprite(300, 300, 200, 200);
+    this.sprite = createSprite(50, 300, 200, 200);
     this.sprite.addAnimation(
       "floating",
       "assets/standard/standard01.png",
       "assets/standard/standard05.png"
     );
+    this.sprite.addAnimation(
+      "injury",
+      "assets/attack/attack01.png",
+      "assets/attack/attack03.png"
+    );
     this.ay = 3;
+    console.log(this.sprite);
   }
 
   handleInput() {
