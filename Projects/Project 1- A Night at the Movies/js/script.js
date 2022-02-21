@@ -62,8 +62,6 @@ function draw() {
   updateHarryPotter();
   drawSprites();
   numSnitchText();
-  fill(0, 0, 255);
-  ellipse(harryPotter.sprite.position.x, harryPotter.sprite.position.y, 10, 10);
 }
 
 function updateSnitch() {
@@ -110,10 +108,10 @@ function snitchCollection(snitch, harryPotter) {
       snitch.sprite.position.y
     );
     console.log(harryPotter.sprite.width / 2 + snitch.sprite.width / 2);
-    //snowball collects snowball & snowball disappears
+    //harry potter overlaps snitch
     if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
       snitch.collected = true;
-      //keeping track of how many snowballs were collected
+      //keeping track of how many snitches were collected
       numSnitchCollection += 1;
     }
   }

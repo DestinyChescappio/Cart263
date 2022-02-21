@@ -7,6 +7,7 @@ class Snitches {
       "assets/images/snitch01.png",
       "assets/images/snitch02.png"
     );
+    //snitch position and velocity
     this.sprite.position.x = x;
     this.sprite.position.y = y;
     this.sprite.velocity.x = -2;
