@@ -48,7 +48,6 @@ class Bludgers {
       this.isColliding = true;
       setTimeout(function () {
         harryPotter.sprite.changeAnimation("floating");
-        console.log(self);
         self.isColliding = false;
       }, 2000);
     }

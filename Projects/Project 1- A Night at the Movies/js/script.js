@@ -107,15 +107,15 @@ function snitchCollection(snitch, harryPotter) {
       snitch.sprite.position.x,
       snitch.sprite.position.y
     );
-    console.log(harryPotter.sprite.width / 2 + snitch.sprite.width / 2);
     //harry potter overlaps snitch
     if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
       snitch.collected = true;
-      //keeping track of how many snitches were collected
+      //keeping track of how many snitches were overlapped
       numSnitchCollection += 1;
     }
   }
 }
+
 function changeLevel() {
   if (level === 1) {
     level = 2;
