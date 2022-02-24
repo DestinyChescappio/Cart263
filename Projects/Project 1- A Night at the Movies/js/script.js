@@ -13,6 +13,7 @@ let harryPotter;
 let bludgerImage = undefined;
 let bludgers = [];
 let numBludger = 5;
+let numBludgerHits = 0;
 
 let snitches = [];
 let numSnitch = 5;
@@ -62,6 +63,7 @@ function draw() {
   updateHarryPotter();
   drawSprites();
   numSnitchText();
+  numBludgerText();
 }
 
 function updateSnitch() {
@@ -81,7 +83,12 @@ function updateBludger() {
     bludger.move();
     bludger.wrap();
     bludger.display();
-    bludger.harryCollision();
+    //returns true if it hits harry potter
+    let bludgerHitHarry = bludger.harryCollision(harryPotter);
+    if (bludgerHitHarry) {
+      numBludgerHits += 1;
+    }
+    // bludgerHit(bludger, harryPotter);
   }
 }
 
@@ -95,23 +102,49 @@ function numSnitchText() {
   textFont(`ariel`);
   textStyle(BOLD);
   textSize(40);
-  text(`Snitch ${numSnitchCollection}`, 1200, 80);
+  text(`Snitches ${numSnitchCollection}`, 1200, 80);
+}
+
+function numBludgerText() {
+  fill(0);
+  textFont(`ariel`);
+  textStyle(BOLD);
+  textSize(40);
+  text(`Bludgers ${numBludgerHits}`, 100, 80);
 }
 
 function snitchCollection(snitch, harryPotter) {
   //check to overlapp if snitch hasn't been collected yet
-  if (!snitch.collected) {
+  let d = dist(
+    harryPotter.sprite.position.x,
+    harryPotter.sprite.position.y,
+    snitch.sprite.position.x,
+    snitch.sprite.position.y
+  );
+  //harry potter overlaps snitch
+  if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
+    //keeping track of how many snitches were overlapped
+    numSnitchCollection += 1;
+  }
+}
+
+function bludgerHit(bludger, harryPotter) {
+  //check to overlap if bludger hasn't hit harry potter yet
+  if (!bludger.harryCollision) {
     let d = dist(
       harryPotter.sprite.position.x,
       harryPotter.sprite.position.y,
-      snitch.sprite.position.x,
-      snitch.sprite.position.y
+      bludger.x,
+      bludger.y
     );
-    //harry potter overlaps snitch
-    if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
-      snitch.collected = true;
-      //keeping track of how many snitches were overlapped
-      numSnitchCollection += 1;
+    //  console.log(d);
+    //harry potter overlaps bludger
+    if (
+      (d < harryPotter.sprite.width / 2 + bludger.width / 2, bludger.height / 2)
+    ) {
+      bludger.harryCollision = true;
+      numBludgerHits += 1;
+      //console.log(`collision`);
     }
   }
 }

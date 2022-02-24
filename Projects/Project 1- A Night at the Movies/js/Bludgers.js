@@ -34,7 +34,7 @@ class Bludgers {
     pop();
   }
 
-  harryCollision() {
+  harryCollision(harryPotter) {
     if (
       dist(
         harryPotter.sprite.position.x,
@@ -46,10 +46,14 @@ class Bludgers {
     ) {
       harryPotter.sprite.changeAnimation("injury");
       this.isColliding = true;
-      setTimeout(function () {
+      //
+      setTimeout(() => {
         harryPotter.sprite.changeAnimation("floating");
-        self.isColliding = false;
+        this.isColliding = false;
       }, 2000);
+      return true;
+    } else {
+      return false;
     }
   }
 }
