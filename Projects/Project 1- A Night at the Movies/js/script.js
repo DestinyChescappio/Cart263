@@ -149,11 +149,11 @@ function bludgerHit(bludger, harryPotter) {
   }
 }
 
-//function changeLevel() {
-//  if (level === 1) {
-//  level = 2;
-//  for (let i = 0; i < bludgers.length; i++) {
-//      bludgers[i].vx = -10;
-//  }
-//  }
-//}
+function changeLevel() {
+  if (level === 1) {
+    level = 2;
+    for (let i = 0; i < bludgers.length; i++) {
+      bludgers[i].vx = -10;
+    }
+  }
+}
