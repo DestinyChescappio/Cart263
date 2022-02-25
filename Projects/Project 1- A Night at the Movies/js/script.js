@@ -8,6 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 
+let state = "title";
+
 let harryPotter;
 
 let bludgerImage = undefined;
@@ -57,7 +59,34 @@ Description of draw()
 */
 function draw() {
   background(255);
+  if (state === `title`) {
+    title();
+  } else if (state === `startGame`) {
+    game();
+  } else if (state === `level01`) {
+    loadLevel01();
+  } else if (state === `level02`) {
+    loadLevel02();
+  } else if (state === `level03`) {
+    loadLevel03();
+  } else if (state === `win`) {
+    winning();
+  } else if (state === `lose`) {
+    losing();
+  }
+}
 
+function title() {
+  //  image(titleImage, width - 975, height - 630, 500, 500);
+  fill(0);
+  textFont(`arial`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Harry Potter's Quidditch Adventures`, width / 2, height / 2);
+}
+
+function game() {
   updateSnitch();
   updateBludger();
   updateHarryPotter();
@@ -65,6 +94,14 @@ function draw() {
   numSnitchText();
   numBludgerText();
 }
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `startGame`;
+  }
+}
+
+function loadLevel01() {}
 
 function updateSnitch() {
   for (let i = 0; i < snitches.length; i++) {
@@ -137,14 +174,12 @@ function bludgerHit(bludger, harryPotter) {
       bludger.x,
       bludger.y
     );
-    //  console.log(d);
     //harry potter overlaps bludger
     if (
       (d < harryPotter.sprite.width / 2 + bludger.width / 2, bludger.height / 2)
     ) {
       bludger.harryCollision = true;
       numBludgerHits += 1;
-      //console.log(`collision`);
     }
   }
 }
