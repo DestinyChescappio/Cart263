@@ -46,7 +46,8 @@ class Bludgers {
     ) {
       harryPotter.sprite.changeAnimation("injury");
       this.isColliding = true;
-      //
+      //setting a timeout for seconds of the 'injury' animation
+      //after 'injury' animation, harry potter return to 'floating' animation
       setTimeout(() => {
         harryPotter.sprite.changeAnimation("floating");
         this.isColliding = false;
