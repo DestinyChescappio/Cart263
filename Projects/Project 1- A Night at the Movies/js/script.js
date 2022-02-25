@@ -63,12 +63,6 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
-  } else if (state === `level01`) {
-    loadLevel01();
-  } else if (state === `level02`) {
-    loadLevel02();
-  } else if (state === `level03`) {
-    loadLevel03();
   } else if (state === `win`) {
     winning();
   } else if (state === `lose`) {
@@ -100,8 +94,6 @@ function mousePressed() {
     state = `startGame`;
   }
 }
-
-function loadLevel01() {}
 
 function updateSnitch() {
   for (let i = 0; i < snitches.length; i++) {
@@ -162,6 +154,10 @@ function snitchCollection(snitch, harryPotter) {
   if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
     //keeping track of how many snitches were overlapped
     numSnitchCollection += 1;
+  }
+  //if he collects 10 snitches, the level goes up
+  if (level === 1 && numSnitchCollection >= 10) {
+    changeLevel();
   }
 }
 
