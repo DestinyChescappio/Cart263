@@ -1,4 +1,3 @@
-let self;
 class Bludgers {
   constructor(x, y, bludgerImage) {
     this.isColliding = false;
