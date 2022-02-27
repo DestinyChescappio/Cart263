@@ -4,6 +4,11 @@ class Bludgers {
     this.x = x;
     this.y = y;
 
+    this.ax = 0;
+    this.ay = 0;
+
+    this.acceleration = 0.25;
+
     this.vx = -5;
     this.vy = 0;
 
@@ -11,8 +16,9 @@ class Bludgers {
     this.width = 280;
 
     this.image = bludgerImage;
-    //bludger this
-    self = this;
+
+    //following harry potter
+    this.follow = false;
   }
 
   move() {
@@ -33,7 +39,10 @@ class Bludgers {
     pop();
   }
 
+  //bludger and harry potter collision
   harryCollision(harryPotter) {
+    //if the distance between the bludger and harry potter is greater than 50 pixels
+    //and if the colliding variable is false (only after contact!!)
     if (
       dist(
         harryPotter.sprite.position.x,
@@ -43,6 +52,7 @@ class Bludgers {
       ) < 50 &&
       this.isColliding === false
     ) {
+      //injury animation = collision is true
       harryPotter.sprite.changeAnimation("injury");
       this.isColliding = true;
       //setting a timeout for seconds of the 'injury' animation
@@ -54,6 +64,17 @@ class Bludgers {
       return true;
     } else {
       return false;
+    }
+  }
+
+  gravitate(harryPotter) {
+    if (harryPotter.sprite.position.x < this.x) {
+      this.ax = -this.acceleration;
+    } else {
+      this.ax = this.acceleration;
+    }
+    if (harryPotter.sprite.position.y < this.y) {
+      this.ay = -this.acceleration;
     }
   }
 }
