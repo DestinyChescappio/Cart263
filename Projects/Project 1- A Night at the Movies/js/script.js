@@ -7,7 +7,6 @@ author, and this description to match your project!
 */
 
 "use strict";
-
 let state = "title";
 
 let harryPotter;
