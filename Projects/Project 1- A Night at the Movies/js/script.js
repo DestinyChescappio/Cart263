@@ -9,6 +9,19 @@ author, and this description to match your project!
 "use strict";
 let state = "title";
 
+let bgSky;
+
+let layers = {
+  bgClouds: {
+    bgs: [],
+    parallaxRatio: 0.5,
+  },
+  bgTowers: {
+    bgs: [],
+    parallaxRatio: 1.0,
+  },
+};
+
 let harryPotter;
 
 let bludgerImage = undefined;
@@ -26,7 +39,8 @@ Description of preload
 */
 function preload() {
   bludgerImage = loadImage("assets/images/bludger.png");
-  bgSky = loadImage("assets/images/blueSky.png");
+
+  bgSky = loadImage("assets/images/blueSky-assets/blueSky.png");
   bgClouds = loadImage("assets/images/clouds.png");
   bgTowers = loadImage("assets/images/towers.png");
 }
@@ -60,7 +74,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(255);
+  background(bgSky, windowWidth / 2, windowHeight);
   if (state === `title`) {
     title();
   } else if (state === `startGame`) {
