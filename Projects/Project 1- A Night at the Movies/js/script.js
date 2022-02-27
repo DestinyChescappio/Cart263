@@ -186,5 +186,11 @@ function changeLevel() {
     for (let i = 0; i < bludgers.length; i++) {
       bludgers[i].vx = -10;
     }
+    if (level === 2) {
+      level = 3;
+      for (let i = 0; i < bludgers.length; i++) {
+        bludgers[i].vx = -15;
+      }
+    }
   }
 }
