@@ -68,13 +68,15 @@ class Bludgers {
   }
 
   gravitate(harryPotter) {
-    if (harryPotter.sprite.position.x < this.x) {
-      this.ax = -this.acceleration;
-    } else {
-      this.ax = this.acceleration;
-    }
-    if (harryPotter.sprite.position.y < this.y) {
-      this.ay = -this.acceleration;
+    if (this.follow === true) {
+      if (harryPotter.sprite.position.x < this.x) {
+        this.ax = -this.acceleration;
+      } else {
+        this.ax = this.acceleration;
+      }
+      if (harryPotter.sprite.position.y < this.y) {
+        this.ay = -this.acceleration;
+      }
     }
   }
 }

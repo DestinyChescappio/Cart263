@@ -112,6 +112,7 @@ function updateBludger() {
     bludger.move();
     bludger.wrap();
     bludger.display();
+    bludger.gravitate(harryPotter);
     //returns true if it hits harry potter
     let bludgerHitHarry = bludger.harryCollision(harryPotter);
     if (bludgerHitHarry) {
@@ -190,6 +191,12 @@ function changeLevel() {
       level = 3;
       for (let i = 0; i < bludgers.length; i++) {
         bludgers[i].vx = -15;
+      }
+      if (level === 3) {
+        level = 4;
+        for (let i = 0; i < bludgers.length; i++) {
+          bludger.gravitate = true;
+        }
       }
     }
   }
