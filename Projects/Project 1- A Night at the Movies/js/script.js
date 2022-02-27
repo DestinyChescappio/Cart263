@@ -195,7 +195,7 @@ function changeLevel() {
       if (level === 3) {
         level = 4;
         for (let i = 0; i < bludgers.length; i++) {
-          bludger.gravitate = true;
+          bludgers.gravitate = true;
         }
       }
     }
