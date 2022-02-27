@@ -27,6 +27,9 @@ Description of preload
 */
 function preload() {
   bludgerImage = loadImage("assets/images/bludger.png");
+  bgSky = loadImage("assets/images/blueSky.png");
+  bgClouds = loadImage("assets/images/clouds.png");
+  bgTowers = loadImage("assets/images/towers.png");
 }
 
 /**
