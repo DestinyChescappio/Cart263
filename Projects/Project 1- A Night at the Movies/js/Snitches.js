@@ -11,6 +11,8 @@ class Snitches {
     this.sprite.position.x = x;
     this.sprite.position.y = y;
     this.sprite.velocity.x = -2;
+
+    this.caught = false;
   }
 
   move(harryPotter) {

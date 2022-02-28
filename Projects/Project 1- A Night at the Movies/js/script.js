@@ -79,9 +79,9 @@ function setup() {
   //position to draw the base of nerest layer
   let y = height;
   //adding new sky extension to sky layer
-  layers.sky.paraObjects.push(createParaObject(x, y));
-  layers.cloud.paraObjects.push(createParaObject(x, y));
-  layers.tower.paraObjects.push(createParaObject(x, y));
+  layers.sky.paraObjects.push(createParaObject(0, 0));
+  layers.cloud.paraObjects.push(createParaObject(0, 0));
+  layers.tower.paraObjects.push(createParaObject(0, 0));
 }
 
 /**
@@ -114,12 +114,13 @@ function game() {
   updateSnitch();
   updateBludger();
   updateHarryPotter();
+
+  moveParaObjects();
+  displayParaObject();
+
   drawSprites();
   numSnitchText();
   numBludgerText();
-
-  moveParaObjects();
-  displayParaObjects();
 }
 
 function mousePressed() {
@@ -257,41 +258,66 @@ function moveLayer(layer) {
   //go through all paraObjects in this layer
   for (let i = 0; i < layer.paraObjects.length; i++) {
     //get the paraObject
-    let paraObject = layer.ParaObjects[i];
+    let paraObject = layer.paraObjects[i];
+    //console.log(paraObject);
+    //console.log(harryPotter.sprite.velocity);
     //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
-    paraObject.x +=
-      -harryPotter.sprite.position.velocity.x * layer.parallaxRatio;
+    paraObject.x += -harryPotter.sprite.velocity.x * layer.parallaxRatio;
+
+    console.log(paraObject.x);
 
     //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
-    if (paraObject.x + paraObject.width < 0) {
-      paraObject.x += width + paraObject.width;
-    } else if (paraObject.x > width) {
-      paraObject.x -= width + paraObject.width;
+    if (paraObject.x < -width) {
+      console.log("herer");
+      paraObject.x = 0;
+    } else if (paraObject.x > 0) {
+      console.log("herer other");
+      paraObject.x = -width;
     }
   }
 }
 
 //displaying the layers
-function displayLayer(layer) {
-  for (let i = 0; i < layer.paraObjects.length; i++) {
-    let paraObject = layer.paraObjects[i];
-    displayParaObject(paraObject);
-  }
-}
+//function displayLayer(layer) {
+//  for (let i = 0; i < layer.paraObjects.length; i++) {
+//    let paraObject = layer.paraObjects[i];
+//    displayParaObject(paraObject);
+//  }
+//}
 
 //displays the provided paraObject according to its properties
-function displayParaObject(paraObject) {
+function displayParaObject() {
   //sky
   push();
-  image(bgSky, windowWidth, windowHeight, 500, 500);
+  image(
+    bgSky,
+    layers.sky.paraObjects[0].x,
+    layers.sky.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
   pop();
 
   //clouds
   push();
-  image(bgClouds, windowWidth, windowHeight, 500, 500);
+  image(
+    bgClouds,
+    layers.cloud.paraObjects[0].x,
+    layers.cloud.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
   pop();
 
   //tower
   push();
-  image(bgTower, windowWidth, windowHeight, 500, 500);
+  image(
+    bgTowers,
+    layers.tower.paraObjects[0].x,
+    layers.tower.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
+  pop();
+  console.log(`hello`);
 }
