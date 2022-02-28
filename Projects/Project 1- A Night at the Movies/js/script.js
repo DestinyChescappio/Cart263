@@ -10,19 +10,25 @@ author, and this description to match your project!
 let state = "title";
 
 let bgSky;
-
-let layers = {
-  bgClouds: {
-    bgs: [],
-    parallaxRatio: 0.5,
-  },
-  bgTowers: {
-    bgs: [],
-    parallaxRatio: 1.0,
-  },
-};
+let bgClouds;
+let bgTowers;
 
 let harryPotter;
+
+let layers = {
+  sky: {
+    paraObjects: [],
+    parallaxRatio: 0.25,
+  },
+  cloud: {
+    paraObjects: [],
+    parallaxRatio: 0.5,
+  },
+  tower: {
+    paraObjects: [],
+    parallaxRatio: 1,
+  },
+};
 
 let bludgerImage = undefined;
 let bludgers = [];
@@ -50,7 +56,6 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   //calling the harry potter object
   harryPotter = new HarryPotter();
 
@@ -68,13 +73,22 @@ function setup() {
     let bludger = new Bludgers(x, y, bludgerImage);
     bludgers.push(bludger);
   }
+
+  //starting point for the first building
+  let x = 0;
+  //position to draw the base of nerest layer
+  let y = height;
+  //adding new sky extension to sky layer
+  layers.sky.paraObjects.push(createParaObject(x, y));
+  layers.cloud.paraObjects.push(createParaObject(x, y));
+  layers.tower.paraObjects.push(createParaObject(x, y));
 }
 
 /**
 Description of draw()
 */
 function draw() {
-  background(bgSky, windowWidth / 2, windowHeight);
+  background(255);
   if (state === `title`) {
     title();
   } else if (state === `startGame`) {
@@ -103,6 +117,9 @@ function game() {
   drawSprites();
   numSnitchText();
   numBludgerText();
+
+  moveParaObjects();
+  displayParaObjects();
 }
 
 function mousePressed() {
@@ -216,4 +233,65 @@ function changeLevel() {
       }
     }
   }
+}
+
+function createParaObject(x, y) {
+  //making the object
+  let paraObject = {
+    x: x,
+    y: y,
+    width: windowWidth,
+    height: windowHeight,
+  };
+  return paraObject;
+}
+
+//moving paraObjects according to harry potter's velocity
+function moveParaObjects() {
+  moveLayer(layers.sky);
+  moveLayer(layers.cloud);
+  moveLayer(layers.tower);
+}
+
+function moveLayer(layer) {
+  //go through all paraObjects in this layer
+  for (let i = 0; i < layer.paraObjects.length; i++) {
+    //get the paraObject
+    let paraObject = layer.ParaObjects[i];
+    //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
+    paraObject.x +=
+      -harryPotter.sprite.position.velocity.x * layer.parallaxRatio;
+
+    //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
+    if (paraObject.x + paraObject.width < 0) {
+      paraObject.x += width + paraObject.width;
+    } else if (paraObject.x > width) {
+      paraObject.x -= width + paraObject.width;
+    }
+  }
+}
+
+//displaying the layers
+function displayLayer(layer) {
+  for (let i = 0; i < layer.paraObjects.length; i++) {
+    let paraObject = layer.paraObjects[i];
+    displayParaObject(paraObject);
+  }
+}
+
+//displays the provided paraObject according to its properties
+function displayParaObject(paraObject) {
+  //sky
+  push();
+  image(bgSky, windowWidth, windowHeight, 500, 500);
+  pop();
+
+  //clouds
+  push();
+  image(bgClouds, windowWidth, windowHeight, 500, 500);
+  pop();
+
+  //tower
+  push();
+  image(bgTower, windowWidth, windowHeight, 500, 500);
 }
