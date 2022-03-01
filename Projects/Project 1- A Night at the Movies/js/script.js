@@ -8,6 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 let titleImage;
+let winImage;
+let loseImage;
 
 let state = "title";
 
@@ -54,6 +56,8 @@ function preload() {
   bgTowers = loadImage("assets/images/towers.png");
 
   titleImage = loadImage("assets/images/snitchTITLE.gif");
+  winImage = loadImage("assets/images/winPic.gif");
+  loseImage = loadImage("assets/images/losePic.gif");
 }
 
 /**
@@ -125,6 +129,7 @@ function title() {
   textFont(`arial`);
   textSize(30);
   text(`Press any key to start`, windowWidth / 2, windowHeight - 130);
+
   //instructions
   textStyle(NORMAL);
   text(
@@ -132,6 +137,7 @@ function title() {
     windowWidth / 2,
     windowHeight - 180
   );
+
   //user's input instructions
   textFont(`arial`);
   textStyle(NORMAL);
@@ -162,18 +168,26 @@ function game() {
   harryLoses();
 }
 
+//winning page
 function winning() {
+  imageMode(CENTER);
+  image(winImage, windowWidth / 2, windowHeight / 2);
   textFont(`arial`);
   textStyle(BOLD);
-  textSize(60);
-  text(`Yay :)`, windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text(`30 points to Gryffindor!`, windowWidth / 2, windowHeight - 150);
 }
 
+//losing page
 function losing() {
+  imageMode(CENTER);
+  image(loseImage, windowWidth / 2, windowHeight / 2);
   textFont(`arial`);
   textStyle(BOLD);
-  textSize(60);
-  text(`no!`, windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text(`YOU ARE HEREBY EXPELLED!`, windowWidth / 2, windowHeight - 150);
 }
 
 //to start the game
@@ -183,6 +197,7 @@ function keyPressed() {
   }
 }
 
+//Snitch updated data
 function updateSnitch() {
   for (let i = 0; i < snitches.length; i++) {
     let snitch = snitches[i];
@@ -316,13 +331,13 @@ function changeLevel() {
 }
 
 function harryWins() {
-  if (numSnitchCollection >= 20) {
+  if (numSnitchCollection >= 3) {
     state = `win`;
   }
 }
 
 function harryLoses() {
-  if (numBludgerHits >= 4 || harryPotter.sprite.position.y > windowHeight) {
+  if (numBludgerHits >= 10 || harryPotter.sprite.position.y > windowHeight) {
     state = `lose`;
   }
 }
