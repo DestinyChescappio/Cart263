@@ -46,7 +46,7 @@ class Snitches {
     }
   }
 
-  snitchCollection(snitch, harryPotter) {
+  snitchCollection(harryPotter) {
     if (snitch.caught === false) {
       //check to overlapp if snitch hasn't been collected yet
       let d = dist(

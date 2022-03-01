@@ -39,43 +39,7 @@ class Bludgers {
     pop();
   }
 
-  //bludger and harry potter collision
-  harryCollision(harryPotter) {
-    //if the distance between the bludger and harry potter is greater than 50 pixels
-    //and if the colliding variable is false (only after contact!!)
-    if (
-      dist(
-        harryPotter.sprite.position.x,
-        harryPotter.sprite.position.y,
-        this.x,
-        this.y
-      ) < 50 &&
-      this.isColliding === false
-    ) {
-      //injury animation = collision is true
-      harryPotter.sprite.changeAnimation("injury");
-      this.isColliding = true;
-
-      //if the user gets hit by bludger ea. time
-      if (!ouchSound.isPlaying()) {
-        //volume
-        ouchSound.setVolume(0.1);
-        //to play the sound
-        ouchSound.play();
-      }
-      //setting a timeout for seconds of the 'injury' animation
-      //after 'injury' animation, harry potter return to 'floating' animation
-      setTimeout(() => {
-        harryPotter.sprite.changeAnimation("floating");
-        this.isColliding = false;
-      }, 2000);
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  harryHit(bludger, harryPotter) {
+  bludgerHit(harryPotter) {
     //check to overlap if bludger hasn't hit harry potter yet
     if (!this.harryCollision) {
       let d = dist(
