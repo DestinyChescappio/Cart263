@@ -279,13 +279,13 @@ function snitchCollection(snitch, harryPotter) {
   }
   console.log(numSnitchCollection);
   //if he collects 10 snitches, the level goes up
-  if (level === 1 && numSnitchCollection >= 5) {
+  if (level === 1 && numSnitchCollection >= 3) {
     changeLevel();
     numLevels += 1;
-  } else if (level === 2 && numSnitchCollection >= 10) {
+  } else if (level === 2 && numSnitchCollection >= 6) {
     changeLevel();
     numLevels += 1;
-  } else if (level === 3 && numSnitchCollection >= 15) {
+  } else if (level === 3 && numSnitchCollection >= 9) {
     numLevels += 1;
     changeLevel();
   }
@@ -331,13 +331,13 @@ function changeLevel() {
 }
 
 function harryWins() {
-  if (numSnitchCollection >= 3) {
+  if (numSnitchCollection >= 12) {
     state = `win`;
   }
 }
 
 function harryLoses() {
-  if (numBludgerHits >= 10 || harryPotter.sprite.position.y > windowHeight) {
+  if (numBludgerHits >= 5 || harryPotter.sprite.position.y > windowHeight) {
     state = `lose`;
   }
 }
