@@ -89,7 +89,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(255);
+  background(bgSky, windowWidth, windowHeight);
   if (state === `title`) {
     title();
   } else if (state === `startGame`) {
