@@ -7,6 +7,8 @@ author, and this description to match your project!
 */
 
 "use strict";
+let titleImage;
+
 let state = "title";
 
 let bgSky;
@@ -50,6 +52,8 @@ function preload() {
   bgSky = loadImage("assets/images/blueSky-assets/blueSky.png");
   bgClouds = loadImage("assets/images/clouds.png");
   bgTowers = loadImage("assets/images/towers.png");
+
+  titleImage = loadImage("assets/images/snitchTITLE.gif");
 }
 
 /**
@@ -102,13 +106,41 @@ function draw() {
 }
 
 function title() {
-  //  image(titleImage, width - 975, height - 630, 500, 500);
+  imageMode(CENTER);
+  image(titleImage, windowWidth / 2, windowHeight - 250);
+
+  //title
   fill(0);
   textFont(`arial`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Harry Potter's Quidditch Adventures`, width / 2, height / 2);
+  text(
+    `Harry Potter's Quidditch Adventures`,
+    windowWidth / 2,
+    windowHeight - 500
+  );
+
+  //what to press to start game
+  textFont(`arial`);
+  textSize(30);
+  text(`Press any key to start`, windowWidth / 2, windowHeight - 130);
+  //instructions
+  textStyle(NORMAL);
+  text(
+    `Avoid the bludgers and catch as many as snitches as you can`,
+    windowWidth / 2,
+    windowHeight - 180
+  );
+  //user's input instructions
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textSize(20);
+  text(
+    `Use LEFT/RIGHT/UP arrow keys to move`,
+    windowWidth / 2,
+    windowHeight - 80
+  );
 }
 
 function game() {
