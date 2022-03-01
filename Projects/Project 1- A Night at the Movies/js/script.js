@@ -11,6 +11,8 @@ let titleImage;
 let winImage;
 let loseImage;
 
+let gameMusic;
+
 let state = "title";
 
 let bgSky;
@@ -58,6 +60,8 @@ function preload() {
   titleImage = loadImage("assets/images/snitchTITLE.gif");
   winImage = loadImage("assets/images/winPic.gif");
   loseImage = loadImage("assets/images/losePic.gif");
+
+  gameMusic = loadSound("");
 }
 
 /**
