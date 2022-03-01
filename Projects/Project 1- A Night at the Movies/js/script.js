@@ -234,6 +234,7 @@ function updateBludger() {
 
     bludger.wrap();
     bludger.display();
+    bludger.harryHit();
 
     //returns true if it hits harry potter
     let bludgerHitHarry = bludger.harryCollision(harryPotter);
@@ -308,7 +309,7 @@ function snitchCollection(snitch, harryPotter) {
       }
     }
   }
-  console.log(numSnitchCollection);
+
   //if he collects 10 snitches, the level goes up
   if (level === 1 && numSnitchCollection >= 3) {
     changeLevel();
@@ -322,36 +323,16 @@ function snitchCollection(snitch, harryPotter) {
   }
 }
 
-function bludgerHit(bludger, harryPotter) {
-  //check to overlap if bludger hasn't hit harry potter yet
-  if (!bludger.harryCollision) {
-    let d = dist(
-      harryPotter.sprite.position.x,
-      harryPotter.sprite.position.y,
-      bludger.x,
-      bludger.y
-    );
-
-    //harry potter overlaps bludger
-    if (
-      (d < harryPotter.sprite.width / 2 + bludger.width / 2, bludger.height / 2)
-    ) {
-      bludger.harryCollision = true;
-      numBludgerHits += 1;
-    }
-  }
-}
-
 function changeLevel() {
   if (level === 1) {
     level = 2;
     for (let i = 0; i < bludgers.length; i++) {
-      bludgers[i].vx = -7;
+      bludgers[i].vx = -8;
     }
   } else if (level === 2) {
     level = 3;
     for (let i = 0; i < bludgers.length; i++) {
-      bludgers[i].vx = -11;
+      bludgers[i].vx = -12;
     }
   } else if (level === 3) {
     level = 4;
@@ -369,7 +350,7 @@ function harryWins() {
 
 function harryLoses() {
   if (
-    numBludgerHits >= 8 ||
+    numBludgerHits >= 4 ||
     harryPotter.sprite.position.y > windowHeight ||
     harryPotter.sprite.position.y < -20
   ) {

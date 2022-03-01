@@ -75,6 +75,26 @@ class Bludgers {
     }
   }
 
+  harryHit(bludger, harryPotter) {
+    //check to overlap if bludger hasn't hit harry potter yet
+    if (!this.harryCollision) {
+      let d = dist(
+        harryPotter.sprite.position.x,
+        harryPotter.sprite.position.y,
+        this.x,
+        this.y
+      );
+
+      //harry potter overlaps bludger
+      if (
+        (d < harryPotter.sprite.width / 2 + this.width / 2, this.height / 2)
+      ) {
+        this.harryCollision = true;
+        numBludgerHits += 1;
+      }
+    }
+  }
+
   gravitate(harryPotter) {
     if (this.follow === true) {
       //target is harry's position
