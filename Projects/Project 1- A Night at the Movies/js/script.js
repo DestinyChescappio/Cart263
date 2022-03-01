@@ -40,6 +40,7 @@ let numSnitch = 5;
 let numSnitchCollection = 0;
 let level = 1;
 
+let numLevels = 1;
 /**
 Description of preload
 */
@@ -118,9 +119,18 @@ function game() {
   displayParaObject();
 
   drawSprites();
+
   updateBludger();
   numSnitchText();
   numBludgerText();
+  numLevelText();
+}
+
+function winning() {
+  textFont(`arial`);
+  textStyle(BOLD);
+  textSize(60);
+  text(`Yay :)`, windowWidth / 2, windowHeight / 2);
 }
 
 function mousePressed() {
@@ -181,6 +191,14 @@ function numBludgerText() {
   text(`Bludgers ${numBludgerHits}`, 100, 80);
 }
 
+function numLevelText() {
+  fill(0);
+  textFont(`arial`);
+  textStyle(BOLD);
+  textSize(40);
+  text(`LEVEL ${numLevels}`, windowWidth / 2, 80);
+}
+
 function snitchCollection(snitch, harryPotter) {
   if (snitch.caught === false) {
     //check to overlapp if snitch hasn't been collected yet
@@ -202,7 +220,14 @@ function snitchCollection(snitch, harryPotter) {
   }
   console.log(numSnitchCollection);
   //if he collects 10 snitches, the level goes up
-  if (level === 1 && numSnitchCollection >= 10) {
+  if (level === 1 && numSnitchCollection >= 5) {
+    changeLevel();
+    numLevels += 1;
+  } else if (level === 2 && numSnitchCollection >= 8) {
+    changeLevel();
+    numLevels += 1;
+  } else if (level === 3 && numSnitchCollection >= 12) {
+    numLevels += 1;
     changeLevel();
   }
 }
@@ -233,17 +258,15 @@ function changeLevel() {
     for (let i = 0; i < bludgers.length; i++) {
       bludgers[i].vx = -10;
     }
-    if (level === 2) {
-      level = 3;
-      for (let i = 0; i < bludgers.length; i++) {
-        bludgers[i].vx = -15;
-      }
-      if (level === 3) {
-        level = 4;
-        for (let i = 0; i < bludgers.length; i++) {
-          bludgers[i].follow = true;
-        }
-      }
+  } else if (level === 2) {
+    level = 3;
+    for (let i = 0; i < bludgers.length; i++) {
+      bludgers[i].vx = -15;
+    }
+  } else if (level === 3) {
+    level = 4;
+    for (let i = 0; i < bludgers.length; i++) {
+      bludgers[i].follow = true;
     }
   }
 }
