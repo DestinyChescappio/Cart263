@@ -41,7 +41,7 @@ class HarryPotter {
       this.sprite.velocity.y = 0;
     }
     //constrain from harry going past canvas (upwards when pressing up_arrow)
-    this.sprite.position.y = constrain(this.sprite.position.y, 0, height);
+    //this.sprite.position.y = constrain(this.sprite.position.y, 0, height);
   }
 
   //velocity on y axis and the acceleration is what makes harry potter 'fall'

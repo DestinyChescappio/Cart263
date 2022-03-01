@@ -16,7 +16,7 @@ class Snitches {
   }
 
   move(harryPotter) {
-    //if harry potter is at a 300 px distance
+    //if harry potter is at a 300 px distance from Snitch
     if (
       dist(
         harryPotter.sprite.position.x,

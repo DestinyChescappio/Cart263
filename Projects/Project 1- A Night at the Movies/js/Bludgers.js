@@ -9,7 +9,7 @@ class Bludgers {
 
     this.acceleration = 0.25;
 
-    this.vx = -5;
+    this.vx = -4;
     this.vy = 0;
 
     this.height = 280;

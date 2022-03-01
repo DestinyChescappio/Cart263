@@ -13,6 +13,7 @@ let loseImage;
 
 let gameMusic;
 let ouchSound;
+let snitchCatchSFX;
 
 let state = "title";
 
@@ -64,6 +65,7 @@ function preload() {
 
   gameMusic = loadSound("assets/sounds/mainMusic.mp3");
   ouchSound = loadSound("assets/sounds/ouchSound.wav");
+  snitchCatchSFX = loadSound("assets/sounds/snitchSound.wav");
 }
 
 /**
@@ -296,6 +298,14 @@ function snitchCollection(snitch, harryPotter) {
       setTimeout(function () {
         snitch.caught = false;
       }, 1000);
+
+      //if the user gets hit by bludger ea. time
+      if (!snitchCatchSFX.isPlaying()) {
+        //volume
+        snitchCatchSFX.setVolume(0.02);
+        //to play the sound
+        snitchCatchSFX.play();
+      }
     }
   }
   console.log(numSnitchCollection);
@@ -336,12 +346,12 @@ function changeLevel() {
   if (level === 1) {
     level = 2;
     for (let i = 0; i < bludgers.length; i++) {
-      bludgers[i].vx = -10;
+      bludgers[i].vx = -7;
     }
   } else if (level === 2) {
     level = 3;
     for (let i = 0; i < bludgers.length; i++) {
-      bludgers[i].vx = -15;
+      bludgers[i].vx = -11;
     }
   } else if (level === 3) {
     level = 4;
@@ -358,7 +368,11 @@ function harryWins() {
 }
 
 function harryLoses() {
-  if (numBludgerHits >= 5 || harryPotter.sprite.position.y > windowHeight) {
+  if (
+    numBludgerHits >= 8 ||
+    harryPotter.sprite.position.y > windowHeight ||
+    harryPotter.sprite.position.y < -20
+  ) {
     state = `lose`;
   }
 }
