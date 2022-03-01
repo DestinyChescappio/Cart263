@@ -61,7 +61,7 @@ function preload() {
   winImage = loadImage("assets/images/winPic.gif");
   loseImage = loadImage("assets/images/losePic.gif");
 
-  gameMusic = loadSound("");
+  gameMusic = loadSound("assets/sounds/mainMusic.mp3");
 }
 
 /**
@@ -199,6 +199,11 @@ function losing() {
 function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
+  }
+  if (!gameMusic.isPlaying()) {
+    //music plays once in a loop
+    gameMusic.loop();
+    gameMusic.setVolume(0.1);
   }
 }
 
