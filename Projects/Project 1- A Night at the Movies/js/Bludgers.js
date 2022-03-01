@@ -55,6 +55,14 @@ class Bludgers {
       //injury animation = collision is true
       harryPotter.sprite.changeAnimation("injury");
       this.isColliding = true;
+
+      //if the user gets hit by bludger ea. time
+      if (!ouchSound.isPlaying()) {
+        //volume
+        ouchSound.setVolume(0.1);
+        //to play the sound
+        ouchSound.play();
+      }
       //setting a timeout for seconds of the 'injury' animation
       //after 'injury' animation, harry potter return to 'floating' animation
       setTimeout(() => {

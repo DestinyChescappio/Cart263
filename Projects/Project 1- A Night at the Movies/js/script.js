@@ -12,6 +12,7 @@ let winImage;
 let loseImage;
 
 let gameMusic;
+let ouchSound;
 
 let state = "title";
 
@@ -62,6 +63,7 @@ function preload() {
   loseImage = loadImage("assets/images/losePic.gif");
 
   gameMusic = loadSound("assets/sounds/mainMusic.mp3");
+  ouchSound = loadSound("assets/sounds/ouchSound.wav");
 }
 
 /**
