@@ -114,8 +114,8 @@ function title() {
   image(titleImage, windowWidth / 2, windowHeight - 250);
 
   //title
-  fill(0);
-  textFont(`arial`);
+  fill(190, 20, 0);
+  textFont(`letter magic`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
@@ -126,17 +126,10 @@ function title() {
   );
 
   //what to press to start game
-  textFont(`arial`);
+  fill(0);
+  textFont(`coquette`);
   textSize(30);
   text(`Press any key to start`, windowWidth / 2, windowHeight - 130);
-
-  //instructions
-  textStyle(NORMAL);
-  text(
-    `Avoid the bludgers and catch as many as snitches as you can`,
-    windowWidth / 2,
-    windowHeight - 180
-  );
 
   //user's input instructions
   textFont(`arial`);
@@ -146,6 +139,14 @@ function title() {
     `Use LEFT/RIGHT/UP arrow keys to move`,
     windowWidth / 2,
     windowHeight - 80
+  );
+
+  //instructions
+  textStyle(NORMAL);
+  text(
+    `Avoid the bludgers and catch as many as snitches as you can`,
+    windowWidth / 2,
+    windowHeight - 180
   );
 }
 
@@ -172,7 +173,7 @@ function game() {
 function winning() {
   imageMode(CENTER);
   image(winImage, windowWidth / 2, windowHeight / 2);
-  textFont(`arial`);
+  textFont(`letter magic`);
   textStyle(BOLD);
   textSize(40);
   textAlign(CENTER, CENTER);
@@ -183,7 +184,7 @@ function winning() {
 function losing() {
   imageMode(CENTER);
   image(loseImage, windowWidth / 2, windowHeight / 2);
-  textFont(`arial`);
+  textFont(`letter magic`);
   textStyle(BOLD);
   textSize(40);
   textAlign(CENTER, CENTER);
@@ -235,25 +236,34 @@ function updateHarryPotter() {
 }
 
 function numSnitchText() {
-  fill(0);
-  textFont(`ariel`);
+  fill(200, 0, 0);
+  stroke(250, 200, 0);
+  strokeWeight(5);
+  textFont(`letter magic`);
   textStyle(BOLD);
+  textAlign(CENTER, CENTER);
   textSize(40);
-  text(`Snitches ${numSnitchCollection}`, 1200, 80);
+  text(`Snitches ${numSnitchCollection}`, 1250, 80);
 }
 
 function numBludgerText() {
-  fill(0);
-  textFont(`ariel`);
+  fill(200, 0, 0);
+  stroke(250, 200, 0);
+  strokeWeight(5);
+  textFont(`letter magic`);
   textStyle(BOLD);
+  textAlign(CENTER, CENTER);
   textSize(40);
-  text(`Bludgers ${numBludgerHits}`, 100, 80);
+  text(`Bludgers ${numBludgerHits}`, 200, 80);
 }
 
 function numLevelText() {
-  fill(0);
-  textFont(`arial`);
+  fill(200, 0, 0);
+  stroke(250, 200, 0);
+  strokeWeight(5);
+  textFont(`letter magic`);
   textStyle(BOLD);
+  textAlign(CENTER, CENTER);
   textSize(40);
   text(`LEVEL ${numLevels}`, windowWidth / 2, 80);
 }
