@@ -157,7 +157,6 @@ function updateBludger() {
     if (bludgerHitHarry) {
       numBludgerHits += 1;
     }
-    // bludgerHit(bludger, harryPotter);
   }
 }
 
@@ -217,6 +216,7 @@ function bludgerHit(bludger, harryPotter) {
       bludger.x,
       bludger.y
     );
+
     //harry potter overlaps bludger
     if (
       (d < harryPotter.sprite.width / 2 + bludger.width / 2, bludger.height / 2)
@@ -289,14 +289,6 @@ function moveLayer(layer) {
   }
 }
 
-//displaying the layers
-//function displayLayer(layer) {
-//  for (let i = 0; i < layer.paraObjects.length; i++) {
-//    let paraObject = layer.paraObjects[i];
-//    displayParaObject(paraObject);
-//  }
-//}
-
 //displays the provided paraObject according to its properties
 function displayParaObject() {
   //sky
@@ -331,5 +323,4 @@ function displayParaObject() {
     windowHeight
   );
   pop();
-  //console.log(`hello`);
 }
