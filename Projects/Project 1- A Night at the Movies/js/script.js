@@ -144,7 +144,8 @@ function losing() {
   text(`no!`, windowWidth / 2, windowHeight / 2);
 }
 
-function mousePressed() {
+//to start the game
+function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
   }
