@@ -40,10 +40,8 @@ class HarryPotter {
       //harry potter 'falls' if no arrow keys are pressed
       this.sprite.velocity.y = 0;
     }
-    //constrain
-    if (this.sprite.position.y < 0) {
-      constrain(this.sprite.position.y, 0, height);
-    }
+    //constrain from harry going past canvas (upwards when pressing up_arrow)
+    this.sprite.position.y = constrain(this.sprite.position.y, 0, height);
   }
 
   //velocity on y axis and the acceleration is what makes harry potter 'fall'
