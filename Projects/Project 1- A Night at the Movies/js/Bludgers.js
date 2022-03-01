@@ -68,15 +68,29 @@ class Bludgers {
   }
 
   gravitate(harryPotter) {
+    //  console.log("in gravitate");
     if (this.follow === true) {
-      if (harryPotter.sprite.position.x < this.x) {
-        this.ax = -this.acceleration;
-      } else {
-        this.ax = this.acceleration;
-      }
-      if (harryPotter.sprite.position.y < this.y) {
-        this.ay = -this.acceleration;
-      }
+      //target is harry's position
+      let targetX = harryPotter.sprite.position.x;
+      let targetY = harryPotter.sprite.position.y;
+      //how many px bludger needs to move to be on harry
+      let distX = targetX - this.x;
+      let distY = targetY - this.y;
+      //scaling the distance
+      let accelX = distX / 100;
+      //updating the bludger position
+      this.x += accelX;
+
+      let accelY = distY / 100;
+      this.y += accelY;
+      // if (harryPotter.sprite.position.x < this.x) {
+      //   this.ax = -this.acceleration;
+      // } else {
+      //   this.ax = this.acceleration;
+      // }
+      // if (harryPotter.sprite.position.y < this.y) {
+      //   this.ay = -this.acceleration;
+      // }
     }
   }
 }

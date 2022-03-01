@@ -112,13 +112,13 @@ function title() {
 
 function game() {
   updateSnitch();
-  updateBludger();
   updateHarryPotter();
 
   moveParaObjects();
   displayParaObject();
 
   drawSprites();
+  updateBludger();
   numSnitchText();
   numBludgerText();
 }
@@ -143,10 +143,15 @@ function updateBludger() {
   for (let i = 0; i < bludgers.length; i++) {
     let bludger = bludgers[i];
     // calling methods- move, wrap, display
-    bludger.move();
+    if (level === 4) {
+      bludger.gravitate(harryPotter);
+    } else {
+      bludger.move();
+    }
+
     bludger.wrap();
     bludger.display();
-    bludger.gravitate(harryPotter);
+
     //returns true if it hits harry potter
     let bludgerHitHarry = bludger.harryCollision(harryPotter);
     if (bludgerHitHarry) {
@@ -178,18 +183,25 @@ function numBludgerText() {
 }
 
 function snitchCollection(snitch, harryPotter) {
-  //check to overlapp if snitch hasn't been collected yet
-  let d = dist(
-    harryPotter.sprite.position.x,
-    harryPotter.sprite.position.y,
-    snitch.sprite.position.x,
-    snitch.sprite.position.y
-  );
-  //harry potter overlaps snitch
-  if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
-    //keeping track of how many snitches were overlapped
-    numSnitchCollection += 1;
+  if (snitch.caught === false) {
+    //check to overlapp if snitch hasn't been collected yet
+    let d = dist(
+      harryPotter.sprite.position.x,
+      harryPotter.sprite.position.y,
+      snitch.sprite.position.x,
+      snitch.sprite.position.y
+    );
+    //harry potter overlaps snitch
+    if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
+      //keeping track of how many snitches were overlapped
+      numSnitchCollection += 1;
+      snitch.caught = true;
+      setTimeout(function () {
+        snitch.caught = false;
+      }, 1000);
+    }
   }
+  console.log(numSnitchCollection);
   //if he collects 10 snitches, the level goes up
   if (level === 1 && numSnitchCollection >= 10) {
     changeLevel();
@@ -229,7 +241,7 @@ function changeLevel() {
       if (level === 3) {
         level = 4;
         for (let i = 0; i < bludgers.length; i++) {
-          bludgers.gravitate = true;
+          bludgers[i].follow = true;
         }
       }
     }
@@ -264,7 +276,7 @@ function moveLayer(layer) {
     //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
     paraObject.x += -harryPotter.sprite.velocity.x * layer.parallaxRatio;
 
-    console.log(paraObject.x);
+    //  console.log(paraObject.x);
 
     //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
     if (paraObject.x < -width) {
@@ -319,5 +331,5 @@ function displayParaObject() {
     windowHeight
   );
   pop();
-  console.log(`hello`);
+  //console.log(`hello`);
 }
