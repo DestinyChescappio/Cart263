@@ -32,12 +32,17 @@ class HarryPotter {
     //up arrow to go up to prevent from 'falling'
     if (keyIsDown(UP_ARROW)) {
       this.sprite.velocity.y = -10;
+
       //down arrow is to go down to have more movement options
     } else if (keyIsDown(DOWN_ARROW)) {
       this.sprite.velocity.y = 10;
     } else {
       //harry potter 'falls' if no arrow keys are pressed
       this.sprite.velocity.y = 0;
+    }
+    //constrain
+    if (this.sprite.position.y < 0) {
+      constrain(this.sprite.position.y, 0, height);
     }
   }
 

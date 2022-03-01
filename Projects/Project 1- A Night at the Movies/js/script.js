@@ -289,7 +289,7 @@ function harryWins() {
 }
 
 function harryLoses() {
-  if (numBludgerHits >= 4) {
+  if (numBludgerHits >= 4 || harryPotter.sprite.position.y > windowHeight) {
     state = `lose`;
   }
 }
