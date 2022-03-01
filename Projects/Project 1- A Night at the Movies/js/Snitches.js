@@ -45,4 +45,45 @@ class Snitches {
       this.sprite.position.x = width;
     }
   }
+
+  snitchCollection(snitch, harryPotter) {
+    if (snitch.caught === false) {
+      //check to overlapp if snitch hasn't been collected yet
+      let d = dist(
+        harryPotter.sprite.position.x,
+        harryPotter.sprite.position.y,
+        snitch.sprite.position.x,
+        snitch.sprite.position.y
+      );
+      //harry potter overlaps snitch
+      if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
+        //keeping track of how many snitches were overlapped
+        numSnitchCollection += 1;
+        snitch.caught = true;
+        setTimeout(function () {
+          snitch.caught = false;
+        }, 1000);
+
+        //if the user gets hit by bludger ea. time
+        if (!snitchCatchSFX.isPlaying()) {
+          //volume
+          snitchCatchSFX.setVolume(0.02);
+          //to play the sound
+          snitchCatchSFX.play();
+        }
+      }
+    }
+
+    //if he collects 10 snitches, the level goes up
+    if (level === 1 && numSnitchCollection >= 3) {
+      changeLevel();
+      numLevels += 1;
+    } else if (level === 2 && numSnitchCollection >= 6) {
+      changeLevel();
+      numLevels += 1;
+    } else if (level === 3 && numSnitchCollection >= 9) {
+      numLevels += 1;
+      changeLevel();
+    }
+  }
 }
