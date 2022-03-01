@@ -121,9 +121,12 @@ function game() {
   drawSprites();
 
   updateBludger();
+
   numSnitchText();
   numBludgerText();
   numLevelText();
+
+  harryWins();
 }
 
 function winning() {
@@ -223,10 +226,10 @@ function snitchCollection(snitch, harryPotter) {
   if (level === 1 && numSnitchCollection >= 5) {
     changeLevel();
     numLevels += 1;
-  } else if (level === 2 && numSnitchCollection >= 8) {
+  } else if (level === 2 && numSnitchCollection >= 10) {
     changeLevel();
     numLevels += 1;
-  } else if (level === 3 && numSnitchCollection >= 12) {
+  } else if (level === 3 && numSnitchCollection >= 15) {
     numLevels += 1;
     changeLevel();
   }
@@ -268,6 +271,12 @@ function changeLevel() {
     for (let i = 0; i < bludgers.length; i++) {
       bludgers[i].follow = true;
     }
+  }
+}
+
+function harryWins() {
+  if (numSnitchCollection >= 20) {
+    state = `win`;
   }
 }
 
