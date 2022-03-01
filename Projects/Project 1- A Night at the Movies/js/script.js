@@ -127,6 +127,7 @@ function game() {
   numLevelText();
 
   harryWins();
+  harryLoses();
 }
 
 function winning() {
@@ -134,6 +135,13 @@ function winning() {
   textStyle(BOLD);
   textSize(60);
   text(`Yay :)`, windowWidth / 2, windowHeight / 2);
+}
+
+function losing() {
+  textFont(`arial`);
+  textStyle(BOLD);
+  textSize(60);
+  text(`no!`, windowWidth / 2, windowHeight / 2);
 }
 
 function mousePressed() {
@@ -277,6 +285,12 @@ function changeLevel() {
 function harryWins() {
   if (numSnitchCollection >= 20) {
     state = `win`;
+  }
+}
+
+function harryLoses() {
+  if (numBludgerHits >= 4) {
+    state = `lose`;
   }
 }
 
