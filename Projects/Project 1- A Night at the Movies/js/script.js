@@ -294,7 +294,10 @@ function snitchCollection(snitch, harryPotter) {
     if (d < harryPotter.sprite.width / 2 + snitch.sprite.width / 2) {
       //keeping track of how many snitches were overlapped
       numSnitchCollection += 1;
-
+      if (!snitchCatchSFX.isPlaying()) {
+        snitchCatchSFX.setVolume(0.08);
+        snitchCatchSFX.play();
+      }
       snitch.caught = true;
       setTimeout(function () {
         snitch.caught = false;
