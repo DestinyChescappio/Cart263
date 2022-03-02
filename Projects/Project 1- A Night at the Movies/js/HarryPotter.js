@@ -1,3 +1,5 @@
+//harry potter is made with pixelArt composed with p5.play library
+//Has two animations to determine when in standard mode and when getting hit by bludger
 class HarryPotter {
   constructor() {
     //loading user's character for 'floating' animation
@@ -40,8 +42,6 @@ class HarryPotter {
       //harry potter 'falls' if no arrow keys are pressed
       this.sprite.velocity.y = 0;
     }
-    //constrain from harry going past canvas (upwards when pressing up_arrow)
-    //this.sprite.position.y = constrain(this.sprite.position.y, -10, -10);
   }
 
   //velocity on y axis and the acceleration is what makes harry potter 'fall'

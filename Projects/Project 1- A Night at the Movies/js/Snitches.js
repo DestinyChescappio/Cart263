@@ -1,3 +1,8 @@
+//Snitch is created with pixelArt composed in p5.play library
+//snitch is made in p5.library to prevent overlapping multiple snitches at a time if it were a GIF
+//movement when 'floating' and when harry potter comes near them
+//wrapping movement
+
 class Snitches {
   constructor(x, y) {
     //loading user's character
@@ -7,10 +12,11 @@ class Snitches {
       "assets/images/snitch01.png",
       "assets/images/snitch02.png"
     );
+    //position
     this.sprite.position.x = x;
     this.sprite.position.y = y;
     this.sprite.velocity.x = -2;
-
+    //getting caught is false from beginning
     this.caught = false;
   }
 

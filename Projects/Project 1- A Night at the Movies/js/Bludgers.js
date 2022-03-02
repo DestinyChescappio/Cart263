@@ -1,37 +1,45 @@
+//Bludger is a regular image playing the enemy
+//bludger determines harry potter shift of animation
+//overlapping harry potter determines sound and keeping track how many bludgers hit harry
+//gravitate behavior
+
 class Bludgers {
   constructor(x, y, bludgerImage) {
+    //collision is false from beginning
     this.isColliding = false;
+    //position
     this.x = x;
     this.y = y;
-
+    //acceleration
     this.ax = 0;
     this.ay = 0;
-
-    this.acceleration = 0.25;
-
+    //velocity
     this.vx = -5;
     this.vy = 0;
-
+    //dimensions
     this.height = 280;
     this.width = 280;
-
+    //what image
     this.image = bludgerImage;
 
-    //following harry potter
+    //following harry potter is false from beginning
     this.follow = false;
   }
 
+  //movement setup
   move() {
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
   }
 
+  //continous movement
   wrap() {
     if (this.x < 0) {
       this.x += width;
     }
   }
 
+  //displaying the bludger
   display() {
     push();
     imageMode(CENTER);
@@ -72,6 +80,7 @@ class Bludgers {
     }
   }
 
+  //gravitate behavior towards harry
   gravitate(harryPotter) {
     //  console.log("in gravitate");
     if (this.follow === true) {

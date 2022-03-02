@@ -180,15 +180,15 @@ function title() {
 
 //what happens in the game (calling functions)
 function game() {
-  //game objective, enemy, and user character
-  updateSnitch();
-  updateBludger();
-  updateHarryPotter();
   //background parallax effect functions
   moveParaObjects();
   displayParaObject();
   //the p5.play sprites (harry Potter & Snitches)
   drawSprites();
+  //game objective, enemy, and user character
+  updateSnitch();
+  updateBludger();
+  updateHarryPotter();
   //keeping track of snitch, bludger, and level texts
   numSnitchText();
   numBludgerText();
@@ -269,6 +269,79 @@ function updateBludger() {
 function updateHarryPotter() {
   harryPotter.handleInput();
   harryPotter.handleGravity();
+}
+
+//Parallax effect with creating the object
+function createParaObject(x, y) {
+  //making the object
+  let paraObject = {
+    x: x,
+    y: y,
+    width: windowWidth,
+    height: windowHeight,
+  };
+  return paraObject;
+}
+
+//moving paraObjects according to harry potter's velocity
+function moveParaObjects() {
+  moveLayer(layers.sky);
+  moveLayer(layers.cloud);
+  moveLayer(layers.tower);
+}
+
+//moving ea. layer of the parallax object with harry's movement
+function moveLayer(layer) {
+  //go through all paraObjects in this layer
+  for (let i = 0; i < layer.paraObjects.length; i++) {
+    //get the paraObject
+    let paraObject = layer.paraObjects[i];
+    //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
+    paraObject.x += -harryPotter.sprite.velocity.x * layer.parallaxRatio;
+
+    //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
+    if (paraObject.x < -width) {
+      paraObject.x = 0;
+    } else if (paraObject.x > 0) {
+      paraObject.x = -width;
+    }
+  }
+}
+
+//displays the provided paraObject according to its properties
+function displayParaObject() {
+  //sky
+  push();
+  image(
+    bgSky,
+    layers.sky.paraObjects[0].x,
+    layers.sky.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
+  pop();
+
+  //clouds
+  push();
+  image(
+    bgClouds,
+    layers.cloud.paraObjects[0].x,
+    layers.cloud.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
+  pop();
+
+  //tower
+  push();
+  image(
+    bgTowers,
+    layers.tower.paraObjects[0].x,
+    layers.tower.paraObjects[0].y,
+    windowWidth * 2,
+    windowHeight
+  );
+  pop();
 }
 
 //numSnitch text display
@@ -384,7 +457,7 @@ function changeLevel() {
     level = 3;
     for (let i = 0; i < bludgers.length; i++) {
       //velocity speeds up
-      bludgers[i].vx = -11;
+      bludgers[i].vx = -10;
     }
   } else if (level === 3) {
     level = 4;
@@ -416,77 +489,4 @@ function harryLoses() {
     //harry loses
     state = `lose`;
   }
-}
-
-//Parallax effect with creating the object
-function createParaObject(x, y) {
-  //making the object
-  let paraObject = {
-    x: x,
-    y: y,
-    width: windowWidth,
-    height: windowHeight,
-  };
-  return paraObject;
-}
-
-//moving paraObjects according to harry potter's velocity
-function moveParaObjects() {
-  moveLayer(layers.sky);
-  moveLayer(layers.cloud);
-  moveLayer(layers.tower);
-}
-
-//moving ea. layer of the parallax object with harry's movement
-function moveLayer(layer) {
-  //go through all paraObjects in this layer
-  for (let i = 0; i < layer.paraObjects.length; i++) {
-    //get the paraObject
-    let paraObject = layer.paraObjects[i];
-    //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
-    paraObject.x += -harryPotter.sprite.velocity.x * layer.parallaxRatio;
-
-    //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
-    if (paraObject.x < -width) {
-      paraObject.x = 0;
-    } else if (paraObject.x > 0) {
-      paraObject.x = -width;
-    }
-  }
-}
-
-//displays the provided paraObject according to its properties
-function displayParaObject() {
-  //sky
-  push();
-  image(
-    bgSky,
-    layers.sky.paraObjects[0].x,
-    layers.sky.paraObjects[0].y,
-    windowWidth * 2,
-    windowHeight
-  );
-  pop();
-
-  //clouds
-  push();
-  image(
-    bgClouds,
-    layers.cloud.paraObjects[0].x,
-    layers.cloud.paraObjects[0].y,
-    windowWidth * 2,
-    windowHeight
-  );
-  pop();
-
-  //tower
-  push();
-  image(
-    bgTowers,
-    layers.tower.paraObjects[0].x,
-    layers.tower.paraObjects[0].y,
-    windowWidth * 2,
-    windowHeight
-  );
-  pop();
 }
