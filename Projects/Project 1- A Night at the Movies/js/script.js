@@ -206,7 +206,7 @@ function winning() {
   textStyle(BOLD);
   textSize(40);
   textAlign(CENTER, CENTER);
-  text(`30 points to Gryffindor!`, windowWidth / 2, windowHeight - 150);
+  text(`150 points to Gryffindor!`, windowWidth / 2, windowHeight - 150);
 }
 
 //losing page
@@ -457,7 +457,7 @@ function changeLevel() {
     level = 3;
     for (let i = 0; i < bludgers.length; i++) {
       //velocity speeds up
-      bludgers[i].vx = -10;
+      bludgers[i].vx = -12;
     }
   } else if (level === 3) {
     level = 4;
