@@ -41,47 +41,11 @@ class HarryPotter {
       this.sprite.velocity.y = 0;
     }
     //constrain from harry going past canvas (upwards when pressing up_arrow)
-    //this.sprite.position.y = constrain(this.sprite.position.y, 0, height);
+    //this.sprite.position.y = constrain(this.sprite.position.y, -10, -10);
   }
 
   //velocity on y axis and the acceleration is what makes harry potter 'fall'
   handleGravity() {
     this.sprite.velocity.y += this.ay;
-  }
-
-  //bludger and harry potter collision
-  collision(bludger) {
-    //if the distance between the bludger and harry potter is greater than 50 pixels
-    //and if the colliding variable is false (only after contact!!)
-    if (
-      dist(
-        this.sprite.position.x,
-        this.sprite.position.y,
-        bludger.x,
-        bludger.y
-      ) < 50 &&
-      bludger.isColliding === false
-    ) {
-      //injury animation = collision is true
-      this.sprite.changeAnimation("injury");
-      bludger.isColliding = true;
-
-      //if the user gets hit by bludger ea. time
-      if (!ouchSound.isPlaying()) {
-        //volume
-        ouchSound.setVolume(0.1);
-        //to play the sound
-        ouchSound.play();
-      }
-      //setting a timeout for seconds of the 'injury' animation
-      //after 'injury' animation, harry potter return to 'floating' animation
-      setTimeout(() => {
-        this.sprite.changeAnimation("floating");
-        bludger.isColliding = false;
-      }, 2000);
-      return true;
-    } else {
-      return false;
-    }
   }
 }
