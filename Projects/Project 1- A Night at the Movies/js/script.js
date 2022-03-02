@@ -180,20 +180,20 @@ function title() {
 
 //what happens in the game (calling functions)
 function game() {
+  //game objective, enemy, and user character
   updateSnitch();
+  updateBludger();
   updateHarryPotter();
-
+  //background parallax effect functions
   moveParaObjects();
   displayParaObject();
-
+  //the p5.play sprites (harry Potter & Snitches)
   drawSprites();
-
-  updateBludger();
-
+  //keeping track of snitch, bludger, and level texts
   numSnitchText();
   numBludgerText();
   numLevelText();
-
+  //win and lose states/pages
   harryWins();
   harryLoses();
 }
@@ -220,7 +220,7 @@ function losing() {
   text(`YOU ARE HEREBY EXPELLED!`, windowWidth / 2, windowHeight - 150);
 }
 
-//to start the game
+//to start the game; pressing any key
 function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
