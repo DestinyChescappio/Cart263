@@ -1,28 +1,45 @@
 /**
-Title of Project
-Author Name
+P1: Harry Potter's Quidditch Adventures
+By Destiny Chescappio
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+- User plays Harry Potter. User must use arrow keys to maneuver their way into collecting more than 15 snitches to win.
+- User loses if Harry Potter "falls" or goes up too far off canvas. They also lose if the bludgers hit them more than 5 times.
+- The challenge is to go through 4 levels of flying bludgers that get faster and eventually follow Harry.
+
+Credits:
+//
+- Retro video game sfx - Ouch By OwlStorm
+https://freesound.org/people/OwlStorm/sounds/404747/
+
+- Metall-Tischbein.wav By MattesHaus
+https://freesound.org/people/MattesHaus/sounds/353497/
+
+gameMusic
+- Soar by Scott Buckley | www.scottbuckley.com.au
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+
 */
 
 "use strict";
+//state images used
 let titleImage;
 let winImage;
 let loseImage;
-
+//Sound design
 let gameMusic;
 let ouchSound;
 let snitchCatchSFX;
-
+//beginning state
 let state = "title";
-
+//parallax effect background images
 let bgSky;
 let bgClouds;
 let bgTowers;
-
+//user character
 let harryPotter;
-
+//layers of parallax effect obejcts
 let layers = {
   sky: {
     paraObjects: [],
@@ -37,20 +54,21 @@ let layers = {
     parallaxRatio: 1,
   },
 };
-
+//bludgers
 let bludgerImage = undefined;
 let bludgers = [];
 let numBludger = 5;
 let numBludgerHits = 0;
-
+//snitches
 let snitches = [];
 let numSnitch = 5;
 let numSnitchCollection = 0;
 let level = 1;
-
+//beginning level
 let numLevels = 1;
+
 /**
-Description of preload
+Preload of images and sounds used
 */
 function preload() {
   bludgerImage = loadImage("assets/images/bludger.png");
@@ -69,7 +87,7 @@ function preload() {
 }
 
 /**
-Description of setup
+Setting up (bludgers, snitches, and harry potter) classes & parallax layers
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -91,6 +109,7 @@ function setup() {
     bludgers.push(bludger);
   }
 
+  //parallax effect setup
   //starting point for the first building
   let x = 0;
   //position to draw the base of nerest layer
@@ -102,7 +121,7 @@ function setup() {
 }
 
 /**
-Description of draw()
+Drawing what happens in the game from title, game, win and lose states/pages
 */
 function draw() {
   background(bgSky, windowWidth, windowHeight);
@@ -117,6 +136,7 @@ function draw() {
   }
 }
 
+//title state page
 function title() {
   imageMode(CENTER);
   image(titleImage, windowWidth / 2, windowHeight - 250);
@@ -158,6 +178,7 @@ function title() {
   );
 }
 
+//what happens in the game (calling functions)
 function game() {
   updateSnitch();
   updateHarryPotter();
@@ -222,6 +243,7 @@ function updateSnitch() {
   }
 }
 
+//updated bludger data
 function updateBludger() {
   for (let i = 0; i < bludgers.length; i++) {
     let bludger = bludgers[i];
@@ -243,11 +265,13 @@ function updateBludger() {
   }
 }
 
+//update harry potter data
 function updateHarryPotter() {
   harryPotter.handleInput();
   harryPotter.handleGravity();
 }
 
+//numSnitch text display
 function numSnitchText() {
   fill(200, 0, 0);
   stroke(250, 200, 0);
@@ -259,6 +283,7 @@ function numSnitchText() {
   text(`Snitches ${numSnitchCollection}`, 1250, 80);
 }
 
+//numBludgerText display
 function numBludgerText() {
   fill(200, 0, 0);
   stroke(250, 200, 0);
@@ -270,6 +295,7 @@ function numBludgerText() {
   text(`Bludgers ${numBludgerHits}`, 200, 80);
 }
 
+//numLevelText display
 function numLevelText() {
   fill(200, 0, 0);
   stroke(250, 200, 0);
@@ -281,6 +307,8 @@ function numLevelText() {
   text(`LEVEL ${numLevels}`, windowWidth / 2, 80);
 }
 
+//overlapping snitch with harry potter
+//keeping track of how many snitches are collected
 function snitchCollection(snitch, harryPotter) {
   if (snitch.caught === false) {
     //check to overlapp if snitch hasn't been collected yet
@@ -298,14 +326,15 @@ function snitchCollection(snitch, harryPotter) {
         snitchCatchSFX.setVolume(0.08);
         snitchCatchSFX.play();
       }
+      //to see if the snitch is caught,
       snitch.caught = true;
+      //it is only caught for 1 second until it's not "caught" --> had to be done to ensure individual snitches instead of overlapping multiple ones.
       setTimeout(function () {
         snitch.caught = false;
       }, 1000);
     }
   }
-
-  console.log(numSnitchCollection);
+  //Snitch Collection is in charge of determining the level
   //if he collects 10 snitches, the level goes up
   if (level === 1 && numSnitchCollection >= 3) {
     changeLevel();
@@ -319,6 +348,8 @@ function snitchCollection(snitch, harryPotter) {
   }
 }
 
+//overlapping bludger
+//keeping track of how many bludgers hit harry
 function bludgerHit(bludger, harryPotter) {
   //check to overlap if bludger hasn't hit harry potter yet
   if (!bludger.harryCollision) {
@@ -334,46 +365,60 @@ function bludgerHit(bludger, harryPotter) {
       (d < harryPotter.sprite.width / 2 + bludger.width / 2, bludger.height / 2)
     ) {
       bludger.harryCollision = true;
+      //per bludger hit when overlapping harry
       numBludgerHits += 1;
     }
   }
 }
 
+//What happens when the level is changed
+//Level behavior is dependent on bludger behavior
 function changeLevel() {
   if (level === 1) {
     level = 2;
     for (let i = 0; i < bludgers.length; i++) {
+      //velocity speeds up
       bludgers[i].vx = -8;
     }
   } else if (level === 2) {
     level = 3;
     for (let i = 0; i < bludgers.length; i++) {
+      //velocity speeds up
       bludgers[i].vx = -11;
     }
   } else if (level === 3) {
     level = 4;
     for (let i = 0; i < bludgers.length; i++) {
+      //bludgers follow harry
       bludgers[i].follow = true;
     }
   }
 }
 
+//what triggers harry to win
 function harryWins() {
+  //win state happens when snitchCollection is more than 15
   if (numSnitchCollection >= 15) {
     state = `win`;
   }
 }
 
+//what triggers harry to lose
 function harryLoses() {
+  //if the bludger hits are more than 5
   if (
     numBludgerHits >= 5 ||
+    //or harry's y position is more than windowHeight,
     harryPotter.sprite.position.y > windowHeight ||
+    //or harry's y position is less than -10
     harryPotter.sprite.position.y < -10
   ) {
+    //harry loses
     state = `lose`;
   }
 }
 
+//Parallax effect with creating the object
 function createParaObject(x, y) {
   //making the object
   let paraObject = {
@@ -392,24 +437,19 @@ function moveParaObjects() {
   moveLayer(layers.tower);
 }
 
+//moving ea. layer of the parallax object with harry's movement
 function moveLayer(layer) {
   //go through all paraObjects in this layer
   for (let i = 0; i < layer.paraObjects.length; i++) {
     //get the paraObject
     let paraObject = layer.paraObjects[i];
-    //console.log(paraObject);
-    //console.log(harryPotter.sprite.velocity);
     //changing its x by the negative of harry potter's velocity; which is multiplied by the parallax ratio
     paraObject.x += -harryPotter.sprite.velocity.x * layer.parallaxRatio;
 
-    //  console.log(paraObject.x);
-
     //wrapping the paraObject to other side if needed (it will need to be relative to the first/last paraObject in array)
     if (paraObject.x < -width) {
-      console.log("herer");
       paraObject.x = 0;
     } else if (paraObject.x > 0) {
-      console.log("herer other");
       paraObject.x = -width;
     }
   }
