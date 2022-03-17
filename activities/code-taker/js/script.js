@@ -31,7 +31,7 @@ $(`.secret`).one(`mouseover`, function (event) {
 $(`#answer`).droppable({
   drop: function (event, ui) {
     //the letter is droppable
-    let letter = ui.droppable.text();
+    let letter = ui.draggable.text();
     //adding the letter to the droppable area (the box)
     $(this).append(letter);
     //to stop it from being draggable the second time- can only drag a letter once
