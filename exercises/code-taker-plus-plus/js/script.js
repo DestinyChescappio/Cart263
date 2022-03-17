@@ -39,7 +39,7 @@ $(`#answer`).droppable({
     //to stop the red higlight when found
     ui.draggable.removeClass(`found`);
     //check if the user got it right
-    if ($(this).text() === "Theremin") {
+    if ($(this).text() === "stew") {
       $(`#solved-dialog`).dialog(`open`);
     }
   },
