@@ -4,8 +4,13 @@ Author Name
 
 Da Vinci?!
 */
+stewImg;
 
-"use strict";
+("use strict");
+
+function preload() {
+  let stewImg = loadImage(`assets/images/giphy.gif`);
+}
 //when the ser solves the answer
 $(`#solved-dialog`).dialog({
   autoOpen: false,
