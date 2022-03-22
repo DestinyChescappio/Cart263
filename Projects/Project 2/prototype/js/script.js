@@ -13,11 +13,14 @@ let numBeads = 5;
 
 let beadCanvas = undefined;
 
+let userNeedle = undefined;
+
 /**
 Description of preload
 */
 function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
+  userNeedle = loadImage(`assets/images/userNeedle.png`);
 }
 
 /**
@@ -46,6 +49,7 @@ function draw() {
   background(255);
   updateBeads();
   userBeadCanvas();
+  userObject();
 }
 
 function updateBeads() {
@@ -62,4 +66,10 @@ function beadPattern() {}
 function userBeadCanvas() {
   imageMode(CENTER);
   image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
+}
+
+function userObject(userNeedle) {
+  image(userNeedle);
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
 }
