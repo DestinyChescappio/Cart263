@@ -11,10 +11,14 @@ author, and this description to match your project!
 let beads = [];
 let numBeads = 5;
 
+let beadCanvas = undefined;
+
 /**
 Description of preload
 */
-function preload() {}
+function preload() {
+  beadCanvas = loadImage(`assets/images/leather.jpeg`);
+}
 
 /**
 Description of setup
@@ -41,6 +45,7 @@ Description of draw()
 function draw() {
   background(255);
   updateBeads();
+  userBeadCanvas();
 }
 
 function updateBeads() {
@@ -50,4 +55,11 @@ function updateBeads() {
     bead.wrap();
     bead.display();
   }
+}
+
+function beadPattern() {}
+
+function userBeadCanvas() {
+  imageMode(CENTER);
+  image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
 }
