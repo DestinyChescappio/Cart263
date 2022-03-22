@@ -22,8 +22,8 @@ class Beads {
   }
 
   wrap() {
-    if (this.y < 0) {
-      this.y += height;
+    if (this.y > height) {
+      this.y -= height;
     }
   }
 
