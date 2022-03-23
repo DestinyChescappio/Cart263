@@ -13,14 +13,45 @@ let numBeads = 5;
 
 let beadCanvas = undefined;
 
-let userNeedle = undefined;
+let design01 = {
+  x: 800,
+  y: 600,
+  size: 20,
+};
+//let design02 = {
+//  x: 700,
+//  y: 500,
+//  size: 20,
+//};
+//let design03 = {
+//  x: 600,
+//  y: 400,
+//  size: 20,
+//};
+//let design04 = {
+//  x: 700,
+//  y: 300,
+//  size: 20,
+//};
+//let design05 = {
+//  x: 600,
+//  y: 200,
+//  size: 20,
+//};
+//let design06 = {
+//  x: 500,
+//  y: 100,
+//  size: 20,
+//};
+
+//let userNeedle = undefined;
 
 /**
 Description of preload
 */
 function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
-  userNeedle = loadImage(`assets/images/userNeedle.png`);
+  //userNeedle = loadImage(`assets/images/userNeedle.png`);
 }
 
 /**
@@ -49,7 +80,8 @@ function draw() {
   background(255);
   updateBeads();
   userBeadCanvas();
-  userObject();
+  //userObject();
+  beadPattern();
 }
 
 function updateBeads() {
@@ -61,15 +93,39 @@ function updateBeads() {
   }
 }
 
-function beadPattern() {}
+function beadPattern() {
+  stroke(0);
+  strokeWeight(10);
+  ellipse(design01.x, design01.y, design01.size);
+
+  //  stroke(0);
+  //  strokeWeight(10);
+  //  ellipse(design02.x, design02.y, design02.size);
+
+  //  stroke(0);
+  //  strokeWeight(10);
+  //  ellipse(design03.x, design03.y, design03.size);
+
+  //  stroke(0);
+  //  strokeWeight(10);
+  //  ellipse(design04.x, design04.y, design04.size);
+
+  //  stroke(0);
+  //  strokeWeight(10);
+  //  ellipse(design05.x, design05.y, design05.size);
+
+  //  stroke(0);
+  //  strokeWeight(10);
+  //  ellipse(design06.x, design06.y, design06.size);
+}
 
 function userBeadCanvas() {
   imageMode(CENTER);
   image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
 }
 
-function userObject(userNeedle) {
-  image(userNeedle);
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-}
+//function userObject(userNeedle) {
+//  image(userNeedle);
+//  userNeedle.x = mouseX;
+//  userNeedle.y = mouseY;
+//}
