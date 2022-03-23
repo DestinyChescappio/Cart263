@@ -140,7 +140,7 @@ let design24 = {
   y: 640,
   size: 20,
 };
-//let userNeedle = undefined;
+let userNeedle = undefined;
 
 /**
 Description of preload
@@ -293,8 +293,8 @@ function userBeadCanvas() {
   image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
 }
 
-//function userObject(userNeedle) {
-//  image(userNeedle);
-//  userNeedle.x = mouseX;
-//  userNeedle.y = mouseY;
-//}
+function userObject(userNeedle) {
+  image(userNeedle);
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+}
