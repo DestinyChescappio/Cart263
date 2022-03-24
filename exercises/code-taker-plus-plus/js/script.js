@@ -1,35 +1,55 @@
 /**
-Title of Project
-Author Name
+E7: Code Taker to get some stew!
+Destiny Chescappio
 
-Da Vinci?!
+credits
+- poem text
+https://www.rd.com/list/funny-poems/
+"Do you Carrot All for me?" by Unknown
+
+- Stew Gif
+https://giphy.com/gifs/rachaelrayshow-rachael-ray-the-show-rachel-gHVtUzINxjq4zhD4aP
+by Rachael Ray Show
+
+- jQuery
+https://jquery.com
+
+- jQuery UI:
+https://jqueryui.com
+
+
+Stew Master 101
 */
-stewImg;
+let stewImg;
+let secretWord = `stew`;
 
 ("use strict");
 
 function preload() {
-  let stewImg = loadImage(`assets/images/giphy.gif`);
+  //stew img occurs in the dialog box when user finds the secret
+  stewImg = loadImage(`assets/images/giphy.gif`);
 }
 //when the ser solves the answer
 $(`#solved-dialog`).dialog({
   autoOpen: false,
+  width: 500,
   buttons: {
-    "duh!": function () {
+    "yummy stew!": function () {
       $(this).dialog(`close`);
     },
   },
 });
 
 //the class found is when the mouse is over
-$(`.secret`).one(`mouseover`, function (event) {
+$(`.secret`).on(`mouseover`, function (event) {
   //found only after 5 seconds
   $(this).addClass(`found`, 500);
   //drag when the mouse is over
-  $(`.secret`).draggable({
-    //options object 'helper' clones the word that is dragged- so they won't displace the texts
-    helper: `clone`,
-  });
+});
+
+$(`.secret`).draggable({
+  //options object 'helper' clones the word that is dragged- so they won't displace the texts
+  helper: `clone`,
 });
 
 //making the words droppable
@@ -44,7 +64,8 @@ $(`#answer`).droppable({
     //to stop the red higlight when found
     ui.draggable.removeClass(`found`);
     //check if the user got it right
-    if ($(this).text() === "stew") {
+    console.log("hit" + $(`#answer`).text());
+    if ($(`#answer`).text() === secretWord) {
       $(`#solved-dialog`).dialog(`open`);
     }
   },
