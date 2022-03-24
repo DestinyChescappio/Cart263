@@ -20,39 +20,7 @@
       href="https://code.jquery.com/ui/1.12.1/themes/mint-choc/jquery-ui.css"
     />
     <!-- Library script(s) go here -->
-  </head>
 
-  <body>
-    <!-- HTML would go here if needed. -->
-    <!-- The poem, secret letters are in spans with class "secret" -->
-
-    <section id="poem">
-      <span class="bg"
-        >Do you carrot All for Me?
-        <p>
-          I have eaten<br />
-          the plum<span class="secret">s</span><br />
-          My hear<span class="secret">t</span> beets for you,
-        </p>
-
-        <p>
-          With your turnip nose<br />
-          And your radish face,<br />
-          You are a peach.<br />
-          If w<span class="secret">e</span>cantaloupe,<br />
-          Lettuce marry:<br />
-          <span class="secret">w</span>eed make a swell pear.<br />
-        </p>
-      </span>
-    </section>
-
-    <section id="answer">
-      <div id="solved-dialog" title="Da Vinci?!">
-        You are soooooo smart!
-      </div>
-    </section>
-
-    <!-- My script(s) -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -63,6 +31,30 @@
       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"
     ></script>
+  </head>
+
+  <body>
+    <!-- HTML would go here if needed. -->
+    <!-- The poem, secret letters are in spans with class "secret" -->
+
+    <section id="poem">
+      Do you carrot All for Me?<br />
+      I have eaten the plum<span class="secret">s</span><br />
+      My hear<span class="secret">t</span> beets for you,<br />
+      With your turnip nose<br />
+      And your radish face,<br />
+      You are a peach.<br />
+      If w<span class="secret">e</span> cantaloupe,<br />
+      Lettuce marry:<br />
+      <span class="secret">w</span>eed make a swell pear.<br />
+    </section>
+
+    <section id="answer"></section>
+
+    <div id="solved-dialog" title="Stew Master 101">
+      <img src="assets/images/giphy.gif" />
+    </div>
+
     <script src="js/script.js"></script>
   </body>
 </html>
