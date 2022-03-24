@@ -12,135 +12,170 @@ let beads = [];
 let numBeads = 5;
 
 let beadCanvas = undefined;
-//middle
-let design01 = {
-  x: 730,
-  y: 425,
-  size: 20,
-};
-//petal 1
-let design02 = {
-  x: 725,
-  y: 390,
-  size: 20,
-};
-let design03 = {
-  x: 728,
-  y: 365,
-  size: 20,
-};
-let design04 = {
-  x: 760,
-  y: 373,
-  size: 20,
-};
-let design05 = {
-  x: 748,
-  y: 398,
-  size: 20,
+
+let design = {
+  beadSize: 20,
+  defaultFill: "#cccccc",
+  beads: [
+    {
+      //middle
+      x: 730,
+      y: 425,
+      filled: false,
+      color: "#FFCD00",
+    },
+    {
+      //petal 1
+      x: 725,
+      y: 390,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 728,
+      y: 365,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 760,
+      y: 373,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 748,
+      y: 398,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      //petal 2
+      x: 702,
+      y: 410,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 675,
+      y: 403,
+      filled: false,
+      color: "FF00B3",
+    },
+    {
+      x: 670,
+      y: 435,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 700,
+      y: 435,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      //petal 3
+      x: 735,
+      y: 452,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 735,
+      y: 453,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 757,
+      y: 438,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 745,
+      y: 478,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      x: 775,
+      y: 460,
+      filled: false,
+      color: "#FF00B3",
+    },
+    {
+      //stem
+      x: 775,
+      y: 415,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 800,
+      y: 430,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 823,
+      y: 448,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 830,
+      y: 475,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 820,
+      y: 500,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 800,
+      y: 520,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 780,
+      y: 538,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 758,
+      y: 555,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 745,
+      y: 580,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 742,
+      y: 610,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 742,
+      y: 640,
+      filled: false,
+      color: "#6DA946",
+    },
+  ],
 };
 
-//petal 2
-let design06 = {
-  x: 702,
-  y: 410,
-  size: 20,
-};
-let design07 = {
-  x: 675,
-  y: 403,
-  size: 20,
-};
-let design08 = {
-  x: 670,
-  y: 435,
-  size: 20,
-};
-let design09 = {
-  x: 700,
-  y: 435,
-  size: 20,
-};
-
-//petal 3
-let design10 = {
-  x: 735,
-  y: 453,
-  size: 20,
-};
-let design11 = {
-  x: 757,
-  y: 438,
-  size: 20,
-};
-let design12 = {
-  x: 745,
-  y: 478,
-  size: 20,
-};
-let design13 = {
-  x: 775,
-  y: 460,
-  size: 20,
-};
-
-//stem
-let design14 = {
-  x: 775,
-  y: 415,
-  size: 20,
-};
-let design15 = {
-  x: 800,
-  y: 430,
-  size: 20,
-};
-let design16 = {
-  x: 823,
-  y: 448,
-  size: 20,
-};
-let design17 = {
-  x: 830,
-  y: 475,
-  size: 20,
-};
-let design18 = {
-  x: 820,
-  y: 500,
-  size: 20,
-};
-let design19 = {
-  x: 800,
-  y: 520,
-  size: 20,
-};
-let design20 = {
-  x: 780,
-  y: 538,
-  size: 20,
-};
-let design21 = {
-  x: 758,
-  y: 555,
-  size: 20,
-};
-let design22 = {
-  x: 745,
-  y: 580,
-  size: 20,
-};
-let design23 = {
-  x: 742,
-  y: 610,
-  size: 20,
-};
-let design24 = {
-  x: 742,
-  y: 640,
-  size: 20,
-};
-let userNeedle = undefined;
+//let userNeedle = undefined;
 
 /**
 Description of preload
@@ -177,7 +212,7 @@ function draw() {
   userBeadCanvas();
   beadPattern();
   updateBeads();
-  //userObject();
+  //userObject(userNeedle);
 }
 
 function updateBeads() {
@@ -293,8 +328,8 @@ function userBeadCanvas() {
   image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
 }
 
-function userObject(userNeedle) {
-  image(userNeedle);
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-}
+//function userObject(userNeedle) {
+//  image(userNeedle, mouseX, mouseY);
+//  userNeedle.x = mouseX;
+//  userNeedle.y = mouseY;
+//}
