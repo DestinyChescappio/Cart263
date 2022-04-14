@@ -6,11 +6,16 @@ The beginning stages of creating a digitalization of Indigenous beadwork practic
 */
 
 "use strict";
+let speaking = false;
+let speech = "Intro to beads go here.";
+let speechIndex = 0;
 
 let beads = [];
 let numBeads = 5;
 
 let beadCanvas = undefined;
+
+let state = "startScreen";
 
 let design = {
   beadSize: 20,
@@ -206,10 +211,28 @@ Description of draw()
 */
 function draw() {
   background(255);
+  sceneSwitcher();
+  speaker();
+  //userObject(userNeedle);
+}
+
+//switching pages
+function sceneSwitcher() {
+  if (state === "startScreen") {
+    startScreen();
+  } else if (state === "interactiveScreen") {
+    interactiveScreen();
+  }
+}
+
+function startScreen() {
+  rect(100, 100, 400, 400);
+}
+
+function interactiveScreen() {
   userBeadCanvas();
   beadPattern();
   updateBeads();
-  //userObject(userNeedle);
 }
 
 function updateBeads() {
@@ -242,8 +265,12 @@ function userBeadCanvas() {
 }
 
 function mousePressed() {
-  for (let i = 0; i < beads.length; i++) {
-    beads[i].mousePressed();
+  if (state === "startScreen") {
+    state = "interactiveScreen";
+  } else if (state === "interactiveScreen") {
+    for (let i = 0; i < beads.length; i++) {
+      beads[i].mousePressed();
+    }
   }
 }
 
@@ -251,6 +278,20 @@ function mouseReleased() {
   for (let i = 0; i < beads.length; i++) {
     beads[i].mouseReleased(design);
   }
+}
+
+function speaker() {
+  if (speaking) {
+    let currentSpeech = speech.substring(0, speechIndex);
+
+    text(currentSpeech, 100, 100);
+    speechIndex += 0.25;
+  }
+}
+
+function keyPressed() {
+  responsiveVoice.speak(speech);
+  speaking = true;
 }
 
 //function userObject(userNeedle) {
