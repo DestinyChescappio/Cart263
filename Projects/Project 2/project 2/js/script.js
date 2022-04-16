@@ -6,6 +6,11 @@ The beginning stages of creating a digitalization of Indigenous beadwork practic
 */
 
 "use strict";
+let button = {
+  x: 600,
+  y: 500,
+  size: 50,
+};
 let speaking = false;
 let speech = "Intro to beads go here.";
 let speechIndex = 0;
@@ -212,7 +217,6 @@ Description of draw()
 function draw() {
   background(255);
   sceneSwitcher();
-  speaker();
   //userObject(userNeedle);
 }
 
@@ -226,7 +230,9 @@ function sceneSwitcher() {
 }
 
 function startScreen() {
-  rect(100, 100, 400, 400);
+  ellipse(button.x, button.y, button.size); //move to a function called drawbutton
+  fill(0);
+  speaker();
 }
 
 function interactiveScreen() {
@@ -266,7 +272,10 @@ function userBeadCanvas() {
 
 function mousePressed() {
   if (state === "startScreen") {
-    state = "interactiveScreen";
+    let d = dist(button.x, button.y, mouseX, mouseY);
+    if (d < button.size / 2) {
+      state = "interactiveScreen";
+    }
   } else if (state === "interactiveScreen") {
     for (let i = 0; i < beads.length; i++) {
       beads[i].mousePressed();
