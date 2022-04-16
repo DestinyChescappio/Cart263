@@ -233,6 +233,7 @@ function startScreen() {
   ellipse(button.x, button.y, button.size); //move to a function called drawbutton
   fill(0);
   speaker();
+  //drawButton();
 }
 
 function interactiveScreen() {
