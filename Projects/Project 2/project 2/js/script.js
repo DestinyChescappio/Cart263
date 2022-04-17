@@ -181,10 +181,237 @@ let design = {
       filled: false,
       color: "#6DA946",
     },
+    {
+      //left plant leaf
+      //  x: 680,
+      //  y: 700,
+      //  filled:
+      //  color:
+      //},
+      //{
+      //left root
+      x: 720,
+      y: 660,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 693,
+      y: 670,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 666,
+      y: 676,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 638,
+      y: 677,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 612,
+      y: 679,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 585,
+      y: 676,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 557,
+      y: 674,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 530,
+      y: 674,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 503,
+      y: 680,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 480,
+      y: 700,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 470,
+      y: 727,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      //L root branches
+      x: 484,
+      y: 660,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 480,
+      y: 634,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 590,
+      y: 702,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 570,
+      y: 720,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 678,
+      y: 700,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 670,
+      y: 725,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 653,
+      y: 743,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      //right root
+      x: 760,
+      y: 660,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 785,
+      y: 670,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 810,
+      y: 680,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 837,
+      y: 683,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 863,
+      y: 685,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 890,
+      y: 687,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 918,
+      y: 685,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 945,
+      y: 684,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 970,
+      y: 692,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 985,
+      y: 717,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 990,
+      y: 744,
+      filled: false,
+      color: "#5B3314",
+    },
+    //R root branches
+    {
+      x: 995,
+      y: 680,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 998,
+      y: 655,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 880,
+      y: 713,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 903,
+      y: 725,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 815,
+      y: 704,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 818,
+      y: 728,
+      filled: false,
+      color: "#5B3314",
+    },
+    {
+      x: 838,
+      y: 744,
+      filled: false,
+      color: "#5B3314",
+    },
   ],
 };
 
-let beadColors = ["#6DA946", "#FF00B3", "#FFCD00"];
+let beadColors = ["#6DA946", "#FF00B3", "#FFCD00", "#5B3314"];
 
 //let userNeedle = undefined;
 
@@ -268,7 +495,7 @@ function beadPattern() {
 
 function userBeadCanvas() {
   imageMode(CENTER);
-  image(beadCanvas, windowWidth / 2, windowHeight - 300, 300, 400);
+  image(beadCanvas, windowWidth / 2, windowHeight / 2, 700, 800);
 }
 
 function mousePressed() {
