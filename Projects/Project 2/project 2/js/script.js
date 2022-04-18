@@ -700,7 +700,16 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //go through all the bead colors
+  for (let i = 0; i < beadColors.length; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    let beadColor = beadColors[i];
+    let bead = new Beads(x, y, beadColor);
+    beads.push(bead);
+  }
 
+  //add all the "extra" random beads on top of the main set
   for (let i = 0; i < numBeads; i++) {
     let x = random(0, width);
     let y = random(0, height);
