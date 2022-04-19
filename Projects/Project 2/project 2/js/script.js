@@ -6,30 +6,39 @@ The beginning stages of creating a digitalization of Indigenous beadwork practic
 */
 
 "use strict";
+//intro button; what triggers interactive page
 let button = {
   x: 600,
   y: 500,
   size: 50,
 };
+
+//user object; needle image
 let userNeedle;
 
+//responsive voice for intro page
 let speaking = false;
 let speech = "Intro to beads go here.";
 let speechIndex = 0;
 
+//beads
 let beads = [];
 let numBeads = 5;
 
+//user beadwork canvas in interactive page
 let beadCanvas = undefined;
 
+//Introduction page before interactive page
 let state = "startScreen";
 
+//bead design on interactive page
 let design = {
   beadSize: 20,
   defaultFill: "#cccccc",
   beads: [
     {
-      //middle
+      //---> MIDDLE FLOWER WITH STEM AND LEAVES <---//
+      //middle of flower
       x: 730,
       y: 425,
       filled: false,
@@ -312,6 +321,7 @@ let design = {
       color: "#6DA946",
     },
     {
+      //---> SUN SHAPE ABOVE FLORAL DESIGNS <---//
       //yellow sun shape above
       x: 738,
       y: 130,
@@ -344,6 +354,7 @@ let design = {
       color: "#FF8900",
     },
     {
+      //---> LEFT SIDE OF DESIGN <---//
       //left floral bud 01
       x: 523,
       y: 400,
@@ -377,44 +388,6 @@ let design = {
     },
     {
       x: 497,
-      y: 251,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      //right floral bud 01
-      x: 947,
-      y: 400,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      x: 940,
-      y: 376,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      x: 922,
-      y: 392,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      //right floral bud 02
-      x: 935,
-      y: 250,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      x: 948,
-      y: 273,
-      filled: false,
-      color: "#5F9EF0",
-    },
-    {
-      x: 961,
       y: 251,
       filled: false,
       color: "#5F9EF0",
@@ -1008,6 +981,45 @@ let design = {
       color: "#6DA946",
     },
     {
+      //---> RIGHT SIDE OF DESIGN <---//
+      //right floral bud 01
+      x: 947,
+      y: 400,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 940,
+      y: 376,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 922,
+      y: 392,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      //right floral bud 02
+      x: 935,
+      y: 250,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 948,
+      y: 273,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 961,
+      y: 251,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
       //R leaf 01
       x: 982,
       y: 350,
@@ -1206,19 +1218,19 @@ let design = {
   ],
 };
 
+//Bead colors for the design
+//Falling beads in interactive page
 let beadColors = [
-  "#6DA946",
-  "#FF00B3",
-  "#FFCD00",
-  "#5B3314",
-  "#5F9EF0",
-  "#FF8900",
+  "#6DA946", //Green color
+  "#FF00B3", //Pink color
+  "#FFCD00", //Yellow color
+  "#5B3314", //Brown color
+  "#5F9EF0", //Blue color
+  "#FF8900", //Orange color
 ];
 
-//let userNeedle = undefined;
-
 /**
-Description of preload
+loading images/sounds used for simulation --> both interactive and introduction pages
 */
 function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
@@ -1226,7 +1238,8 @@ function preload() {
 }
 
 /**
-Description of setup
+Bead.js constrcutor behavior/methods
+- array of falling beads at random areas between x and y
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -1250,7 +1263,7 @@ function setup() {
 }
 
 /**
-Description of draw()
+drawing the scene switcher between the introduction and interactive page
 */
 function draw() {
   background(255);
@@ -1258,7 +1271,7 @@ function draw() {
   userObject(userNeedle);
 }
 
-//switching pages
+//switching pages --> from intro page to interactive page
 function sceneSwitcher() {
   if (state === "startScreen") {
     startScreen();
@@ -1267,19 +1280,37 @@ function sceneSwitcher() {
   }
 }
 
-function startScreen() {
-  ellipse(button.x, button.y, button.size); //move to a function called drawbutton
-  fill(0);
-  speaker();
-  //drawButton();
+//both intro and interactive page
+function mousePressed() {
+  if (state === "startScreen") {
+    //mouse is pressed on button object in introduction page to go to interactive page
+    let d = dist(button.x, button.y, mouseX, mouseY);
+    if (d < button.size / 2) {
+      state = "interactiveScreen";
+    }
+    //mouse is pressed is ALSO used to grab bead objects in interactive page
+  } else if (state === "interactiveScreen") {
+    for (let i = 0; i < beads.length; i++) {
+      beads[i].mousePressed();
+    }
+  }
 }
 
+//interactive page --> to know when the beads are released when they are "grabbed"
+function mouseReleased() {
+  for (let i = 0; i < beads.length; i++) {
+    beads[i].mouseReleased(design);
+  }
+}
+
+//interactive page --> calling functions
 function interactiveScreen() {
   userBeadCanvas();
   beadPattern();
   updateBeads();
 }
 
+//interactive page --> calling bead contents (refer to Beads.js)
 function updateBeads() {
   for (let i = 0; i < beads.length; i++) {
     let bead = beads[i];
@@ -1289,13 +1320,17 @@ function updateBeads() {
   }
 }
 
+//interactive page --> filling the grayed-out bead design with colored falling beads
 function beadPattern() {
   for (let i = 0; i < design.beads.length; i++) {
     let bead = design.beads[i];
     push();
+    //if the gray beads are filled
     if (bead.filled) {
+      //corresponding color matches
       fill(bead.color);
     } else {
+      //otherwise it remains gray
       fill(200);
     }
     noStroke();
@@ -1304,30 +1339,25 @@ function beadPattern() {
   }
 }
 
+//Interactive page --> placing the user's beading canvas
 function userBeadCanvas() {
   imageMode(CENTER);
   image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
 }
 
-function mousePressed() {
-  if (state === "startScreen") {
-    let d = dist(button.x, button.y, mouseX, mouseY);
-    if (d < button.size / 2) {
-      state = "interactiveScreen";
-    }
-  } else if (state === "interactiveScreen") {
-    for (let i = 0; i < beads.length; i++) {
-      beads[i].mousePressed();
-    }
-  }
+//intro page --> calling introduction page functions
+function startScreen() {
+  speaker();
+  drawButton();
 }
 
-function mouseReleased() {
-  for (let i = 0; i < beads.length; i++) {
-    beads[i].mouseReleased(design);
-  }
+//intro page --> the button that is clicked on to trigger the interactive page
+function drawButton() {
+  ellipse(button.x, button.y, button.size);
+  fill(0);
 }
 
+//intro page --> responsive voice/speech
 function speaker() {
   if (speaking) {
     let currentSpeech = speech.substring(0, speechIndex);
@@ -1337,11 +1367,13 @@ function speaker() {
   }
 }
 
+//intro page --> key pressed triggers the responsive voice
 function keyPressed() {
   responsiveVoice.speak(speech);
   speaking = true;
 }
 
+//both interactive and Intro page --> user needle object
 function userObject(userNeedle) {
   image(userNeedle, mouseX, mouseY);
   userNeedle.x = mouseX;
