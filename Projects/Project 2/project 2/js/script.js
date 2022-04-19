@@ -11,6 +11,8 @@ let button = {
   y: 500,
   size: 50,
 };
+let userNeedle;
+
 let speaking = false;
 let speech = "Intro to beads go here.";
 let speechIndex = 0;
