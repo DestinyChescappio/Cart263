@@ -8,9 +8,10 @@ The beginning stages of creating a digitalization of Indigenous beadwork practic
 "use strict";
 //intro button; what triggers interactive page
 let button = {
-  x: 600,
+  x: 500,
   y: 500,
-  size: 50,
+  width: 75,
+  height: 75,
 };
 
 //user object; needle image
@@ -1235,6 +1236,7 @@ loading images/sounds used for simulation --> both interactive and introduction 
 function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
   userNeedle = loadImage(`assets/images/userNeedle.png`);
+  button = loadImage(`assets/images/introButton.png`);
 }
 
 /**
@@ -1285,7 +1287,7 @@ function mousePressed() {
   if (state === "startScreen") {
     //mouse is pressed on button object in introduction page to go to interactive page
     let d = dist(button.x, button.y, mouseX, mouseY);
-    if (d < button.size / 2) {
+    if (d < button.width / 2) {
       state = "interactiveScreen";
     }
     //mouse is pressed is ALSO used to grab bead objects in interactive page
@@ -1353,8 +1355,8 @@ function startScreen() {
 
 //intro page --> the button that is clicked on to trigger the interactive page
 function drawButton() {
-  ellipse(button.x, button.y, button.size);
-  fill(0);
+  imageMode(CENTER);
+  image(button.x, button.y, button.width, button.height);
 }
 
 //intro page --> responsive voice/speech
