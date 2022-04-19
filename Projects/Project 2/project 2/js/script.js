@@ -314,14 +314,14 @@ let design = {
       x: 738,
       y: 130,
       filled: false,
-      color: "#FFCD00",
+      color: "#FF8900",
     },
     {
       //orange sun shape exterior
       x: 738,
       y: 105,
       filled: false,
-      color: "#FF8900",
+      color: "#FFCD00",
     },
     {
       x: 738,
@@ -1220,7 +1220,7 @@ Description of preload
 */
 function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
-  //userNeedle = loadImage(`assets/images/userNeedle.png`);
+  userNeedle = loadImage(`assets/images/userNeedle.png`);
 }
 
 /**
@@ -1253,7 +1253,7 @@ Description of draw()
 function draw() {
   background(255);
   sceneSwitcher();
-  //userObject(userNeedle);
+  userObject(userNeedle);
 }
 
 //switching pages
@@ -1340,8 +1340,8 @@ function keyPressed() {
   speaking = true;
 }
 
-//function userObject(userNeedle) {
-//  image(userNeedle, mouseX, mouseY);
-//  userNeedle.x = mouseX;
-//  userNeedle.y = mouseY;
-//}
+function userObject(userNeedle) {
+  image(userNeedle, mouseX, mouseY);
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+}
