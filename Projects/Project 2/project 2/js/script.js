@@ -182,6 +182,217 @@ let design = {
       color: "#6DA946",
     },
     {
+      //stem leaf 01
+      x: 716,
+      y: 632,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 695,
+      y: 618,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 676,
+      y: 600,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 658,
+      y: 583,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 643,
+      y: 563,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 638,
+      y: 539,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 642,
+      y: 515,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 718,
+      y: 605,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 708,
+      y: 583,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 695,
+      y: 562,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 684,
+      y: 540,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 666,
+      y: 518,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      //stem leaf 02
+      x: 770,
+      y: 635,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 790,
+      y: 620,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 813,
+      y: 612,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 835,
+      y: 597,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 839,
+      y: 572,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 816,
+      y: 563,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 793,
+      y: 570,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 776,
+      y: 588,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 765,
+      y: 610,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      //yellow sun shape above
+      x: 650,
+      y: 700,
+      filled: false,
+      color: "#FFCD00",
+    },
+    {
+      //left floral bud 01
+      x: 523,
+      y: 400,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 527,
+      y: 376,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 547,
+      y: 390,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      //left floral bud 02
+      x: 523,
+      y: 250,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 510,
+      y: 271,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 497,
+      y: 251,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      //right floral bud 01
+      x: 947,
+      y: 400,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 940,
+      y: 376,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 922,
+      y: 392,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      //right floral bud 02
+      x: 935,
+      y: 250,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 948,
+      y: 273,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
+      x: 961,
+      y: 251,
+      filled: false,
+      color: "#5F9EF0",
+    },
+    {
       //left leaf plant
       x: 640,
       y: 651,
@@ -770,6 +981,92 @@ let design = {
       color: "#6DA946",
     },
     {
+      //R leaf 01
+      x: 982,
+      y: 350,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1005,
+      y: 339,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1029,
+      y: 337,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1045,
+      y: 356,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1038,
+      y: 380,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1013,
+      y: 380,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 990,
+      y: 375,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      //R Leaf 02
+      x: 990,
+      y: 500,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1013,
+      y: 499,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1033,
+      y: 510,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1035,
+      y: 534,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 1018,
+      y: 552,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 996,
+      y: 546,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
+      x: 976,
+      y: 533,
+      filled: false,
+      color: "#6DA946",
+    },
+    {
       //right root
       x: 763,
       y: 660,
@@ -882,7 +1179,7 @@ let design = {
   ],
 };
 
-let beadColors = ["#6DA946", "#FF00B3", "#FFCD00", "#5B3314"];
+let beadColors = ["#6DA946", "#FF00B3", "#FFCD00", "#5B3314", "#5F9EF0"];
 
 //let userNeedle = undefined;
 
