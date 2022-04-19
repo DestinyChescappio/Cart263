@@ -311,10 +311,35 @@ let design = {
     },
     {
       //yellow sun shape above
-      x: 650,
-      y: 700,
+      x: 738,
+      y: 130,
       filled: false,
       color: "#FFCD00",
+    },
+    {
+      //orange sun shape exterior
+      x: 738,
+      y: 105,
+      filled: false,
+      color: "#FF8900",
+    },
+    {
+      x: 738,
+      y: 80,
+      filled: false,
+      color: "#FF8900",
+    },
+    {
+      x: 712,
+      y: 105,
+      filled: false,
+      color: "#FF8900",
+    },
+    {
+      x: 763,
+      y: 105,
+      filled: false,
+      color: "#FF8900",
     },
     {
       //left floral bud 01
@@ -1179,7 +1204,14 @@ let design = {
   ],
 };
 
-let beadColors = ["#6DA946", "#FF00B3", "#FFCD00", "#5B3314", "#5F9EF0"];
+let beadColors = [
+  "#6DA946",
+  "#FF00B3",
+  "#FFCD00",
+  "#5B3314",
+  "#5F9EF0",
+  "#FF8900",
+];
 
 //let userNeedle = undefined;
 
@@ -1272,7 +1304,7 @@ function beadPattern() {
 
 function userBeadCanvas() {
   imageMode(CENTER);
-  image(beadCanvas, windowWidth / 2, windowHeight / 2, 700, 800);
+  image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
 }
 
 function mousePressed() {
