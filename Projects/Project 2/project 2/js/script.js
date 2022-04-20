@@ -23,7 +23,7 @@ let speech = "Intro to beads go here.";
 let speechIndex = 0;
 
 //character speaker
-let introCharacter;
+//let introCharacter;
 
 //beads
 let beads = [];
@@ -1243,7 +1243,7 @@ function preload() {
 }
 
 /**
-Bead.js constrcutor behavior/methods
+Bead.js constructor behavior/methods
 - array of falling beads at random areas between x and y
 */
 function setup() {
@@ -1353,15 +1353,15 @@ function userBeadCanvas() {
 //intro page --> calling introduction page functions
 function startScreen() {
   speaker();
-  //drawButton();
-  speakerCharacter();
+  drawButton();
+  //speakerCharacter();
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
-//function drawButton() {
-//imageMode(CENTER);
-//image(button.x, button.y, button.width, button.height);
-//}
+function drawButton() {
+  imageMode(CENTER);
+  image(button, button.x, button.y, button.width, button.height);
+}
 
 //intro page --> responsive voice/speech
 function speaker() {
@@ -1379,24 +1379,24 @@ function keyPressed() {
   speaking = true;
 }
 
-function speakerCharacter() {
-  //loading character animation when NOT speaking
-  introCharacter.sprite = createSprite(700, 700, 300, 300);
-  introCharacter.sprite.addAnimation(
-    "notSpeaking",
-    "assets/images/girlStandard.png"
-  );
-  //loading chracter animation when speaking
-  introCharacter.sprite.addAnimation(
-    "speaking",
-    "assets/images/girl01.png",
-    "assets/images/girl03.png"
-  );
-}
+//function speakerCharacter() {
+//loading character animation when NOT speaking
+//  introCharacter.sprite = createSprite(700, 700, 300, 300);
+//  introCharacter.sprite.addAnimation(
+//    "notSpeaking",
+//    "assets/images/girlStandard.png"
+//  );
+//loading chracter animation when speaking
+//  introCharacter.sprite.addAnimation(
+//    "speaking",
+//    "assets/images/girl01.png",
+//    "assets/images/girl03.png"
+//  );
+//}
 
 //both interactive and Intro page --> user needle object
 function userObject(userNeedle) {
-  image(userNeedle, mouseX, mouseY);
   userNeedle.x = mouseX;
   userNeedle.y = mouseY;
+  image(userNeedle, userNeedle.x, userNeedle.y);
 }
