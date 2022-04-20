@@ -22,6 +22,9 @@ let speaking = false;
 let speech = "Intro to beads go here.";
 let speechIndex = 0;
 
+//character speaker
+let introCharacter;
+
 //beads
 let beads = [];
 let numBeads = 5;
@@ -1350,20 +1353,21 @@ function userBeadCanvas() {
 //intro page --> calling introduction page functions
 function startScreen() {
   speaker();
-  drawButton();
+  //drawButton();
+  speakerCharacter();
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
-function drawButton() {
-  imageMode(CENTER);
-  image(button.x, button.y, button.width, button.height);
-}
+//function drawButton() {
+//imageMode(CENTER);
+//image(button.x, button.y, button.width, button.height);
+//}
 
 //intro page --> responsive voice/speech
 function speaker() {
   if (speaking) {
     let currentSpeech = speech.substring(0, speechIndex);
-
+    //what the speaker says, it texts its words as it goes
     text(currentSpeech, 100, 100);
     speechIndex += 0.25;
   }
@@ -1373,6 +1377,21 @@ function speaker() {
 function keyPressed() {
   responsiveVoice.speak(speech);
   speaking = true;
+}
+
+function speakerCharacter() {
+  //loading character animation when NOT speaking
+  introCharacter.sprite = createSprite(700, 700, 300, 300);
+  introCharacter.sprite.addAnimation(
+    "notSpeaking",
+    "assets/images/girlStandard.png"
+  );
+  //loading chracter animation when speaking
+  introCharacter.sprite.addAnimation(
+    "speaking",
+    "assets/images/girl01.png",
+    "assets/images/girl03.png"
+  );
 }
 
 //both interactive and Intro page --> user needle object
