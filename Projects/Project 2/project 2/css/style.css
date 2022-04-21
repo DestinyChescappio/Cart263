@@ -32,3 +32,16 @@ body {
 #button_1 img {
   width: 100%;
 }
+
+#button_2 {
+  width: 80px;
+  position: absolute;
+  z-index: 5;
+  tops: 15vw;
+  left: 15vw;
+  display: none;
+}
+
+#button_2 img {
+  width: 100%;
+}

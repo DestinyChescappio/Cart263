@@ -1295,7 +1295,7 @@ function sceneSwitcher() {
 
 function speakerCharacter() {
   //loading character animation when NOT speaking
-  introCharacter = createSprite(1200, 1200, 100, 100);
+  introCharacter = createSprite(1000, 600, 100, 100);
   introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
   //loading chracter animation when speaking
   introCharacter.addAnimation(
