@@ -13,8 +13,10 @@ let button = {
   width: 75,
   height: 75,
 };
-
+//relaxing music in interactive screen
 let musicSFX;
+//bouncing bead sound when bead is dropped in assigned place of design
+let bouncingBeadSFX;
 
 //the frame of the speech's text
 let speechBubble;
@@ -62,6 +64,7 @@ function preload() {
   speechBubble = loadImage(`assets/images/introBox.png`);
   //loaded sounds
   musicSFX = loadSound(`assets/sounds/relaxMusic.mp3`);
+  bouncingBeadSFX = loadSound(`assets/sounds/bouncingBead.mp3`);
 }
 
 /**
@@ -255,5 +258,9 @@ function mousePressed() {
 function mouseReleased() {
   for (let i = 0; i < beads.length; i++) {
     beads[i].mouseReleased(design);
+  }
+  if (!bouncingBeadSFX.isPlaying()) {
+    bouncingBeadSFX.setVolume(0.08);
+    bouncingBeadSFX.play();
   }
 }
