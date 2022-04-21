@@ -142,13 +142,13 @@ function userObject(userNeedle) {
 //the speaker character is created with p5 play
 function speakerCharacter() {
   //loading character animation when NOT speaking
-  introCharacter = createSprite(600, 600, 100, 100);
+  introCharacter = createSprite(1000, 575, 100, 100);
   introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
   //loading chracter animation when speaking
   introCharacter.addAnimation(
     "speaking",
     "assets/images/girl01.png",
-    "assets/images/girl03.png"
+    "assets/images/girl11.png"
   );
 }
 
@@ -174,7 +174,7 @@ function keyPressed() {
 
 function drawTextBubble() {
   imageMode(CENTER);
-  image(speechBubble, 400, 400, 500, 600);
+  image(speechBubble, 500, 400, 500, 600);
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
@@ -235,7 +235,7 @@ function mousePressed() {
     let d = dist(button.x, button.y, mouseX, mouseY);
     if (d < button.width / 2) {
       state = "interactiveScreen";
-      //display buttons in interactive page
+      //display buttons in interactive page (they lead to beadwork artist pages)
       document.getElementById("button_1").style.display = "block";
       document.getElementById("button_2").style.display = "block";
       document.getElementById("button_3").style.display = "block";
