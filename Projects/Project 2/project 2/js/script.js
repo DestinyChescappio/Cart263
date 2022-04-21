@@ -14,6 +14,8 @@ let button = {
   height: 75,
 };
 
+let musicSFX;
+
 //the frame of the speech's text
 let speechBubble;
 
@@ -53,10 +55,13 @@ let beadColors = [
 loading images/sounds used for simulation --> both interactive and introduction pages
 */
 function preload() {
+  //loaded images
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
   userNeedle = loadImage(`assets/images/userNeedle.png`);
   button.image = loadImage(`assets/images/introButton.png`);
   speechBubble = loadImage(`assets/images/introBox.png`);
+  //loaded sounds
+  musicSFX = loadSound(`assets/sounds/relaxMusic.mp3`);
 }
 
 /**
@@ -64,6 +69,7 @@ Bead.js constructor behavior/methods
 - array of falling beads at random areas between x and y
 */
 function setup() {
+  //to make clickable objects (in interactive page) easier to maneuver on canvas
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("parent");
   //go through all the bead colors
@@ -83,6 +89,7 @@ function setup() {
     let bead = new Beads(x, y, beadColor);
     beads.push(bead);
   }
+  //setting up the speaker character
   speakerCharacter();
 }
 
@@ -108,9 +115,9 @@ function startScreen() {
 
 //interactive page --> calling functions
 function interactiveScreen() {
-  updateBeads();
   userBeadCanvas();
   beadPattern();
+  updateBeads();
 }
 
 //switching pages --> from intro page to interactive page
@@ -183,16 +190,6 @@ function speaker() {
   }
 }
 
-//interactive page --> calling bead contents (refer to Beads.js)
-function updateBeads() {
-  for (let i = 0; i < beads.length; i++) {
-    let bead = beads[i];
-    bead.move();
-    bead.wrap();
-    bead.display();
-  }
-}
-
 //Interactive page --> placing the user's beading canvas
 function userBeadCanvas() {
   imageMode(CENTER);
@@ -218,6 +215,16 @@ function beadPattern() {
   }
 }
 
+//interactive page --> calling bead contents (refer to Beads.js)
+function updateBeads() {
+  for (let i = 0; i < beads.length; i++) {
+    let bead = beads[i];
+    bead.move();
+    bead.wrap();
+    bead.display();
+  }
+}
+
 //both intro and interactive page
 function mousePressed() {
   if (state === "startScreen") {
@@ -225,7 +232,7 @@ function mousePressed() {
     let d = dist(button.x, button.y, mouseX, mouseY);
     if (d < button.width / 2) {
       state = "interactiveScreen";
-      //display buttons
+      //display buttons in interactive page
       document.getElementById("button_1").style.display = "block";
       document.getElementById("button_2").style.display = "block";
       document.getElementById("button_3").style.display = "block";
@@ -234,6 +241,12 @@ function mousePressed() {
   } else if (state === "interactiveScreen") {
     for (let i = 0; i < beads.length; i++) {
       beads[i].mousePressed();
+    }
+    //music starts playing
+    if (!musicSFX.isPlaying()) {
+      //music plays once in a loop
+      musicSFX.loop();
+      musicSFX.setVolume(0.1);
     }
   }
 }
