@@ -8,11 +8,13 @@ The beginning stages of creating a digitalization of Indigenous beadwork practic
 "use strict";
 //intro button; what triggers interactive page
 let button = {
-  x: 600,
-  y: 650,
+  x: 800,
+  y: 500,
   width: 75,
   height: 75,
 };
+
+let speechBubble;
 
 //user object; needle image
 let userNeedle;
@@ -23,7 +25,7 @@ let speech = "Intro to beads go here.";
 let speechIndex = 0;
 
 //character speaker
-//let introCharacter;
+let introCharacter;
 
 //beads
 let beads = [];
@@ -84,7 +86,7 @@ let design = {
       x: 675, // --> not filling in??
       y: 403,
       filled: false,
-      color: "FF00B3",
+      color: "#FF00B3",
     },
     {
       x: 670,
@@ -1240,6 +1242,7 @@ function preload() {
   beadCanvas = loadImage(`assets/images/leather.jpeg`);
   userNeedle = loadImage(`assets/images/userNeedle.png`);
   button.image = loadImage(`assets/images/introButton.png`);
+  speechBubble = loadImage(`assets/images/introBox.png`);
 }
 
 /**
@@ -1247,7 +1250,8 @@ Bead.js constructor behavior/methods
 - array of falling beads at random areas between x and y
 */
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let cnv = createCanvas(windowWidth, windowHeight);
+  cnv.parent("parent");
   //go through all the bead colors
   for (let i = 0; i < beadColors.length; i++) {
     let x = random(0, width);
@@ -1265,15 +1269,19 @@ function setup() {
     let bead = new Beads(x, y, beadColor);
     beads.push(bead);
   }
+  speakerCharacter();
 }
 
 /**
 drawing the scene switcher between the introduction and interactive page
 */
 function draw() {
-  background(255);
+  background(2);
   sceneSwitcher();
   userObject(userNeedle);
+  if (state === "startScreen") {
+    drawSprites();
+  }
 }
 
 //switching pages --> from intro page to interactive page
@@ -1285,6 +1293,18 @@ function sceneSwitcher() {
   }
 }
 
+function speakerCharacter() {
+  //loading character animation when NOT speaking
+  introCharacter = createSprite(1200, 1200, 100, 100);
+  introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
+  //loading chracter animation when speaking
+  introCharacter.addAnimation(
+    "speaking",
+    "assets/images/girl01.png",
+    "assets/images/girl15.png"
+  );
+}
+
 //both intro and interactive page
 function mousePressed() {
   if (state === "startScreen") {
@@ -1292,6 +1312,8 @@ function mousePressed() {
     let d = dist(button.x, button.y, mouseX, mouseY);
     if (d < button.width / 2) {
       state = "interactiveScreen";
+      //display buttons
+      document.getElementById("button_1").style.display = "block";
     }
     //mouse is pressed is ALSO used to grab bead objects in interactive page
   } else if (state === "interactiveScreen") {
@@ -1352,9 +1374,16 @@ function userBeadCanvas() {
 
 //intro page --> calling introduction page functions
 function startScreen() {
+  textBubble();
   speaker();
   drawButton(button);
-  //speakerCharacter();
+}
+
+//both interactive and Intro page --> user needle object
+function userObject(userNeedle) {
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+  image(userNeedle, userNeedle.x, userNeedle.y);
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
@@ -1363,40 +1392,28 @@ function drawButton(button) {
   image(button.image, button.x, button.y, button.width, button.height);
 }
 
+function textBubble() {
+  imageMode(CENTER);
+  image(speechBubble, 400, 400, 500, 600);
+}
+
 //intro page --> responsive voice/speech
 function speaker() {
   if (speaking) {
     let currentSpeech = speech.substring(0, speechIndex);
     //what the speaker says, it texts its words as it goes
-    text(currentSpeech, 100, 100);
+    text(currentSpeech, 300, 300);
     speechIndex += 0.25;
   }
 }
 
 //intro page --> key pressed triggers the responsive voice
 function keyPressed() {
-  responsiveVoice.speak(speech);
-  speaking = true;
-}
-
-//function speakerCharacter() {
-//loading character animation when NOT speaking
-//  introCharacter.sprite = createSprite(700, 700, 300, 300);
-//  introCharacter.sprite.addAnimation(
-//    "notSpeaking",
-//    "assets/images/girlStandard.png"
-//  );
-//loading chracter animation when speaking
-//  introCharacter.sprite.addAnimation(
-//    "speaking",
-//    "assets/images/girl01.png",
-//    "assets/images/girl03.png"
-//  );
-//}
-
-//both interactive and Intro page --> user needle object
-function userObject(userNeedle) {
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-  image(userNeedle, userNeedle.x, userNeedle.y);
+  if (state === "startScreen") {
+    responsiveVoice.speak(speech);
+    speaking = true;
+  } else {
+    speaking = false;
+  }
+  //introCharacter.changeAnimation("speaking");
 }

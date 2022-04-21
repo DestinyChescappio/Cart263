@@ -16,9 +16,11 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
     <!-- Library script(s) -->
+
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=gEnFmeIb"></script>
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
+    <script src="js/libraries/p5.play.js"></script>
 
     <!-- My script(s) -->
     <script src="js/Beads.js"></script>
@@ -26,6 +28,26 @@
   </head>
 
   <body>
+    <div id="button_1">
+      <a
+        target="_blank"
+        href="https://www.instagram.com/indigenous_practicing_artist/?hl=en"
+        ><img id="btn_img_1" src="assets/images/bead bowl.png"
+      /></a>
+    </div>
+    <div id="parent"></div>
     <!-- HTML would go here if needed. -->
+    <script>
+      document
+        .getElementById("btn_img_1")
+        .addEventListener("mouseover", function () {
+          this.src = "assets/images/beadBowl01.png";
+        });
+      document
+        .getElementById("btn_img_1")
+        .addEventListener("mouseout", function () {
+          this.src = "assets/images/bead bowl.png";
+        });
+    </script>
   </body>
 </html>
