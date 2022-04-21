@@ -14,6 +14,7 @@ let button = {
   height: 75,
 };
 
+//the frame of the speech's text
 let speechBubble;
 
 //user object; needle image
@@ -89,12 +90,27 @@ function setup() {
 drawing the scene switcher between the introduction and interactive page
 */
 function draw() {
-  background(2);
+  background(255);
   sceneSwitcher();
   userObject(userNeedle);
+  //if the state is start screen, the p5 play sprites start
   if (state === "startScreen") {
     drawSprites();
   }
+}
+
+//intro page --> calling introduction page functions
+function startScreen() {
+  drawTextBubble();
+  drawButton(button);
+  speaker();
+}
+
+//interactive page --> calling functions
+function interactiveScreen() {
+  updateBeads();
+  userBeadCanvas();
+  beadPattern();
 }
 
 //switching pages --> from intro page to interactive page
@@ -106,6 +122,14 @@ function sceneSwitcher() {
   }
 }
 
+//both interactive and Intro page --> user needle object
+function userObject(userNeedle) {
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+  image(userNeedle, userNeedle.x, userNeedle.y);
+}
+
+//the speaker character is created with p5 play
 function speakerCharacter() {
   //loading character animation when NOT speaking
   introCharacter = createSprite(600, 600, 100, 100);
@@ -116,6 +140,82 @@ function speakerCharacter() {
     "assets/images/girl01.png",
     "assets/images/girl03.png"
   );
+}
+
+//notSpeaking animation occurs when the speaking is false; stops talking
+function stopSpeaking() {
+  introCharacter.changeAnimation("notSpeaking");
+  speaking = false;
+}
+
+//intro page --> key pressed triggers the responsive voice
+function keyPressed() {
+  if (state === "startScreen") {
+    //talking is true
+    responsiveVoice.speak(speech, "UK English Female", { onend: stopSpeaking });
+    speaking = true;
+    //speaking animation occurs
+    introCharacter.changeAnimation("speaking");
+  } else {
+    //otherwise it stops talking
+    speaking = false;
+  }
+}
+
+function drawTextBubble() {
+  imageMode(CENTER);
+  image(speechBubble, 400, 400, 500, 600);
+}
+
+//intro page --> the button that is clicked on to trigger the interactive page
+function drawButton(button) {
+  imageMode(CENTER);
+  image(button.image, button.x, button.y, button.width, button.height);
+}
+
+//intro page --> responsive voice/speech
+function speaker() {
+  if (speaking) {
+    let currentSpeech = speech.substring(0, speechIndex);
+    //what the speaker says, it texts its words as it goes
+    text(currentSpeech, 300, 300);
+    speechIndex += 0.25;
+  }
+}
+
+//interactive page --> calling bead contents (refer to Beads.js)
+function updateBeads() {
+  for (let i = 0; i < beads.length; i++) {
+    let bead = beads[i];
+    bead.move();
+    bead.wrap();
+    bead.display();
+  }
+}
+
+//Interactive page --> placing the user's beading canvas
+function userBeadCanvas() {
+  imageMode(CENTER);
+  image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
+}
+
+//interactive page --> filling the grayed-out bead design with colored falling beads
+function beadPattern() {
+  for (let i = 0; i < design.beads.length; i++) {
+    let bead = design.beads[i];
+    push();
+    //if the gray beads are filled
+    if (bead.filled) {
+      //corresponding color matches
+      fill(bead.color);
+    } else {
+      //otherwise it remains gray
+      fill(200);
+    }
+    noStroke();
+    ellipse(bead.x, bead.y, design.beadSize);
+    pop();
+  }
 }
 
 //both intro and interactive page
@@ -142,102 +242,5 @@ function mousePressed() {
 function mouseReleased() {
   for (let i = 0; i < beads.length; i++) {
     beads[i].mouseReleased(design);
-  }
-}
-
-//interactive page --> calling functions
-function interactiveScreen() {
-  userBeadCanvas();
-  beadPattern();
-  updateBeads();
-}
-
-//interactive page --> calling bead contents (refer to Beads.js)
-function updateBeads() {
-  for (let i = 0; i < beads.length; i++) {
-    let bead = beads[i];
-    bead.move();
-    bead.wrap();
-    bead.display();
-  }
-}
-
-//interactive page --> filling the grayed-out bead design with colored falling beads
-function beadPattern() {
-  for (let i = 0; i < design.beads.length; i++) {
-    let bead = design.beads[i];
-    push();
-    //if the gray beads are filled
-    if (bead.filled) {
-      //corresponding color matches
-      fill(bead.color);
-    } else {
-      //otherwise it remains gray
-      fill(200);
-    }
-    noStroke();
-    ellipse(bead.x, bead.y, design.beadSize);
-    pop();
-  }
-}
-
-//Interactive page --> placing the user's beading canvas
-function userBeadCanvas() {
-  imageMode(CENTER);
-  image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
-}
-
-//intro page --> calling introduction page functions
-function startScreen() {
-  textBubble();
-  speaker();
-  drawButton(button);
-}
-
-//both interactive and Intro page --> user needle object
-function userObject(userNeedle) {
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-  image(userNeedle, userNeedle.x, userNeedle.y);
-}
-
-//intro page --> the button that is clicked on to trigger the interactive page
-function drawButton(button) {
-  imageMode(CENTER);
-  image(button.image, button.x, button.y, button.width, button.height);
-}
-
-function textBubble() {
-  imageMode(CENTER);
-  image(speechBubble, 400, 400, 500, 600);
-}
-
-//intro page --> responsive voice/speech
-function speaker() {
-  if (speaking) {
-    let currentSpeech = speech.substring(0, speechIndex);
-    //what the speaker says, it texts its words as it goes
-    text(currentSpeech, 300, 300);
-    speechIndex += 0.25;
-  }
-}
-
-//notSpeaking animation occurs when the speaking is false; stops talking
-function stopSpeaking() {
-  introCharacter.changeAnimation("notSpeaking");
-  speaking = false;
-}
-
-//intro page --> key pressed triggers the responsive voice
-function keyPressed() {
-  if (state === "startScreen") {
-    //talking is true
-    responsiveVoice.speak(speech, "UK English Female", { onend: stopSpeaking });
-    speaking = true;
-    //speaking animation occurs
-    introCharacter.changeAnimation("speaking");
-  } else {
-    //otherwise it stops talking
-    speaking = false;
   }
 }
