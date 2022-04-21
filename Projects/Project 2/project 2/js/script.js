@@ -1295,13 +1295,13 @@ function sceneSwitcher() {
 
 function speakerCharacter() {
   //loading character animation when NOT speaking
-  introCharacter = createSprite(1000, 600, 100, 100);
+  introCharacter = createSprite(600, 600, 100, 100);
   introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
   //loading chracter animation when speaking
   introCharacter.addAnimation(
     "speaking",
     "assets/images/girl01.png",
-    "assets/images/girl15.png"
+    "assets/images/girl03.png"
   );
 }
 
@@ -1314,6 +1314,8 @@ function mousePressed() {
       state = "interactiveScreen";
       //display buttons
       document.getElementById("button_1").style.display = "block";
+      document.getElementById("button_2").style.display = "block";
+      document.getElementById("button_3").style.display = "block";
     }
     //mouse is pressed is ALSO used to grab bead objects in interactive page
   } else if (state === "interactiveScreen") {

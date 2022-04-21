@@ -21,10 +21,10 @@ body {
 }
 
 #button_1 {
-  width: 80px;
+  width: 200px;
   position: absolute;
   z-index: 5;
-  top: 5vw;
+  top: 20vw;
   left: 5vw;
   display: none;
 }
@@ -34,14 +34,27 @@ body {
 }
 
 #button_2 {
-  width: 80px;
+  width: 150px;
   position: absolute;
   z-index: 5;
-  tops: 15vw;
-  left: 15vw;
+  top: 5vw;
+  left: 1200px;
   display: none;
 }
 
 #button_2 img {
+  width: 100%;
+}
+
+#button_3 {
+  width: 110px;
+  position: absolute;
+  z-index: 5;
+  top: 40vw;
+  left: 10vw;
+  display: none;
+}
+
+#button_3 img {
   width: 100%;
 }
