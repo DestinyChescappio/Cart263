@@ -1409,13 +1409,18 @@ function speaker() {
   }
 }
 
+function stopSpeaking() {
+  introCharacter.changeAnimation("notSpeaking");
+  speaking = false;
+}
+
 //intro page --> key pressed triggers the responsive voice
 function keyPressed() {
   if (state === "startScreen") {
-    responsiveVoice.speak(speech);
+    responsiveVoice.speak(speech, "UK English Female", { onend: stopSpeaking });
     speaking = true;
+    introCharacter.changeAnimation("speaking");
   } else {
     speaking = false;
   }
-  //introCharacter.changeAnimation("speaking");
 }
