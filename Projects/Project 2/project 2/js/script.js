@@ -1409,6 +1409,7 @@ function speaker() {
   }
 }
 
+//notSpeaking animation occurs when the speaking is false; stops talking
 function stopSpeaking() {
   introCharacter.changeAnimation("notSpeaking");
   speaking = false;
@@ -1417,10 +1418,13 @@ function stopSpeaking() {
 //intro page --> key pressed triggers the responsive voice
 function keyPressed() {
   if (state === "startScreen") {
+    //talking is true
     responsiveVoice.speak(speech, "UK English Female", { onend: stopSpeaking });
     speaking = true;
+    //speaking animation occurs
     introCharacter.changeAnimation("speaking");
   } else {
+    //otherwise it stops talking
     speaking = false;
   }
 }
