@@ -122,7 +122,7 @@ function startScreen() {
   drawTextBubble();
   drawButton(button);
   speaker();
-  titleText();
+  introTexts();
 }
 
 //interactive page --> calling functions
@@ -195,9 +195,18 @@ function speaker() {
   }
 }
 //image title of simulation
-function titleText() {
+function introTexts() {
+  //title of simulation
   imageMode(CENTER);
   image(title, 900, 53, 1800, 50);
+  //instructions
+  fill(67, 107, 95);
+  noStroke();
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  text(`Press any key to start the introduction`, 500, 750);
 }
 
 //Interactive page --> placing the user's beading canvas
