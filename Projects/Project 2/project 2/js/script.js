@@ -13,6 +13,10 @@ let button = {
   width: 75,
   height: 75,
 };
+
+//title text image
+let title;
+
 //relaxing music in interactive screen
 let musicSFX;
 //bouncing bead sound when bead is dropped in assigned place of design
@@ -26,7 +30,8 @@ let userNeedle;
 
 //responsive voice for intro page
 let speaking = false;
-let speech = "Intro to beads go here.";
+let speech =
+  "Kwe, I am a contemporary artist that uses beadwork. But, I consider myself a traditional artist because I am telling a story of my own Indigenous experience. I view beadwork as a medium that can establish a dialogue, in the sense that it is a violent act; as the needle pierces the fabric it creates something beautiful at the same time. - Jobena Petonoquot";
 let speechIndex = 0;
 
 //character speaker
@@ -62,6 +67,7 @@ function preload() {
   userNeedle = loadImage(`assets/images/userNeedle.png`);
   button.image = loadImage(`assets/images/introButton.png`);
   speechBubble = loadImage(`assets/images/introBox.png`);
+  title = loadImage(`assets/images/titleBeading.png`);
   //loaded sounds
   musicSFX = loadSound(`assets/sounds/relaxMusic.mp3`);
   bouncingBeadSFX = loadSound(`assets/sounds/bouncingBead.mp3`);
@@ -100,12 +106,14 @@ function setup() {
 drawing the scene switcher between the introduction and interactive page
 */
 function draw() {
-  background(255);
+  background(171, 225, 209);
+  //interactive and start screen switcher
   sceneSwitcher();
-  userObject(userNeedle);
   //if the state is start screen, the p5 play sprites start
   if (state === "startScreen") {
     drawSprites();
+    //user object
+    userObject(userNeedle);
   }
 }
 
@@ -114,6 +122,7 @@ function startScreen() {
   drawTextBubble();
   drawButton(button);
   speaker();
+  titleText();
 }
 
 //interactive page --> calling functions
@@ -130,13 +139,6 @@ function sceneSwitcher() {
   } else if (state === "interactiveScreen") {
     interactiveScreen();
   }
-}
-
-//both interactive and Intro page --> user needle object
-function userObject(userNeedle) {
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-  image(userNeedle, userNeedle.x, userNeedle.y);
 }
 
 //the speaker character is created with p5 play
@@ -192,11 +194,23 @@ function speaker() {
     speechIndex += 0.25;
   }
 }
+//image title of simulation
+function titleText() {
+  imageMode(CENTER);
+  image(title, 900, 53, 1800, 50);
+}
 
 //Interactive page --> placing the user's beading canvas
 function userBeadCanvas() {
   imageMode(CENTER);
   image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
+}
+
+//both interactive and Intro page --> user needle object
+function userObject(userNeedle) {
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+  image(userNeedle, userNeedle.x, userNeedle.y);
 }
 
 //interactive page --> filling the grayed-out bead design with colored falling beads
@@ -259,6 +273,7 @@ function mouseReleased() {
   for (let i = 0; i < beads.length; i++) {
     beads[i].mouseReleased(design);
   }
+  //bouncing bead sound used for whenever mouse is released
   if (!bouncingBeadSFX.isPlaying()) {
     bouncingBeadSFX.setVolume(0.08);
     bouncingBeadSFX.play();
