@@ -14,6 +14,8 @@ let button = {
   height: 75,
 };
 
+let designPrev;
+
 //title text image
 let title;
 
@@ -31,7 +33,7 @@ let userNeedle;
 //responsive voice for intro page
 let speaking = false;
 let speech =
-  "Kwe, I am a contemporary artist that uses beadwork. But, I consider myself a traditional artist because I am telling a story of my own Indigenous experience. I view beadwork as a medium that can establish a dialogue, in the sense that it is a violent act; as the needle pierces the fabric it creates something beautiful at the same time. - Jobena Petonoquot";
+  "Kwe, beadwork is in a sense that it is a violent act; as the needle pierces the fabric it creates something beautiful at the same time.";
 let speechIndex = 0;
 
 //character speaker
@@ -39,7 +41,7 @@ let introCharacter;
 
 //beads
 let beads = [];
-let numBeads = 5;
+let numBeads = 30;
 
 //user beadwork canvas in interactive page
 let beadCanvas = undefined;
@@ -71,6 +73,8 @@ function preload() {
   //loaded sounds
   musicSFX = loadSound(`assets/sounds/relaxMusic.mp3`);
   bouncingBeadSFX = loadSound(`assets/sounds/bouncingBead.mp3`);
+
+  designPrev = loadImage(`assets/images/designPrev.png`);
 }
 
 /**
@@ -84,7 +88,7 @@ function setup() {
   //go through all the bead colors
   for (let i = 0; i < beadColors.length; i++) {
     let x = random(0, width);
-    let y = random(0, height);
+    let y = random(50, height);
     let beadColor = beadColors[i];
     let bead = new Beads(x, y, beadColor);
     beads.push(bead);
@@ -93,7 +97,7 @@ function setup() {
   //add all the "extra" random beads on top of the main set
   for (let i = 0; i < numBeads; i++) {
     let x = random(0, width);
-    let y = random(0, height);
+    let y = random(50, height);
     let beadColor = random(beadColors);
     let bead = new Beads(x, y, beadColor);
     beads.push(bead);
@@ -127,9 +131,11 @@ function startScreen() {
 
 //interactive page --> calling functions
 function interactiveScreen() {
+  designPreview();
   userBeadCanvas();
   beadPattern();
   updateBeads();
+  designPreview();
 }
 
 //switching pages --> from intro page to interactive page
@@ -144,7 +150,7 @@ function sceneSwitcher() {
 //the speaker character is created with p5 play
 function speakerCharacter() {
   //loading character animation when NOT speaking
-  introCharacter = createSprite(1000, 575, 100, 100);
+  introCharacter = createSprite(1100, 575, 100, 100);
   introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
   //loading chracter animation when speaking
   introCharacter.addAnimation(
@@ -176,7 +182,7 @@ function keyPressed() {
 
 function drawTextBubble() {
   imageMode(CENTER);
-  image(speechBubble, 500, 400, 500, 600);
+  image(speechBubble, 600, 400, 750, 150);
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
@@ -190,7 +196,7 @@ function speaker() {
   if (speaking) {
     let currentSpeech = speech.substring(0, speechIndex);
     //what the speaker says, it texts its words as it goes
-    text(currentSpeech, 300, 300);
+    text(currentSpeech, 250, 365);
     speechIndex += 0.25;
   }
 }
@@ -206,7 +212,16 @@ function introTexts() {
   textStyle(NORMAL);
   textAlign(CENTER, CENTER);
   textSize(20);
-  text(`Press any key to start the introduction`, 500, 750);
+  text(
+    `Press any key to start the introduction. Click the button when done introduction`,
+    windowWidth / 2,
+    200
+  );
+}
+
+function designPreview() {
+  imageMode(CENTER);
+  image(designPrev, 150, 200, 250, 290);
 }
 
 //Interactive page --> placing the user's beading canvas
