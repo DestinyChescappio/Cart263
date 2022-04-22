@@ -1,19 +1,25 @@
+//All beads' behavior are stored in here. They come in an array.
+//-Through their movements
+//-display style
+//-how they are handled throught the user's mouse X/Y actions in the simulation
 class Beads {
   constructor(x, y, beadColor) {
+    //coordinates
     this.x = x;
     this.y = y;
-
+    //dimensions
     this.width = 20;
     this.height = 20;
-
+    //velocity
     this.vx = 0;
     this.vy = 1.2;
-
+    //color of beads
     this.beadColor = beadColor;
-
+    //dragging behavior always false and only true when clicked on
     this.dragged = false;
   }
 
+  //movement
   move() {
     if (!this.dragged) {
       this.x = this.x + this.vx;
@@ -24,6 +30,7 @@ class Beads {
     }
   }
 
+  //mouse pressed--> what happens to the bead = it's draggable
   mousePressed() {
     let d = dist(this.x, this.y, mouseX, mouseY);
     if (d < this.width) {
@@ -31,6 +38,7 @@ class Beads {
     }
   }
 
+  //mouse released--> what happens when the mouse is released = the bead is assigned to a color and a specific coordinate (refer to design.js for more details)
   mouseReleased(design) {
     if (this.dragged) {
       this.dragged = false;

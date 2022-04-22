@@ -24,7 +24,7 @@ body {
   width: 200px;
   position: absolute;
   z-index: 5;
-  top: 20vw;
+  top: 30vw;
   left: 5vw;
   display: none;
 }
@@ -51,7 +51,7 @@ body {
   position: absolute;
   z-index: 5;
   top: 40vw;
-  left: 10vw;
+  left: 1200px;
   display: none;
 }
 

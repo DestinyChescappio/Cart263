@@ -1,15 +1,30 @@
 /**
-p2: prototype
+P2: Anujeeemeechanuuch
 by Destiny Chescappio
 
-The beginning stages of creating a digitalization of Indigenous beadwork practices! (Also a theraputic simulation)
+A simulation incorporating Indigenous practices of beadwork. The simulation has two separate parts; the start screen
+and the interactive screen. The start screen is an introduction section where the user is welcomed by a quick quote by
+an Indigenous beadwork artist then the user is lead to the interactive page where they are encouraged to virtually do
+the practice of beadwork and follow a guide (image of what the design is supposed to look like). During or after the beadwork,
+they are also encouraged to click on the fibre arts objects (thread, scissors, bowl of beads) which lead them to Indigenous
+beadwork artists to further their curiousity into the practice.
+
+Credits
+--> relaxing music
+https://pixabay.com/music/search/mood/relaxing/
+by John Kensy Music
+
+--> bouncing bead sound
+https://freesound.org/people/Trymyname1/sounds/409184/
+by Trymyname1
+
 */
 
 "use strict";
 //intro button; what triggers interactive page
 let button = {
-  x: 800,
-  y: 500,
+  x: 1200,
+  y: 700,
   width: 75,
   height: 75,
 };
@@ -33,7 +48,7 @@ let userNeedle;
 //responsive voice for intro page
 let speaking = false;
 let speech =
-  "Kwe, beadwork is in a sense that it is a violent act; as the needle pierces the fabric it creates something beautiful at the same time.";
+  "Kwe, beadwork, in a sense, is a violent act; as the needle pierces the fabric it creates something beautiful at the same time.";
 let speechIndex = 0;
 
 //character speaker
@@ -113,11 +128,11 @@ function draw() {
   background(171, 225, 209);
   //interactive and start screen switcher
   sceneSwitcher();
+  //user object
+  userObject(userNeedle);
   //if the state is start screen, the p5 play sprites start
   if (state === "startScreen") {
     drawSprites();
-    //user object
-    userObject(userNeedle);
   }
 }
 
@@ -125,8 +140,8 @@ function draw() {
 function startScreen() {
   drawTextBubble();
   drawButton(button);
-  speaker();
   introTexts();
+  speaker();
 }
 
 //interactive page --> calling functions
@@ -135,7 +150,6 @@ function interactiveScreen() {
   userBeadCanvas();
   beadPattern();
   updateBeads();
-  designPreview();
 }
 
 //switching pages --> from intro page to interactive page
@@ -147,10 +161,17 @@ function sceneSwitcher() {
   }
 }
 
+//both interactive and Intro page --> user needle object
+function userObject(userNeedle) {
+  userNeedle.x = mouseX;
+  userNeedle.y = mouseY;
+  image(userNeedle, userNeedle.x, userNeedle.y);
+}
+
 //the speaker character is created with p5 play
 function speakerCharacter() {
   //loading character animation when NOT speaking
-  introCharacter = createSprite(1100, 575, 100, 100);
+  introCharacter = createSprite(windowWidth / 2, 610, 100, 100);
   introCharacter.addAnimation("notSpeaking", "assets/images/girlStandard.png");
   //loading chracter animation when speaking
   introCharacter.addAnimation(
@@ -182,7 +203,7 @@ function keyPressed() {
 
 function drawTextBubble() {
   imageMode(CENTER);
-  image(speechBubble, 600, 400, 750, 150);
+  image(speechBubble, 720, 300, 1250, 150);
 }
 
 //intro page --> the button that is clicked on to trigger the interactive page
@@ -191,21 +212,11 @@ function drawButton(button) {
   image(button.image, button.x, button.y, button.width, button.height);
 }
 
-//intro page --> responsive voice/speech
-function speaker() {
-  if (speaking) {
-    let currentSpeech = speech.substring(0, speechIndex);
-    //what the speaker says, it texts its words as it goes
-    text(currentSpeech, 250, 365);
-    speechIndex += 0.25;
-  }
-}
 //image title of simulation
 function introTexts() {
   //title of simulation
   imageMode(CENTER);
   image(title, 900, 53, 1800, 50);
-  //instructions
   fill(67, 107, 95);
   noStroke();
   textFont(`arial`);
@@ -215,26 +226,36 @@ function introTexts() {
   text(
     `Press any key to start the introduction. Click the button when done introduction`,
     windowWidth / 2,
-    200
+    120
+  );
+  text(
+    `~Use the mouse to click & drag the beads to their assigned outlines~`,
+    windowWidth / 2,
+    150
   );
 }
 
+//intro page --> responsive voice/speech
+function speaker() {
+  if (speaking) {
+    let currentSpeech = speech.substring(0, speechIndex);
+    //what the speaker says, it texts its words as it goes
+    text(currentSpeech, 720, 265);
+    speechIndex += 0.25;
+    textSize(5);
+  }
+}
+
+//Interactive page --> design preview image for user to follow design
 function designPreview() {
   imageMode(CENTER);
-  image(designPrev, 150, 200, 250, 290);
+  image(designPrev, 170, 200, 250, 290);
 }
 
 //Interactive page --> placing the user's beading canvas
 function userBeadCanvas() {
   imageMode(CENTER);
   image(beadCanvas, windowWidth / 2 + 10, windowHeight / 2, 720, 800);
-}
-
-//both interactive and Intro page --> user needle object
-function userObject(userNeedle) {
-  userNeedle.x = mouseX;
-  userNeedle.y = mouseY;
-  image(userNeedle, userNeedle.x, userNeedle.y);
 }
 
 //interactive page --> filling the grayed-out bead design with colored falling beads
